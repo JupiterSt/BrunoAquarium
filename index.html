@@ -6,11 +6,15 @@
   <title>Bruno's Aquarium — Aquariums • Accessories • Maintenance</title>
   <meta name="description" content="Bruno's Aquarium in Huron, SD sells freshwater & saltwater aquariums, gear, livestock, and offers professional maintenance services." />
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="assets/img/logo.png" />
 </head>
 <body>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="index.html">🐠 Bruno's Aquarium</a>
+    <a class="brand" href="index.html" aria-label="Bruno's Aquarium — Home">
+      <img class="logo" src="assets/img/logo.png" alt="Bruno's Aquarium logo">
+      <span class="brand-text">Bruno's Aquarium</span>
+    </a>
     <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false">Menu</button>
     <nav id="site-nav" class="site-nav">
       <ul>
@@ -71,7 +75,10 @@
 <footer class="site-footer">
   <div class="container footer-grid">
     <div>
-      <h3>Bruno's Aquarium</h3>
+      <p style="display:flex;align-items:center;gap:.6rem;margin:0 0 .5rem 0;">
+        <img class="logo" src="assets/img/logo.png" alt="" style="height:20px;width:auto">
+        <strong>Bruno's Aquarium</strong>
+      </p>
       <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
     </div>
     <div>
