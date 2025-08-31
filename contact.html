@@ -4,10 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Order & Maintenance Request — Bruno's Aquarium</title>
-  <meta name="description" content="Order fish, tanks, accessories or request aquarium maintenance from Bruno's Aquarium in Huron, SD." />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <style>
-    /* page-local helper (keeps layout stable) */
     .hidden{display:none}
     .two-col{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
     @media (max-width:640px){.two-col{grid-template-columns:1fr}}
@@ -20,7 +18,7 @@
   <div class="container header-inner">
     <a class="brand" href="index.html" aria-label="Bruno's Aquarium — Home">
       <!-- Inline SVG Logo -->
-      <svg class="logo-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false" role="img">
+      <svg class="logo-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
         <defs>
           <style>
             .stroke{stroke:#0ea5e9;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
@@ -30,7 +28,9 @@
         <circle class="stroke" cx="32" cy="32" r="29"/>
         <path class="stroke" d="M40 24c-3-1-10 0-14 4-4 4-4 8 0 12 4 4 11 5 14 4 6-2 9-7 9-10s-3-8-9-10z"/>
         <path class="stroke" d="M18 28l6 4-6 4M36 32a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-        <circle class="fill" cx="47" cy="22" r="2"/><circle class="fill" cx="50.5" cy="18.5" r="1.6"/><circle class="fill" cx="53.5" cy="15.5" r="1.2"/>
+        <circle class="fill" cx="47" cy="22" r="2"/>
+        <circle class="fill" cx="50.5" cy="18.5" r="1.6"/>
+        <circle class="fill" cx="53.5" cy="15.5" r="1.2"/>
         <path class="stroke" d="M12 44c4 0 6-4 6-8M20 46c2-2 3-5 3-8M26 46c2-1 3-4 3-7"/>
       </svg>
       <span class="brand-text">Bruno's Aquarium</span>
@@ -58,9 +58,8 @@
   </section>
 
   <section class="container grid-2">
-    <!-- FORM CARD -->
-    <!-- To use a hosted backend later: replace action with your Formspree endpoint and remove mailto:. -->
-    <form class="card form" id="orderForm" action="mailto:hello@example.com" method="post" enctype="text/plain" aria-label="Order and maintenance request form">
+    <!-- FORM -->
+    <form class="card form" id="orderForm" action="mailto:hello@example.com" method="post" enctype="text/plain">
       <h2 class="section-title">Your Info</h2>
       <label for="name">Full Name</label>
       <input id="name" name="Name" type="text" required />
@@ -86,15 +85,15 @@
         <option value="Other">Other</option>
       </select>
 
-      <!-- FISH SECTION -->
+      <!-- Fish Section -->
       <div id="fishFields" class="hidden">
         <h2 class="section-title">Fish / Livestock Details</h2>
         <div class="two-col">
           <div>
             <label for="fishWater">Water Type</label>
             <select id="fishWater" name="Water Type">
-              <option value="Freshwater">Freshwater</option>
-              <option value="Saltwater">Saltwater</option>
+              <option>Freshwater</option>
+              <option>Saltwater</option>
             </select>
           </div>
           <div>
@@ -108,26 +107,19 @@
             </select>
           </div>
         </div>
-        <label for="fishSpecies">Species / Common name (e.g., Neon Tetra, Clownfish, Zoa)</label>
-        <input id="fishSpecies" name="Species" type="text" placeholder="Type specific names or leave general" />
-        <div class="two-col">
-          <div>
-            <label for="fishSize">Preferred Size</label>
-            <select id="fishSize" name="Size">
-              <option>Any</option><option>Small</option><option>Medium</option><option>Large</option>
-            </select>
-          </div>
-          <div>
-            <label for="fishQty">Quantity</label>
-            <input id="fishQty" name="Quantity" type="number" min="1" step="1" placeholder="1" />
-          </div>
-        </div>
       </div>
 
-      <!-- TANK SECTION -->
+      <!-- Tank Section -->
       <div id="tankFields" class="hidden">
         <h2 class="section-title">Tank / Stand / Sump</h2>
         <div class="two-col">
+          <div>
+            <label for="tankWater">Tank Type</label>
+            <select id="tankWater" name="Tank Water">
+              <option>Freshwater Tank</option>
+              <option>Saltwater Tank</option>
+            </select>
+          </div>
           <div>
             <label for="tankSize">Tank Size</label>
             <select id="tankSize" name="Tank Size">
@@ -135,63 +127,43 @@
               <option>90–120 gal</option><option>150–220 gal</option><option>300+ gal</option>
             </select>
           </div>
+        </div>
+        <div class="two-col">
           <div>
-            <label for="tankType">Type</label>
-            <select id="tankType" name="Tank Type">
+            <label for="tankMaterial">Material</label>
+            <select id="tankMaterial" name="Tank Material">
               <option>Glass</option><option>Acrylic</option><option>Rimless (low-iron)</option><option>All-in-one</option>
             </select>
           </div>
-        </div>
-        <div class="two-col">
           <div>
             <label for="tankStand">Stand</label>
             <select id="tankStand" name="Stand">
               <option>Not needed</option><option>Standard</option><option>Cabinet</option><option>Custom</option>
             </select>
           </div>
-          <div>
-            <label for="tankFiltration">Filtration</label>
-            <select id="tankFiltration" name="Filtration">
-              <option>Not sure (recommend for me)</option>
-              <option>HOB / Canister</option>
-              <option>Sump + Overflow</option>
-              <option>All-in-one / Media Chambers</option>
-            </select>
-          </div>
         </div>
       </div>
 
-      <!-- ACCESSORIES SECTION -->
+      <!-- Accessories Section -->
       <div id="accessoriesFields" class="hidden">
         <h2 class="section-title">Accessories / Food</h2>
         <label for="accCategory">Category</label>
         <select id="accCategory" name="Accessory Category">
-          <option>Filtration (skimmer, canister, HOB)</option>
-          <option>Pumps & Flow (return, wavemakers, ATO)</option>
-          <option>Lighting (reef, planted, nano)</option>
-          <option>Heating & Cooling (heaters, controllers, fans)</option>
-          <option>Substrate & Rock (sand, gravel, dry rock, wood)</option>
-          <option>Water & Testing (salt mix, RO/DI, test kits)</option>
-          <option>Food (freshwater, saltwater, coral)</option>
-          <option>Plumbing (bulkheads, PVC, tubing, valves)</option>
-          <option>Maintenance Tools (siphons, scrapers, nets)</option>
-          <option>Décor (plants, stone, ornaments)</option>
-          <option>Other</option>
+          <option>Filtration</option><option>Pumps & Flow</option><option>Lighting</option>
+          <option>Heating & Cooling</option><option>Substrate & Rock</option>
+          <option>Water & Testing</option><option>Food</option>
+          <option>Plumbing</option><option>Maintenance Tools</option><option>Décor</option><option>Other</option>
         </select>
-        <label for="accItems">Specific items or models</label>
-        <input id="accItems" name="Accessory Items" type="text" placeholder="e.g., 200W heater, Sicce return pump, reef LED" />
       </div>
 
-      <!-- MAINTENANCE SECTION -->
+      <!-- Maintenance Section -->
       <div id="maintenanceFields" class="hidden">
         <h2 class="section-title">Maintenance Service</h2>
         <div class="two-col">
           <div>
             <label for="serviceLevel">Service Level</label>
             <select id="serviceLevel" name="Service Level">
-              <option>Starter Clean</option>
-              <option>Standard Care</option>
-              <option>Premium Reef</option>
+              <option>Starter Clean</option><option>Standard Care</option><option>Premium Reef</option>
             </select>
           </div>
           <div>
@@ -201,72 +173,39 @@
             </select>
           </div>
         </div>
-        <div class="two-col">
-          <div>
-            <label for="tankVolume">Tank Volume (gallons)</label>
-            <input id="tankVolume" name="Tank Volume" type="number" min="1" step="1" placeholder="e.g., 90" />
-          </div>
-          <div>
-            <label for="waterType">Water Type</label>
-            <select id="waterType" name="Water">
-              <option>Freshwater</option><option>Saltwater</option><option>Multiple Tanks</option>
-            </select>
-          </div>
-        </div>
-        <label for="serviceAddress">Service Address</label>
-        <input id="serviceAddress" name="Service Address" type="text" placeholder="Street, City, ZIP" />
       </div>
 
-      <!-- COMMON OPTIONS -->
+      <!-- Common -->
       <h2 class="section-title">Preferences</h2>
       <div class="two-col">
-        <div>
-          <label for="budget">Budget Range</label>
-          <select id="budget" name="Budget">
-            <option>Under $50</option><option>$50–$150</option><option>$150–$500</option>
-            <option>$500–$1500</option><option>$1500+</option><option>Unsure</option>
-          </select>
-        </div>
         <div>
           <label for="when">Preferred Date</label>
           <input id="when" name="Preferred Date" type="date" />
         </div>
-      </div>
-
-      <div class="two-col">
         <div>
           <label for="contactPref">Contact Method</label>
           <select id="contactPref" name="Contact Preference">
             <option>Phone</option><option>Email</option><option>Either</option>
           </select>
         </div>
-        <div>
-          <label for="fulfillment">Pickup / Delivery</label>
-          <select id="fulfillment" name="Fulfillment">
-            <option>In-store pickup</option><option>Local delivery</option><option>Ship (dry goods only)</option>
-          </select>
-        </div>
       </div>
-
       <label for="msg">Notes / Special requests</label>
-      <textarea id="msg" name="Notes" rows="6" placeholder="Tell us anything else we should know…"></textarea>
+      <textarea id="msg" name="Notes" rows="6"></textarea>
 
       <button type="submit" class="btn">Submit Request</button>
-      <p class="help">Submitting will open your email app with the request details. Want a hosted form? We can switch you to Formspree in seconds.</p>
     </form>
 
-    <!-- SHOP INFO / SIDEBAR -->
+    <!-- Info Sidebar -->
     <div class="card">
       <h2>Visit Bruno's Aquarium</h2>
       <p><strong>Address:</strong><br>
-        <a href="https://maps.google.com/?q=266%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
-          266 Dakota Ave S, Huron, SD 57350
+        <a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank">
+          256 Dakota Ave S, Huron, SD 57350
         </a></p>
       <p><strong>Phone:</strong> <a href="tel:+16053506478">605-350-6478</a></p>
       <h3>Hours</h3>
       <p>Mon–Fri 10–6 • Sat 10–5 • Sun Closed</p>
       <div class="map-placeholder">Map Placeholder</div>
-      <p class="muted">Special orders arrive quickly. We’ll confirm stock & lead times by phone or email.</p>
     </div>
   </section>
 </main>
@@ -274,18 +213,12 @@
 <footer class="site-footer">
   <div class="container footer-grid">
     <div>
-      <p style="display:flex;align-items:center;gap:.6rem;margin:0 0 .5rem 0;">
-        <svg class="logo-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false" role="img" style="height:20px;width:auto">
-          <circle class="stroke" cx="32" cy="32" r="29"/>
-          <path class="stroke" d="M40 24c-3-1-10 0-14 4-4 4-4 8 0 12 4 4 11 5 14 4 6-2 9-7 9-10s-3-8-9-10z"/>
-        </svg>
-        <strong>Bruno's Aquarium</strong>
-      </p>
+      <strong>Bruno's Aquarium</strong>
       <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
     </div>
     <div>
       <h4>Visit</h4>
-      <p><a href="https://maps.google.com/?q=266%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">266 Dakota Ave S, Huron, SD 57350</a></p>
+      <p><a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank">256 Dakota Ave S, Huron, SD 57350</a></p>
       <p><a href="tel:+16053506478">605-350-6478</a></p>
     </div>
     <div>
@@ -300,22 +233,20 @@
 
 <script src="assets/js/main.js"></script>
 <script>
-  // Show/hide sections by request type
-  const typeEl = document.getElementById('requestType');
-  const sections = {
-    Fish: document.getElementById('fishFields'),
-    Tank: document.getElementById('tankFields'),
-    Accessories: document.getElementById('accessoriesFields'),
-    Maintenance: document.getElementById('maintenanceFields')
+  const typeEl=document.getElementById('requestType');
+  const sections={
+    Fish:document.getElementById('fishFields'),
+    Tank:document.getElementById('tankFields'),
+    Accessories:document.getElementById('accessoriesFields'),
+    Maintenance:document.getElementById('maintenanceFields')
   };
   function updateSections(){
-    const v = typeEl.value || '';
-    Object.keys(sections).forEach(k => {
-      sections[k].classList.toggle('hidden', v !== k);
+    const v=typeEl.value||'';
+    Object.keys(sections).forEach(k=>{
+      sections[k].classList.toggle('hidden',v!==k);
     });
   }
-  typeEl.addEventListener('change', updateSections);
-  // initialize on load if browser restored value
+  typeEl.addEventListener('change',updateSections);
   updateSections();
 </script>
 </body>
