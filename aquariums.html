@@ -4,14 +4,29 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Aquariums — Bruno's Aquarium</title>
-  <link rel="stylesheet" href="assets/css/styles.css" />
-  <link rel="icon" href="assets/img/logo.png" />
+  <!-- cache-bust the stylesheet so the latest logo sizing loads -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=2" />
 </head>
 <body>
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="index.html" aria-label="Bruno's Aquarium — Home">
-      <img class="logo" src="assets/img/logo.png" alt="Bruno's Aquarium logo">
+      <!-- Inline SVG logo so it never loads as a giant image -->
+      <svg class="logo-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false" role="img">
+        <defs>
+          <style>
+            .stroke{stroke:#0ea5e9;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+            .fill{fill:#0ea5e9}
+          </style>
+        </defs>
+        <circle class="stroke" cx="32" cy="32" r="29"/>
+        <path class="stroke" d="M40 24c-3-1-10 0-14 4-4 4-4 8 0 12 4 4 11 5 14 4 6-2 9-7 9-10s-3-8-9-10z"/>
+        <path class="stroke" d="M18 28l6 4-6 4M36 32a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+        <circle class="fill" cx="47" cy="22" r="2"/>
+        <circle class="fill" cx="50.5" cy="18.5" r="1.6"/>
+        <circle class="fill" cx="53.5" cy="15.5" r="1.2"/>
+        <path class="stroke" d="M12 44c4 0 6-4 6-8M20 46c2-2 3-5 3-8M26 46c2-1 3-4 3-7"/>
+      </svg>
       <span class="brand-text">Bruno's Aquarium</span>
     </a>
     <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false">Menu</button>
@@ -40,18 +55,20 @@
     <div>
       <h2>Popular Sizes</h2>
       <ul class="checklist">
-        <li>10–20 gal nano tanks (bettas, shrimp)</li>
+        <li>10–20 gal nano / betta & shrimp</li>
         <li>29–40 gal freshwater kits</li>
-        <li>75–120 gal community & reef tanks</li>
-        <li>180–300+ gal showpiece tanks</li>
+        <li>55–75 gal community</li>
+        <li>90–120 gal reef-ready</li>
+        <li>150–220 gal display</li>
+        <li>300+ gal showpiece (by order)</li>
       </ul>
     </div>
     <div>
       <h2>Custom Options</h2>
       <ul class="checklist">
-        <li>Rimless, low-iron glass & acrylic</li>
-        <li>Peninsula, cube, and shallow reef</li>
-        <li>External overflow & advanced plumbing</li>
+        <li>Rimless low-iron glass & acrylic</li>
+        <li>Peninsula, cube, shallow reef layouts</li>
+        <li>External overflow & bean-animal drains</li>
         <li>Plumbed sumps, refugiums & manifolds</li>
       </ul>
     </div>
@@ -67,7 +84,7 @@
       <span class="pill">Seapora</span>
       <span class="pill">Sicce</span>
     </div>
-    <p class="muted">Special orders available — delivered directly to Huron, SD.</p>
+    <p class="muted">Special orders available — delivered to Huron, SD. Ask about lead times.</p>
   </section>
 </main>
 
@@ -75,7 +92,10 @@
   <div class="container footer-grid">
     <div>
       <p style="display:flex;align-items:center;gap:.6rem;margin:0 0 .5rem 0;">
-        <img class="logo" src="assets/img/logo.png" alt="" style="height:20px;width:auto">
+        <svg class="logo-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false" role="img" style="height:20px;width:auto">
+          <circle class="stroke" cx="32" cy="32" r="29"/>
+          <path class="stroke" d="M40 24c-3-1-10 0-14 4-4 4-4 8 0 12 4 4 11 5 14 4 6-2 9-7 9-10s-3-8-9-10z"/>
+        </svg>
         <strong>Bruno's Aquarium</strong>
       </p>
       <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
@@ -94,6 +114,6 @@
     <p>© <span id="year"></span> Bruno's Aquarium. All rights reserved.</p>
   </div>
 </footer>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main.js?v=2"></script>
 </body>
 </html>
