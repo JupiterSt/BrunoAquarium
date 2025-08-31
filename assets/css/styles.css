@@ -58,3 +58,8 @@ a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
   .cards{grid-template-columns:1fr}
   .grid-2,.grid-3{grid-template-columns:1fr}
 }
+
+.brand { display:flex; align-items:center; gap:.6rem; font-weight:700; color:var(--text); }
+.brand .logo { height:32px; width:auto; display:block; }
+.brand .brand-text { letter-spacing:.2px; white-space:nowrap; }
+
