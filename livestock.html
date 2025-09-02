@@ -1,36 +1,120 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>In-Shop Fish — Bruno's Aquarium</title>
-<link rel="stylesheet" href="assets/css/styles.css?v=5">
-</head><body>
-<header class="site-header"><div class="container header-inner">
-  <a class="brand" href="index.html" aria-label="Home">
-    <svg class="logo-svg" viewBox="0 0 64 64" aria-hidden="true"><circle class="stroke" cx="32" cy="32" r="29"/></svg>
-    <span class="brand-text">Bruno's Aquarium</span></a>
-  <button class="nav-toggle">Menu</button>
-  <nav class="site-nav"><ul>
-    <li><a href="aquariums.html">Aquariums</a></li><li><a href="accessories.html">Accessories</a></li>
-    <li><a href="maintenance.html">Maintenance</a></li><li><a class="active" href="livestock.html">In-Shop Fish</a></li>
-    <li><a href="about.html">About</a></li><li><a class="btn" href="contact.html">Contact</a></li>
-  </ul></nav>
-</div></header>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>In-Shop Fish & Corals — Bruno's Aquariums</title>
+
+  <link rel="stylesheet" href="assets/css/styles.css?v=6">
+  <link rel="icon" href="assets/img/favicon.png">
+
+  <meta property="og:title" content="Bruno's Aquariums — In-Shop Fish">
+  <meta property="og:description" content="Freshwater fish, marine livestock, corals & inverts — quarantined and updated weekly.">
+  <meta property="og:image" content="assets/img/brunos-logo.png">
+</head>
+<body>
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="Bruno's Aquariums — Home">
+      <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo">
+      <span class="brand-text">Bruno's Aquariums</span>
+    </a>
+
+    <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false">Menu</button>
+    <nav id="site-nav" class="site-nav" role="navigation" aria-label="Main">
+      <ul>
+        <li><a href="aquariums.html">Aquariums</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+        <li><a href="maintenance.html">Maintenance</a></li>
+        <li><a class="active" href="livestock.html">Fish & Corals</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a class="btn-ghost" href="index.html#appointments">Book Appointment</a></li>
+        <li><a class="btn" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
 <main class="content">
-  <section class="page-hero centered"><div class="container"><h1>In-Shop Fish</h1><p>Quarantined freshwater & marine livestock. New arrivals weekly.</p></div></section>
-
-  <section class="container grid-3">
-    <article class="card"><h3>Freshwater Community</h3><ul class="bullets"><li>Neon/Cardinal Tetras</li><li>Guppies & Endlers</li><li>Corydoras & Plecos</li></ul></article>
-    <article class="card"><h3>Cichlids & Oddballs</h3><ul class="bullets"><li>Angelfish & Discus (by order)</li><li>Kribensis, Rams</li><li>African Cichlids</li></ul></article>
-    <article class="card"><h3>Saltwater</h3><ul class="bullets"><li>Clownfish & Gobies</li><li>Wrasses & Tangs (by order)</li><li>Inverts: shrimp, snails, crabs</li></ul></article>
+  <!-- HERO -->
+  <section class="page-hero centered">
+    <div class="container">
+      <h1>In-Shop Fish & Corals</h1>
+      <p>Freshwater and marine livestock, quarantined and refreshed weekly.</p>
+    </div>
   </section>
 
-  <section class="banner"><div class="container banner-inner"><p>Looking for something specific?</p><a class="btn" href="contact.html">Request Livestock</a></div></section>
+  <!-- STOCK CATEGORIES -->
+  <section class="container grid-3">
+    <article class="card">
+      <h3>Freshwater Community</h3>
+      <ul class="bullets">
+        <li>Neon & Cardinal Tetras</li>
+        <li>Guppies & Endlers</li>
+        <li>Corydoras & Plecos</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Cichlids & Oddballs</h3>
+      <ul class="bullets">
+        <li>Angelfish & Discus (by order)</li>
+        <li>Kribensis, Rams</li>
+        <li>African Cichlids</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Saltwater</h3>
+      <ul class="bullets">
+        <li>Clownfish & Gobies</li>
+        <li>Wrasses & Tangs (by order)</li>
+        <li>Inverts: shrimp, snails, crabs</li>
+        <li>Soft & LPS Corals (rotating stock)</li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- CTA -->
+  <section class="banner">
+    <div class="container banner-inner">
+      <p>Looking for something specific or want to reserve livestock?</p>
+      <a class="btn" href="contact.html">Request Livestock</a>
+    </div>
+  </section>
 </main>
 
-<footer class="site-footer"><div class="container footer-grid">
-  <div><strong>Bruno's Aquarium</strong><p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p></div>
-  <div><h4>Visit</h4><p><a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank">256 Dakota Ave S, Huron, SD 57350</a></p><p><a href="tel:+16053506478">605-350-6478</a></p></div>
-  <div><h4>Hours</h4><p>Mon–Fri 10–6 • Sat 10–5 • Sun Closed</p></div>
-</div><div class="container legal"><p>© <span id="year"></span> Bruno's Aquarium.</p></div></footer>
-<script src="assets/js/main.js?v=5"></script>
-</body></html>
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-grid">
+    <div>
+      <p style="display:flex;align-items:center;gap:.6rem;margin:0 0 .5rem 0;">
+        <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" style="height:20px">
+        <strong>Bruno's Aquariums</strong>
+      </p>
+      <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
+    </div>
+
+    <div>
+      <h4>Visit</h4>
+      <p><a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
+        256 Dakota Ave S, Huron, SD 57350</a></p>
+      <p><a href="tel:+16053506478">605-350-6478</a></p>
+    </div>
+
+    <div>
+      <h4>Hours</h4>
+      <p>Mon–Fri 10–6 • Sat 10–5 • Sun Closed</p>
+    </div>
+  </div>
+
+  <div class="container legal">
+    <p>© <span id="year"></span> Bruno's Aquariums. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js?v=6"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
