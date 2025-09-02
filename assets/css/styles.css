@@ -56,20 +56,45 @@ a:hover{text-decoration:underline}
 .logo-img,.logo-svg{height:36px; width:auto; display:block}
 .brand-text{white-space:nowrap; letter-spacing:.2px}
 
+/* Toggle (shown on mobile) */
 .nav-toggle{
   display:none; background:transparent; color:var(--text);
   border:1px solid var(--border); padding:.45rem .65rem; border-radius:.55rem;
 }
-.site-nav ul{
-  display:flex; gap:.75rem; list-style:none; margin:0; padding:0;
-}
-.site-nav a{
-  padding:.5rem .85rem; border-radius:.6rem; transition:background .2s ease;
-}
-.site-nav a.active,.site-nav a:hover{background:#0b2036}
-.btn-ghost{padding:.55rem .9rem; border:1px solid currentColor; border-radius:.6rem}
 
-/* BUTTONS */
+/* Nav list */
+.site-nav ul{
+  display:flex; align-items:center; gap:.75rem; list-style:none; margin:0; padding:0;
+}
+
+/* Links: single-line + consistent hit area (prevents “Book Appointment” wrapping) */
+.site-nav a{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:2.4rem;
+  padding:0 .9rem;
+  border-radius:.6rem;
+  color:var(--text);
+  text-decoration:none;
+  white-space:nowrap;               /* <<< keep one line */
+  transition:background .2s ease, color .2s ease;
+}
+.site-nav a.active,
+.site-nav a:hover{ background:#0b2036 }
+
+/* Ghost + Filled buttons inside nav */
+.btn-ghost{padding:.55rem .9rem; border:1px solid currentColor; border-radius:.6rem}
+.site-nav a.btn-ghost{ border:1px solid currentColor }  /* ensure ghost style in nav */
+.site-nav a.btn{
+  background:var(--brand); color:var(--btn-text); border:0; font-weight:700;
+}
+
+/* Optional: tighten spacing on wide but crowded screens */
+@media (max-width:1140px){
+  .site-nav ul{ gap:.55rem }
+  .site-nav a{ padding:0 .75rem }
+}
+
+/* BUTTONS (general) */
 .btn{
   display:inline-block; background:var(--brand); color:var(--btn-text);
   padding:.65rem 1rem; border-radius:.7rem; font-weight:700; border:0;
@@ -150,13 +175,15 @@ a:hover{text-decoration:underline}
   .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:640px){
+  .nav-toggle{ display:block }
   .site-nav ul{
-    display:none; flex-direction:column; gap:.4rem;
-    background:#0b1322; border:1px solid var(--border); padding:.5rem; border-radius:.8rem;
+    display:none; flex-direction:column; gap:.45rem;
     position:absolute; right:1rem; top:3.2rem;
+    background:#0b1322; border:1px solid var(--border); border-radius:.8rem;
+    padding:.6rem; min-width:14rem;
   }
-  .site-nav ul.open{display:flex}
-  .nav-toggle{display:block}
+  .site-nav ul.open{ display:flex }
+  .site-nav a{ height:auto; padding:.55rem .8rem; width:100%; justify-content:flex-start }
   .cards{grid-template-columns:1fr}
   .grid-2,.grid-3{grid-template-columns:1fr}
 }
