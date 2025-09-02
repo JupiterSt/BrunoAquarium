@@ -1,44 +1,185 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Accessories — Bruno's Aquarium</title>
-<link rel="stylesheet" href="assets/css/styles.css?v=5">
-</head><body>
-<header class="site-header"><div class="container header-inner">
-  <a class="brand" href="index.html" aria-label="Home">
-    <svg class="logo-svg" viewBox="0 0 64 64" aria-hidden="true"><defs><style>.stroke{stroke:#0ea5e9;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}.fill{fill:#0ea5e9}</style></defs><circle class="stroke" cx="32" cy="32" r="29"/></svg>
-    <span class="brand-text">Bruno's Aquarium</span></a>
-  <button class="nav-toggle">Menu</button>
-  <nav class="site-nav"><ul>
-    <li><a href="aquariums.html">Aquariums</a></li><li><a class="active" href="accessories.html">Accessories</a></li>
-    <li><a href="maintenance.html">Maintenance</a></li><li><a href="livestock.html">In-Shop Fish</a></li>
-    <li><a href="about.html">About</a></li><li><a class="btn" href="contact.html">Contact</a></li>
-  </ul></nav>
-</div></header>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accessories — Bruno's Aquariums</title>
+
+  <link rel="stylesheet" href="assets/css/styles.css?v=6">
+  <link rel="icon" href="assets/img/favicon.png">
+
+  <meta property="og:title" content="Bruno's Aquariums — Accessories & Food">
+  <meta property="og:description" content="Everything to run freshwater & reef tanks: filtration, pumps, lighting, water care, rock, plumbing, tools, and foods.">
+  <meta property="og:image" content="assets/img/brunos-logo.png">
+
+  <style>
+    .logo-img{height:36px;width:auto;display:block}
+    .btn-ghost{padding:.55rem .9rem;border:1px solid currentColor;border-radius:.5rem}
+    .grid-3{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .bullets{padding-left:1.1rem}
+    .bullets li{margin:.25rem 0}
+    .section{padding:3.5rem 0}
+  </style>
+</head>
+<body>
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="Bruno's Aquariums — Home">
+      <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo">
+      <span class="brand-text">Bruno's Aquariums</span>
+    </a>
+
+    <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false">Menu</button>
+    <nav id="site-nav" class="site-nav" role="navigation" aria-label="Main">
+      <ul>
+        <li><a href="aquariums.html">Aquariums</a></li>
+        <li><a class="active" href="accessories.html">Accessories</a></li>
+        <li><a href="maintenance.html">Maintenance</a></li>
+        <li><a href="livestock.html">Fish & Corals</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a class="btn-ghost" href="index.html#appointments">Book Appointment</a></li>
+        <li><a class="btn" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
 <main class="content">
-  <section class="page-hero centered"><div class="container"><h1>Accessories & Food</h1><p>Everything to run freshwater & reef tanks.</p></div></section>
-
-  <section class="container grid-3">
-    <article class="card"><h3>Filtration</h3><ul class="bullets"><li>HOB & canister filters</li><li>Protein skimmers</li><li>Filter media & socks</li></ul></article>
-    <article class="card"><h3>Pumps & Flow</h3><ul class="bullets"><li>Return pumps</li><li>Wavemakers/Powerheads</li><li>ATO systems</li></ul></article>
-    <article class="card"><h3>Lighting</h3><ul class="bullets"><li>Reef LEDs</li><li>Planted LEDs</li><li>Timers & mounts</li></ul></article>
-
-    <article class="card"><h3>Heating/Cooling</h3><ul class="bullets"><li>Heaters & controllers</li><li>Cooling fans</li><li>Thermometers</li></ul></article>
-    <article class="card"><h3>Water & Test</h3><ul class="bullets"><li>RO/DI & salt mix</li><li>Conditioners</li><li>Test kits & refractometers</li></ul></article>
-    <article class="card"><h3>Substrate & Rock</h3><ul class="bullets"><li>Sand & gravel</li><li>Aquasoil</li><li>Dry rock & wood</li></ul></article>
-
-    <article class="card"><h3>Food</h3><ul class="bullets"><li>Flakes & pellets</li><li>Frozen foods</li><li>Coral foods</li></ul></article>
-    <article class="card"><h3>Plumbing</h3><ul class="bullets"><li>Bulkheads & PVC</li><li>Tubing & valves</li><li>Overflow kits</li></ul></article>
-    <article class="card"><h3>Maintenance Tools</h3><ul class="bullets"><li>Gravel vacs & siphons</li><li>Scrapers & nets</li><li>Buckets & hoses</li></ul></article>
+  <!-- HERO -->
+  <section class="page-hero centered section">
+    <div class="container">
+      <h1>Accessories & Food</h1>
+      <p>Everything to run freshwater & reef tanks.</p>
+    </div>
   </section>
 
-  <section class="banner"><div class="container banner-inner"><p>Need a part we don’t list?</p><a class="btn" href="contact.html">Request a Special Order</a></div></section>
+  <!-- CATEGORIES -->
+  <section class="container grid-3 section" aria-label="Accessory Categories">
+    <article class="card">
+      <h3>Filtration</h3>
+      <ul class="bullets">
+        <li>HOB & canister filters</li>
+        <li>Protein skimmers</li>
+        <li>Filter media & socks</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Pumps & Flow</h3>
+      <ul class="bullets">
+        <li>Return pumps</li>
+        <li>Wavemakers / Powerheads</li>
+        <li>ATO systems</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Lighting</h3>
+      <ul class="bullets">
+        <li>Reef LEDs</li>
+        <li>Planted LEDs</li>
+        <li>Timers & mounts</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Heating / Cooling</h3>
+      <ul class="bullets">
+        <li>Heaters & controllers</li>
+        <li>Cooling fans</li>
+        <li>Thermometers</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Water & Test</h3>
+      <ul class="bullets">
+        <li>RO/DI & salt mix</li>
+        <li>Conditioners</li>
+        <li>Test kits & refractometers</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Substrate & Rock</h3>
+      <ul class="bullets">
+        <li>Sand & gravel</li>
+        <li>Aquasoil</li>
+        <li>Dry rock & wood</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Food</h3>
+      <ul class="bullets">
+        <li>Flakes & pellets</li>
+        <li>Frozen foods</li>
+        <li>Coral foods</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Plumbing</h3>
+      <ul class="bullets">
+        <li>Bulkheads & PVC</li>
+        <li>Tubing & valves</li>
+        <li>Overflow kits</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Maintenance Tools</h3>
+      <ul class="bullets">
+        <li>Gravel vacs & siphons</li>
+        <li>Scrapers & nets</li>
+        <li>Buckets & hoses</li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- CTA -->
+  <section class="banner section" aria-label="Special Orders">
+    <div class="container banner-inner">
+      <p>Need a part we don’t list?</p>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
+        <a class="btn" href="contact.html">Request a Special Order</a>
+        <a class="btn-outline" href="index.html#appointments">Book Appointment</a>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer class="site-footer"><div class="container footer-grid">
-  <div><strong>Bruno's Aquarium</strong><p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p></div>
-  <div><h4>Visit</h4><p><a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank">256 Dakota Ave S, Huron, SD 57350</a></p><p><a href="tel:+16053506478">605-350-6478</a></p></div>
-  <div><h4>Hours</h4><p>Mon–Fri 10–6 • Sat 10–5 • Sun Closed</p></div>
-</div><div class="container legal"><p>© <span id="year"></span> Bruno's Aquarium.</p></div></footer>
-<script src="assets/js/main.js?v=5"></script>
-</body></html>
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-grid">
+    <div>
+      <p style="display:flex;align-items:center;gap:.6rem;margin:0 0 .5rem 0;">
+        <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" style="height:20px">
+        <strong>Bruno's Aquariums</strong>
+      </p>
+      <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
+    </div>
+
+    <div>
+      <h4>Visit</h4>
+      <p><a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
+        256 Dakota Ave S, Huron, SD 57350</a></p>
+      <p><a href="tel:+16053506478">605-350-6478</a></p>
+    </div>
+
+    <div>
+      <h4>Hours</h4>
+      <p>Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
+    </div>
+  </div>
+
+  <div class="container legal">
+    <p>© <span id="year"></span> Bruno's Aquariums. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js?v=6"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
