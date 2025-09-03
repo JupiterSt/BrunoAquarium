@@ -70,10 +70,10 @@
   </section>
 
   <section class="container grid-2" aria-label="Contact form and store information">
-    <!-- SECURE FORM: Replace YOUR_FORMSPREE_ID below -->
+    <!-- SECURE FORM: Your live Formspree endpoint -->
     <form class="card form" id="contactForm"
-      action="https://formspree.io/f/YOUR_FORMSPREE_ID"
-      method="POST" autocomplete="on">
+          action="https://formspree.io/f/mldworzo"
+          method="POST" autocomplete="on">
       <h2>Your Info</h2>
 
       <label class="required" for="name">Full Name</label>
@@ -96,7 +96,7 @@
       <h2>What are you looking for?</h2>
       <p class="note">Check all that apply. You can add notes below.</p>
 
-      <!-- LIVESTOCK -->
+      <!-- SALTWATER FISH -->
       <div class="group">
         <h3>Saltwater Fish</h3>
         <div class="chips">
@@ -112,6 +112,7 @@
         </div>
       </div>
 
+      <!-- FRESHWATER FISH -->
       <div class="group">
         <h3>Freshwater Fish</h3>
         <div class="chips">
@@ -128,6 +129,7 @@
         </div>
       </div>
 
+      <!-- CORALS & INVERTS -->
       <div class="group">
         <h3>Corals & Inverts</h3>
         <div class="chips">
@@ -187,7 +189,7 @@
         </div>
         <div>
           <label for="contactPref">Contact Preference</label>
-          <div class="chips">
+          <div class="chips" id="contactPref">
             <label class="chip"><input type="radio" name="Contact Preference" value="Either" checked>Either</label>
             <label class="chip"><input type="radio" name="Contact Preference" value="Phone">Phone</label>
             <label class="chip"><input type="radio" name="Contact Preference" value="Email">Email</label>
@@ -201,15 +203,15 @@
       <label for="notes">Notes / Special requests</label>
       <textarea id="notes" name="Notes" rows="6" placeholder="Species list, sizes/quantities, model names, tank size, timing, etc."></textarea>
 
-      <!-- Honey pot (spam protection) -->
+      <!-- Formspree helpers -->
+      <input type="hidden" name="_subject" value="New request from Bruno's Aquariums">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_redirect" value="thank-you.html">
+      <!-- Honeypot (spam protection) -->
       <input type="text" name="_gotcha" style="display:none">
 
-      <!-- Formspree: where to reply -->
-      <input type="hidden" name="_subject" value="New request from brunosaquarium.com">
-      <input type="hidden" name="_template" value="table">
-
       <button type="submit" class="btn">Send Request</button>
-      <p class="help note">This form submits securely over HTTPS. You’ll receive a confirmation if it sends successfully.</p>
+      <p class="help note">This form submits securely over HTTPS. You’ll see a confirmation if it sends successfully.</p>
     </form>
 
     <!-- SIDEBAR INFO -->
