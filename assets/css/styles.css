@@ -1,7 +1,7 @@
 /* ================================
    Bruno’s Aquariums – Core Styles
    Dark, clean, responsive UI
-   v8
+   v9
 ================================= */
 
 /* THEME TOKENS */
@@ -15,8 +15,8 @@
   --muted:#94a3b8;
   --text:#e2e8f0;
 
-  --brand:#0ea5e9;          /* primary CTA */
-  --brand-2:#38bdf8;        /* links / accents */
+  --brand:#0ea5e9;      /* primary CTA */
+  --brand-2:#38bdf8;    /* links / accents */
   --btn-text:#06131f;
 
   --pill:#1f2937;
@@ -64,47 +64,29 @@ a:hover{text-decoration:underline}
 
 /* Nav list */
 .site-nav{
-  overflow-x:auto;
-  -ms-overflow-style:none; scrollbar-width:none;
+  overflow-x:auto; -ms-overflow-style:none; scrollbar-width:none;
 }
 .site-nav::-webkit-scrollbar{display:none}
-
 .site-nav ul{
   display:flex; align-items:center; gap:.75rem;
-  list-style:none; margin:0; padding:0;
-  flex-wrap:nowrap;           /* keep one line */
+  list-style:none; margin:0; padding:0; flex-wrap:nowrap;
 }
-
-/* Links: single-line + consistent hit area */
 .site-nav a{
   display:inline-flex; align-items:center; justify-content:center;
-  height:2.4rem;
-  padding:0 .9rem;
-  border-radius:.6rem;
-  color:var(--text);
-  text-decoration:none;
-  white-space:nowrap;         /* never wrap text */
+  height:2.4rem; padding:0 .9rem; border-radius:.6rem;
+  color:var(--text); text-decoration:none; white-space:nowrap;
   transition:background .2s ease, color .2s ease;
 }
-.site-nav a.active,
-.site-nav a:hover{ background:#0b2036 }
+.site-nav a.active, .site-nav a:hover{ background:#0b2036 }
+.site-nav a.btn-ghost{ border:1px solid currentColor; min-width:max-content }
+.site-nav a.btn{ background:var(--brand); color:var(--btn-text); border:0; font-weight:700 }
 
-/* Special nav buttons */
-.site-nav a.btn-ghost{
-  border:1px solid currentColor;
-  min-width:max-content;
-}
-.site-nav a.btn{
-  background:var(--brand); color:var(--btn-text); border:0; font-weight:700;
-}
-
-/* Optional: tighter spacing on medium desktops */
 @media (max-width:1140px){
   .site-nav ul{ gap:.55rem }
   .site-nav a{ padding:0 .7rem }
 }
 
-/* BUTTONS (general) */
+/* BUTTONS */
 .btn{
   display:inline-block; background:var(--brand); color:var(--btn-text);
   padding:.65rem 1rem; border-radius:.7rem; font-weight:700; border:0;
@@ -117,13 +99,14 @@ a:hover{text-decoration:underline}
   border:1px solid var(--border); padding:.65rem 1rem; border-radius:.7rem;
 }
 .btn-outline:hover{border-color:var(--brand-2)}
+.btn-ghost{ padding:.55rem .9rem; border:1px solid currentColor; border-radius:.6rem }
 
 /* HERO */
 .hero{
   padding:4rem 0;
   background:linear-gradient(180deg,var(--bg) 0%, var(--bg-2) 100%);
 }
-.hero .container{ text-align:center; } /* center hero content */
+.hero .container{ text-align:center }
 .hero h1{font-size:2rem; margin:.2rem 0 1rem}
 .hero-cta{display:flex; gap:.8rem; flex-wrap:wrap; justify-content:center}
 
@@ -138,30 +121,25 @@ a:hover{text-decoration:underline}
 .card{
   background:var(--card); padding:1rem; border:1px solid var(--border);
   border-radius:1rem; box-shadow:var(--shadow);
-  height:100%; /* equal heights inside grids */
+  height:100%; /* equal heights in grids */
 }
 .card h3{margin-top:0}
 
-/* Centered, responsive grids */
-.cards{
+/* Centered, non-stretching grids */
+.cards,
+.grid-3{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  grid-template-columns:repeat(auto-fit, minmax(260px, 320px)); /* fixed-ish columns */
   gap:1.25rem;
-  margin:2rem auto;
-  justify-content:center;   /* center when there are 1–2 items in a row */
+  justify-content:center;   /* center the whole grid */
   align-items:stretch;
+  margin:2rem auto;
 }
 
+/* Two-column utility grid */
 .grid-2{
   display:grid; grid-template-columns:1fr 1fr;
   gap:1.25rem; margin:2rem 0; align-items:stretch; justify-content:center;
-}
-
-.grid-3{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:1.25rem; margin:2rem 0;
-  justify-content:center; align-items:stretch;
 }
 
 /* LISTS */
@@ -177,7 +155,7 @@ a:hover{text-decoration:underline}
 }
 
 /* APPOINTMENTS (optional section tint) */
-.appointments{background:color-mix(in oklab, var(--brand) 8%, transparent);}
+.appointments{background:color-mix(in oklab, var(--brand) 8%, transparent)}
 
 /* FORMS */
 .form label{display:block; margin-top:.65rem}
@@ -216,8 +194,7 @@ a:hover{text-decoration:underline}
   .site-nav ul.open{ display:flex }
   .site-nav a{ height:auto; padding:.55rem .8rem; width:100%; justify-content:flex-start }
 
-  .cards,
-  .grid-3{grid-template-columns:1fr}
+  .cards, .grid-3{ grid-template-columns:1fr } /* stack cards */
 }
 
 /* REDUCED MOTION */
