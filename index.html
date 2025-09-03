@@ -1,37 +1,36 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bruno's Aquarium — Aquariums • Fish & Corals • Maintenance</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bruno's Aquariums — Aquariums • Fish & Corals • Maintenance</title>
 
-  <!-- Primary stylesheet -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=6">
+  <!-- Core styles -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=8" />
+  <link rel="icon" href="assets/img/favicon.png" />
 
-  <!-- Favicons (optional) -->
-  <link rel="icon" href="assets/img/favicon.png">
+  <!-- Meta / Open Graph -->
+  <meta name="description" content="Saltwater & freshwater aquariums, fish & corals, accessories, and maintenance in Huron, SD." />
+  <meta property="og:title" content="Bruno's Aquariums — Aquariums • Accessories • Maintenance" />
+  <meta property="og:description" content="From beginner freshwater tanks to advanced reef systems. Tanks, gear, livestock & expert care." />
+  <meta property="og:image" content="assets/img/brunos-logo.png" />
+  <meta property="og:type" content="website" />
 
-  <!-- Open Graph (nice shares) -->
-  <meta property="og:title" content="Bruno's Aquarium">
-  <meta property="og:description" content="Saltwater & Freshwater tanks, fish & corals, supplies, and maintenance — all in one place.">
-  <meta property="og:image" content="assets/img/brunos-logo.png">
-  <meta property="og:type" content="website">
-
-  <!-- Small helpers if your CSS doesn't already have them -->
+  <!-- Small header hardening to stop button wrapping -->
   <style>
-    .brand { display:flex; align-items:center; gap:.6rem; text-decoration:none }
-    .logo-img { height:36px; width:auto; display:block }
-    .site-nav .btn-ghost { padding:.55rem .9rem; border:1px solid currentColor; border-radius:.5rem }
-    .section { padding:3.5rem 0 }
-    .appointments { background:#061b290d } /* subtle tint */
-    /* If your header has a mobile toggle, main.js will handle it. */
+    .logo-img{height:36px;width:auto;display:block}
+    .site-nav a{white-space:nowrap}
+    .btn-ghost{padding:.55rem .9rem;border:1px solid currentColor;border-radius:.6rem;white-space:nowrap}
+    .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap}
+    @media(max-width:420px){.brand-text{display:none}}
   </style>
 </head>
+
 <body>
 <header class="site-header" role="banner">
   <div class="container header-inner">
-    <a class="brand" href="index.html" aria-label="Bruno's Aquarium — Home">
-      <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo">
+    <a class="brand" href="index.html" aria-label="Bruno's Aquariums — Home">
+      <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" />
       <span class="brand-text">Bruno's Aquariums</span>
     </a>
 
@@ -42,7 +41,8 @@
         <li><a href="accessories.html">Accessories</a></li>
         <li><a href="livestock.html">Fish & Corals</a></li>
         <li><a href="maintenance.html">Maintenance</a></li>
-        <li><a class="btn-ghost" href="#appointments">Book Appointment</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a class="btn-ghost" href="#appointments">Book&nbsp;Appointment</a></li>
         <li><a class="btn" href="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -51,21 +51,22 @@
 
 <main class="content">
   <!-- HERO -->
-  <section class="hero section" id="home">
+  <section class="hero">
     <div class="container">
       <h1>Aquariums, Livestock & Maintenance — All in One Place</h1>
       <p>From beginner freshwater setups to advanced reef systems, we’ve got tanks, gear, and expert care.</p>
       <div class="hero-cta">
         <a class="btn" href="aquariums.html">Shop Aquariums</a>
-        <a class="btn-outline" href="maintenance.html">Service Packages</a>
+        <a class="btn-outline" href="maintenance.html">Book Maintenance</a>
+        <a class="btn-ghost" href="livestock.html">This Week’s Fish & Corals</a>
       </div>
     </div>
   </section>
 
-  <!-- QUICK CARDS -->
-  <section class="cards container section" aria-label="Shop & Services">
+  <!-- FEATURE CARDS -->
+  <section class="cards container" aria-label="Main categories">
     <article class="card">
-      <h3>Aquarium Selling</h3>
+      <h3>Aquariums</h3>
       <p>Glass & acrylic tanks, stands, sumps, plumbing kits, and custom builds.</p>
       <a class="link" href="aquariums.html">Explore Tanks →</a>
     </article>
@@ -78,41 +79,39 @@
 
     <article class="card">
       <h3>Maintenance Services</h3>
-      <p>Water changes, testing, dosing, aquascaping, emergency visits & contracts.</p>
+      <p>Water changes, testing, dosing, aquascaping, emergency visits & service plans.</p>
       <a class="link" href="maintenance.html">See Packages →</a>
     </article>
 
     <article class="card">
-      <h3>In-Shop Fish & Corals</h3>
-      <p>Quarantined freshwater & marine livestock, corals, and invertebrates.</p>
+      <h3>Fish & Corals</h3>
+      <p>Quarantined freshwater & marine livestock, corals and invertebrates.</p>
       <a class="link" href="livestock.html">This Week’s Stock →</a>
     </article>
   </section>
 
-  <!-- APPOINTMENTS (Calendly inline embed) -->
-  <section class="appointments section" id="appointments" aria-label="Book an Appointment">
-    <div class="container">
-      <h2>Book an Appointment</h2>
-      <p>Select a time for maintenance, setup consultation, or livestock pickup.</p>
-
-      <!-- Replace data-url with your real Calendly link -->
-      <div class="calendly-inline-widget"
-           data-url="https://calendly.com/brunosaquariums/"
-           style="min-width:320px;height:680px;"></div>
-      <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
-      <!-- Optional fallback link if embed is blocked -->
-      <p style="margin-top:.75rem">
-        Prefer a direct link? <a href="https://calendly.com/brunosaquariums/consultation" target="_blank" rel="noopener">Open the booking page</a>.
+  <!-- APPOINTMENTS (simple, no external embed needed) -->
+  <section id="appointments" class="section appointments">
+    <div class="container card" style="padding:1.25rem">
+      <h2 class="centered" style="margin-top:0">Book an Appointment</h2>
+      <p class="centered muted" style="margin-top:-.4rem">
+        Pick-up orders, consultations, installs, or in-store help.
       </p>
+      <div class="hero-cta" style="justify-content:center;margin-top:.6rem">
+        <a class="btn" href="contact.html">Send Request</a>
+        <a class="btn-outline" href="maintenance.html">Maintenance Plans</a>
+      </div>
     </div>
   </section>
 
   <!-- CTA BANNER -->
-  <section class="banner section" aria-label="Contact CTA">
+  <section class="banner" aria-label="Contact CTA">
     <div class="container banner-inner">
-      <p>Need a custom build or a fast service quote?</p>
-      <a class="btn" href="contact.html">Contact Us</a>
+      <p style="margin:.25rem 0">Need a custom build or a service quote?</p>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+        <a class="btn" href="contact.html">Contact Us</a>
+        <a class="btn-outline" href="about.html">About Bruno’s</a>
+      </div>
     </div>
   </section>
 </main>
@@ -121,7 +120,7 @@
   <div class="container footer-grid">
     <div>
       <p style="display:flex;align-items:center;gap:.6rem;margin:0 0 .5rem 0;">
-        <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" style="height:20px">
+        <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" style="height:20px" />
         <strong>Bruno's Aquariums</strong>
       </p>
       <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
@@ -136,7 +135,7 @@
 
     <div>
       <h4>Hours</h4>
-      <p>Mon–Fri 10–6 • Sat 10–5 • Sun Closed</p>
+      <p>Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
     </div>
   </div>
 
@@ -145,18 +144,29 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=6"></script>
+<script src="assets/js/main.js?v=8"></script>
 <script>
   // Auto-year
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mark the active nav item for this page
+  (function(){
+    var current = 'index.html';
+    document.querySelectorAll('#site-nav a').forEach(function(a){
+      if ((a.getAttribute('href') || '') === current) {
+        a.classList.add('active'); a.setAttribute('aria-current','page');
+      }
+    });
+  })();
 </script>
 
-<!-- Optional: Local Business schema for better Google results -->
+<!-- Local Business schema (valid & human-readable hours) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "PetStore",
   "name": "Bruno's Aquariums",
+  "url": "https://brunosaquarium.com",
   "image": "https://brunosaquarium.com/assets/img/brunos-logo.png",
   "telephone": "+16053506478",
   "address": {
@@ -167,8 +177,10 @@
     "postalCode": "57350",
     "addressCountry": "US"
   },
-  "openingHours": "Mo-Fr 10:00am-8pm:00, Sa 10:00am-8pm:00, Su CLOSE",
-  "url": "https://brunosaquarium.com"
+  "openingHoursSpecification": [
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"10:00","closes":"20:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"10:00","closes":"20:00"}
+  ]
 }
 </script>
 </body>
