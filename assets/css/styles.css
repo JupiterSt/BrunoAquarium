@@ -1,5 +1,5 @@
 /* =====================================================
-   Bruno's Aquariums — Ocean + Freshwater Theme (v15)
+   Bruno's Aquariums — Ocean + Freshwater Theme (v16)
    Deep ocean blues + sunlit shallows + freshwater greens
    Mobile-first, accessible, drop-in across all pages
 ===================================================== */
@@ -45,7 +45,7 @@
   --tap: 44px;
 }
 
-/* ---------- Page background (ocean + freshwater ripples) ---------- */
+/* ---------- Base & background (ocean + freshwater ripples) ---------- */
 *{ box-sizing:border-box }
 img,svg,video{ max-width:100%; height:auto; display:block }
 
@@ -59,7 +59,7 @@ body{
     radial-gradient(1000px 700px at 10% 120%, rgba(46,163,123,.18), transparent 60%),
     linear-gradient(180deg, var(--sand-25) 0%, #e9f4f8 48%, #dff3ef 100%),
     url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' opacity='.25'>\
+<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' opacity='.22'>\
 <path d='M0,32c8,0 8,-8 16,-8s8,8 16,8s8,-8 16,-8s8,8 16,8' fill='none' stroke='%23a6e3ff' stroke-width='1'/>\
 <path d='M0,48c8,0 8,-8 16,-8s8,8 16,8s8,-8 16,-8s8,8 16,8' fill='none' stroke='%23b6f3d1' stroke-width='1'/>\
 </svg>");
@@ -68,36 +68,42 @@ body{
   overflow-x:hidden;
 }
 
-/* Subtle fish & coral decorations on the page sides */
+/* ---------- Side decorations: fish/coral “stickers” (non-stretch) ---------- */
 body::before,
 body::after{
   content:"";
   position:fixed;
   top:0; bottom:0;
-  width:120px;
-  background-repeat:no-repeat;
-  background-size:contain;
-  opacity:.16;
+  width:84px;
+  opacity:.18;
   pointer-events:none;
   z-index:0;
+  background-repeat: repeat-y;
+  background-size: 60px auto;
+  animation: floatFish 16s ease-in-out infinite alternate;
 }
 body::before{
   left:0;
   background-image:url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 300'>\
-<text x='12' y='60' font-size='48'>🐠</text>\
-<text x='28' y='160' font-size='42'>🐟</text>\
-<text x='18' y='260' font-size='50'>🪸</text>\
+<svg xmlns='http://www.w3.org/2000/svg' width='60' height='180' viewBox='0 0 60 180'>\
+<text x='8' y='40' font-size='30'>🐠</text>\
+<text x='12' y='95' font-size='30'>🪸</text>\
+<text x='6' y='150' font-size='28'>🐟</text>\
 </svg>");
 }
 body::after{
   right:0;
   background-image:url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 300'>\
-<text x='30' y='70' font-size='46'>🐡</text>\
-<text x='20' y='170' font-size='42'>🌿</text>\
-<text x='10' y='260' font-size='48'>🪸</text>\
+<svg xmlns='http://www.w3.org/2000/svg' width='60' height='180' viewBox='0 0 60 180'>\
+<text x='10' y='45' font-size='28'>🐡</text>\
+<text x='8'  y='105' font-size='30'>🌿</text>\
+<text x='12' y='160' font-size='30'>🪸</text>\
 </svg>");
+}
+@keyframes floatFish { from{ transform:translateY(0) } to{ transform:translateY(-22px) } }
+/* Hide side art on small screens for breathing room */
+@media (max-width: 900px){
+  body::before, body::after{ display:none }
 }
 
 /* ---------- Layout helpers ---------- */
@@ -114,7 +120,7 @@ h3{ font-size:1.1rem; margin:.2rem 0 .3rem }
 .site-header{
   position:sticky; top:0; z-index:60;
   color:#fff;
-  background:linear-gradient(180deg, rgba(3,37,49,.85), rgba(10,107,132,.85));
+  background:linear-gradient(180deg, rgba(3,37,49,.88), rgba(10,107,132,.88));
   box-shadow:var(--shadow);
   backdrop-filter:saturate(1.1) blur(3px);
 }
@@ -263,8 +269,10 @@ label.required::after{ content:" *"; color:var(--coral); font-weight:800 }
 .chip{
   --b: var(--fresh-600);
   display:inline-flex; align-items:center; gap:.45rem;
-  padding:.55rem .8rem; border-radius:999px;
-  border:1.5px solid var(--b); background: rgba(46,163,123,.08);
+  padding:.55rem .9rem; border-radius:999px;
+  border:1.5px solid var(--b);
+  background:#fff;              /* white base so text is always visible */
+  color:var(--ink);              /* dark text by default */
   cursor:pointer; user-select:none; transition:.15s ease; font-weight:600;
 }
 .chip input{
@@ -273,7 +281,11 @@ label.required::after{ content:" *"; color:var(--coral); font-weight:800 }
 }
 .chip input:checked{ background:var(--b); border-color:var(--b) }
 .chip input:checked::after{ content:""; position:absolute; inset:.18rem; background:#fff }
-.chip.selected{ background:var(--fresh-600); color:#fff; border-color:transparent }
+.chip.selected{
+  background:var(--fresh-600);  /* solid color on select */
+  color:#fff;                   /* white text on dark bg */
+  border-color:transparent;
+}
 .chip.selected input{ border-color:#fff }
 .chip .other-input{
   display:none; background:#fff; border:1px solid var(--fresh-600);
@@ -281,6 +293,10 @@ label.required::after{ content:" *"; color:var(--coral); font-weight:800 }
 }
 .chip.other-active .other-input{ display:inline-block }
 
+/* Focus visibility for keyboard users */
+.chip:focus-within{ outline:3px solid color-mix(in oklab, var(--fresh-600) 60%, white); outline-offset:2px }
+
+/* Summary (contact page) */
 .summary{
   margin-top:1rem; padding:1rem; border:1px solid var(--border);
   border-radius:18px; background:#fff; box-shadow:var(--shadow);
