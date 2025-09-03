@@ -1,26 +1,27 @@
 /* =====================================================
-   Bruno's Aquariums — Ocean + Freshwater Theme (v17)
-   Mobile-first • Accessible • Ocean + Freshwater vibe
+   Bruno's Aquariums — Ocean + Freshwater Theme (v18)
+   Sandier background • Blue selection chips • Animated side waves
+   Mobile-first • Accessible • Drop-in across all pages
 ===================================================== */
 
 /* ---------- Color system ---------- */
 :root{
   /* Ocean core */
+  --ocean-950:#021a22;
   --ocean-900:#032531;   /* abyss */
   --ocean-800:#053846;   /* deep */
   --ocean-700:#075062;   /* reef edge */
-  --ocean-600:#0a6b84;   /* blue-green midwater */
-  --ocean-500:#0ea5e9;   /* tropical blue highlight */
+  --ocean-600:#0a6b84;   /* blue-green */
+  --ocean-500:#0ea5e9;   /* tropical blue */
 
   /* Freshwater accents */
-  --fresh-700:#0d5e4a;   /* vallisneria */
-  --fresh-600:#1f7a62;   /* java fern */
-  --fresh-500:#2ea37b;   /* pistia / moss */
-  --fresh-400:#59c191;   /* bright plant */
+  --fresh-700:#0d5e4a;
+  --fresh-600:#1f7a62;
 
-  /* Neutral sand / light */
-  --sand-50:#f7f5ee;
-  --sand-25:#fbfaf5;
+  /* Sand / light (more pronounced) */
+  --sand-10:#fffaf1;
+  --sand-25:#fbf6e9;
+  --sand-50:#f7f0df;
 
   /* Brand coral pop for CTAs */
   --coral:#ff6f61;
@@ -29,7 +30,7 @@
   --ink:#0f1e24;
   --ink-80:#273940;
   --surface:#ffffff;
-  --surface-veil: rgba(255,255,255,.7);
+  --surface-veil: rgba(255,255,255,.72);
   --border: rgba(0,0,0,.12);
   --border-dark: rgba(255,255,255,.18);
 
@@ -42,9 +43,14 @@
   --step-1: clamp(1.25rem, 1.05rem + 1.6vw, 1.7rem);
   --step-2: clamp(1.75rem, 1.3rem + 2.6vw, 2.4rem);
   --tap: 44px;
+
+  /* Chip selected colors (very readable) */
+  --chip-bg:#d9efff;          /* light ocean blue */
+  --chip-text:#062a3a;        /* dark teal text */
+  --chip-border:#0a6b84;      /* ocean line */
 }
 
-/* ---------- Base & background (ocean + freshwater ripples) ---------- */
+/* ---------- Base & sandier page background ---------- */
 *{ box-sizing:border-box }
 img,svg,video{ max-width:100%; height:auto; display:block }
 
@@ -53,53 +59,58 @@ body{
   color:var(--ink);
   font:16px/1.7 system-ui,"Segoe UI",Roboto,Arial,sans-serif;
   font-size:var(--step-0);
+
+  /* Sand-first gradient with faint water tints */
   background:
-    radial-gradient(1200px 900px at 70% -10%, rgba(14,165,233,.22), transparent 60%),
-    radial-gradient(1000px 700px at 10% 120%, rgba(46,163,123,.18), transparent 60%),
-    linear-gradient(180deg, var(--sand-25) 0%, #e9f4f8 48%, #dff3ef 100%),
+    radial-gradient(1200px 900px at 70% -10%, rgba(14,165,233,.16), transparent 60%),
+    radial-gradient(1000px 700px at 10% 120%, rgba(46,163,123,.12), transparent 60%),
+    linear-gradient(180deg, var(--sand-10) 0%, var(--sand-25) 35%, var(--sand-50) 100%),
     url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' opacity='.22'>\
-<path d='M0,32c8,0 8,-8 16,-8s8,8 16,8s8,-8 16,-8s8,8 16,8' fill='none' stroke='%23a6e3ff' stroke-width='1'/>\
-<path d='M0,48c8,0 8,-8 16,-8s8,8 16,8s8,-8 16,-8s8,8 16,8' fill='none' stroke='%23b6f3d1' stroke-width='1'/>\
+<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' opacity='.18'>\
+<path d='M0,32c8,0 8,-8 16,-8s8,8 16,8s8,-8 16,-8s8,8 16,8' fill='none' stroke='%23b8e7ff' stroke-width='1'/>\
+<path d='M0,48c8,0 8,-8 16,-8s8,8 16,8s8,-8 16,-8s8,8 16,8' fill='none' stroke='%23c8f2dc' stroke-width='1'/>\
 </svg>");
   background-blend-mode: multiply, multiply, normal, normal;
+
   position:relative;
   overflow-x:hidden;
 }
 
-/* ---------- Side decorations: fish/coral stickers (non-stretch) ---------- */
-body::before,
-body::after{
+/* ---------- Animated side waves (no emojis) ---------- */
+body::before, body::after{
   content:"";
   position:fixed; top:0; bottom:0;
-  width:84px;
-  opacity:.14;
-  pointer-events:none;
-  z-index:0;
-  background-repeat: repeat-y;
-  background-size: 60px auto;
-  animation: floatFish 16s ease-in-out infinite alternate;
+  width:110px; pointer-events:none; z-index:0; opacity:.28;
+  background-size:200px 100%;
+  background-repeat:repeat-y;
+  animation: waveSlide 18s linear infinite;
+  filter:saturate(0.9) contrast(1.05);
 }
 body::before{
-  left:0;
+  left:0; transform:scaleX(-1); /* mirror the left side */
+  animation-direction: reverse;
   background-image:url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='60' height='180' viewBox='0 0 60 180'>\
-<text x='8' y='40' font-size='30'>🐠</text>\
-<text x='12' y='95' font-size='30'>🪸</text>\
-<text x='6' y='150' font-size='28'>🐟</text>\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 800' preserveAspectRatio='none'>\
+<defs><linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>\
+<stop offset='0%' stop-color='%230a6b84' stop-opacity='.25'/>\
+<stop offset='100%' stop-color='%230a6b84' stop-opacity='.08'/>\
+</linearGradient></defs>\
+<path d='M0 0 C40 60, 60 40, 100 100 S160 160, 200 120 V800 H0 Z' fill='url(%23g)'/>\
 </svg>");
 }
 body::after{
   right:0;
   background-image:url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='60' height='180' viewBox='0 0 60 180'>\
-<text x='10' y='45' font-size='28'>🐡</text>\
-<text x='8'  y='105' font-size='30'>🌿</text>\
-<text x='12' y='160' font-size='30'>🪸</text>\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 800' preserveAspectRatio='none'>\
+<defs><linearGradient id='g2' x1='0' x2='0' y1='0' y2='1'>\
+<stop offset='0%' stop-color='%230ea5e9' stop-opacity='.22'/>\
+<stop offset='100%' stop-color='%230ea5e9' stop-opacity='.08'/>\
+</linearGradient></defs>\
+<path d='M200 0 C160 60, 140 40, 100 100 S40 160, 0 120 V800 H200 Z' fill='url(%23g2)'/>\
 </svg>");
 }
-@keyframes floatFish { from{ transform:translateY(0) } to{ transform:translateY(-22px) } }
-@media (max-width: 900px){ body::before, body::after{ display:none } } /* hide on small screens */
+@keyframes waveSlide { from{ background-position-x:0 } to{ background-position-x:200px } }
+@media (max-width: 980px){ body::before, body::after{ display:none } } /* breathing room on phones */
 
 /* ---------- Layout helpers ---------- */
 .container{ width:min(1100px,92%); margin:0 auto; position:relative; z-index:1 }
@@ -113,11 +124,9 @@ h3{ font-size:1.1rem; margin:.2rem 0 .3rem }
 
 /* ---------- Header / Navigation ---------- */
 .site-header{
-  position:sticky; top:0; z-index:60;
-  color:#fff;
-  background:linear-gradient(180deg, rgba(3,37,49,.88), rgba(10,107,132,.88));
-  box-shadow:var(--shadow);
-  backdrop-filter:saturate(1.1) blur(3px);
+  position:sticky; top:0; z-index:60; color:#fff;
+  background:linear-gradient(180deg, rgba(3,37,49,.9), rgba(10,107,132,.88));
+  box-shadow:var(--shadow); backdrop-filter:saturate(1.1) blur(3px);
 }
 .header-inner{
   display:flex; align-items:center; justify-content:space-between; gap:1rem;
@@ -126,19 +135,15 @@ h3{ font-size:1.1rem; margin:.2rem 0 .3rem }
 .brand{ display:flex; align-items:center; gap:.65rem; color:#fff; text-decoration:none }
 .logo-img{ height:36px }
 .brand-text{ font-weight:800; letter-spacing:.3px }
-
 .nav-toggle{
   display:none; background:transparent; border:1px solid rgba(255,255,255,.6); color:#fff;
   padding:.55rem .85rem; border-radius:.6rem; min-height:var(--tap);
 }
-.site-nav ul{
-  list-style:none; margin:0; padding:0; display:flex; gap:.75rem; align-items:center;
-}
+.site-nav ul{ list-style:none; margin:0; padding:0; display:flex; gap:.75rem; align-items:center }
 .site-nav a, .site-nav .btn, .site-nav .btn-ghost{
   color:#fff; text-decoration:none; padding:.6rem .75rem; border-radius:.6rem; white-space:nowrap;
 }
 .site-nav a:hover, .site-nav a.active{ background:rgba(255,255,255,.14) }
-
 @media (max-width:920px){
   .nav-toggle{ display:inline-flex; align-items:center }
   .site-nav{ position:relative }
@@ -150,9 +155,7 @@ h3{ font-size:1.1rem; margin:.2rem 0 .3rem }
     box-shadow:var(--shadow);
   }
   .site-nav ul.open{ display:flex }
-  .site-nav a, .site-nav .btn, .site-nav .btn-ghost{
-    width:100%; padding:1rem; font-weight:700;
-  }
+  .site-nav a, .site-nav .btn, .site-nav .btn-ghost{ width:100%; padding:1rem; font-weight:700 }
 }
 @media (max-width:420px){ .brand-text{ display:none } }
 
@@ -164,38 +167,33 @@ a.btn, .btn{
   border-radius:18px; font-weight:800; border:none; box-shadow:0 1px 0 rgba(0,0,0,.08);
 }
 a.btn:hover{ filter:brightness(.95) }
-
 .btn-outline{
   display:inline-block; min-height:var(--tap);
   border:2px solid var(--ocean-600); color:var(--ocean-600);
   background:transparent; padding:.8rem 1.1rem; border-radius:18px; font-weight:800;
 }
 .btn-outline:hover{ background:var(--ocean-600); color:#fff }
-
 .btn-ghost{
   display:inline-block; min-height:var(--tap);
   border:1px dashed var(--fresh-600); color:var(--fresh-600);
   background:rgba(46,163,123,.08); padding:.75rem 1.05rem; border-radius:18px; font-weight:800;
 }
-
 a.link{ color: var(--ocean-600); font-weight:800; text-decoration:none; position:relative }
 a.link::after{
   content:""; position:absolute; left:0; bottom:-2px; height:6px; width:100%;
-  background:linear-gradient(90deg, var(--coral), var(--fresh-500)); opacity:.28; border-radius:6px;
+  background:linear-gradient(90deg, var(--coral), var(--ocean-500)); opacity:.28; border-radius:6px;
 }
 
-/* ---------- Hero (bubbly) ---------- */
+/* ---------- Hero ---------- */
 .hero{
   position:relative; overflow:hidden; border-radius:24px; color:#fff;
   background:
-    radial-gradient(1200px 600px at 60% -10%, rgba(14,165,233,.35), transparent 55%),
+    radial-gradient(1200px 600px at 60% -10%, rgba(14,165,233,.3), transparent 55%),
     linear-gradient(180deg, var(--ocean-700) 0%, var(--ocean-800) 65%, var(--ocean-900) 100%);
   padding:3.2rem 1rem; text-align:center; box-shadow:var(--shadow);
 }
 .hero p{ margin:.25rem auto 1.2rem; max-width:58ch; color:#e6fbff; opacity:.92 }
 .hero-cta{ display:flex; gap:.85rem; flex-wrap:wrap; justify-content:center }
-
-/* Animated bubbles */
 .hero::before, .hero::after{
   content:""; position:absolute; left:-60px; bottom:-120px;
   width:220px; height:220px; border-radius:50%;
@@ -204,8 +202,6 @@ a.link::after{
 }
 .hero::after{ left:auto; right:-40px; width:150px; height:150px; animation-duration:12s; animation-delay:2s }
 @keyframes rise{ from{ transform:translateY(0) scale(1) } to{ transform:translateY(-140vh) scale(1.35) } }
-
-/* Wave divider */
 .wave-sep{ display:block; width:100%; height:90px; fill:var(--ocean-700); margin:-28px 0 0 }
 
 /* ---------- Cards & grids ---------- */
@@ -221,24 +217,11 @@ a.link::after{
 }
 .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-lg) }
 
-/* Fun aquatic icons on 4-feature grids (home) */
-.cards .card:nth-child(1) h3::before{ content:"🐟 "; }
-.cards .card:nth-child(2) h3::before{ content:"🫧 "; }
-.cards .card:nth-child(3) h3::before{ content:"🪸 "; }
-.cards .card:nth-child(4) h3::before{ content:"🌿 "; }
-
-/* Reef/Fresh accent block */
+/* ---------- Accent block ---------- */
 .reef-accent{
   position:relative; overflow:hidden; border-radius:18px; padding:.75rem;
-  background: linear-gradient(180deg, var(--surface-veil), rgba(255,255,255,.9));
+  background: linear-gradient(180deg, var(--surface-veil), rgba(255,255,255,.92));
   backdrop-filter: blur(2px);
-}
-.reef-accent::after{
-  content:""; position:absolute; bottom:-18px; right:-12px; width:160px; height:100px; opacity:.25;
-  background:
-    radial-gradient(18px 10px at 18px 10px, var(--coral) 60%, transparent 61%) 0 40px/28px 20px repeat-x,
-    radial-gradient(16px 10px at 18px 10px, #bde9cf 60%, transparent 61%) 0 60px/26px 20px repeat-x,
-    radial-gradient(24px 18px at 12px 18px, #d7d1bf 62%, transparent 63%) 0 78px/36px 28px repeat-x;
 }
 
 /* ---------- Banners ---------- */
@@ -259,51 +242,52 @@ label.required::after{ content:" *"; color:var(--coral); font-weight:800 }
 .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:1rem }
 @media (max-width:700px){ .two-col{ grid-template-columns:1fr } }
 
-/* ---------- Chips (inputs fully hidden; visible selection on label) ---------- */
-.chips{ display:flex; flex-wrap:wrap; gap:.55rem; justify-content:center }
+/* ---------- Chips (no white boxes; strong visibility when selected) ---------- */
+.chips{ display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center }
 
 .chip{
-  --b: var(--fresh-600);
+  --b: var(--chip-border);
   position:relative;
   display:inline-flex; align-items:center; gap:.55rem;
-  padding:.6rem 1rem; border-radius:999px;
+  padding:.65rem 1.05rem; border-radius:999px;
   border:1.5px solid var(--b);
   background:#fff;               /* readable base */
   color:var(--ink);
   cursor:pointer; user-select:none; transition:.15s ease; font-weight:600;
 }
 
-/* Visually hide the real input so no white box appears */
+/* hide the native control */
 .chip > input{
-  position:absolute; inset:0;
-  width:0; height:0; opacity:0; pointer-events:none;
+  position:absolute; inset:0; width:0; height:0; opacity:0; pointer-events:none;
 }
 
-/* Selected state — works with :has() and with your JS .selected class */
+/* selected state */
 .chip:has(> input:checked),
 .chip.selected{
-  background:var(--fresh-600);
-  color:#fff;
-  border-color:transparent;
+  background:var(--chip-bg);
+  color:var(--chip-text);
+  border-color:var(--chip-border);
+  box-shadow: inset 0 0 0 2px color-mix(in oklab, var(--chip-border) 35%, white);
 }
 
-/* Optional checkmark when selected */
+/* optional check mark */
 .chip:has(> input:checked)::before,
 .chip.selected::before{
   content:"✓";
   font-weight:900;
+  color:var(--chip-text);
   margin-right:.15rem;
 }
 
-/* Keyboard focus ring */
+/* focus ring for keyboard users */
 .chip:focus-within{
-  outline:3px solid color-mix(in oklab, var(--fresh-600) 60%, white);
+  outline:3px solid color-mix(in oklab, var(--chip-border) 55%, white);
   outline-offset:2px;
 }
 
-/* “Other” inline input */
+/* “Other” text box */
 .chip .other-input{
-  display:none; background:#fff; border:1px solid var(--fresh-600);
+  display:none; background:#fff; border:1px solid var(--chip-border);
   border-radius:.5rem; padding:.4rem .55rem; width:16ch;
 }
 .chip.other-active .other-input{ display:inline-block }
@@ -318,7 +302,7 @@ label.required::after{ content:" *"; color:var(--coral); font-weight:800 }
 .summary dt{ opacity:.8 }
 .summary dd{ margin:0 }
 
-/* ---------- Livestock gallery ---------- */
+/* ---------- Gallery ---------- */
 .gallery{
   --min: 200px;
   display:grid; grid-template-columns: repeat(auto-fit, minmax(var(--min),1fr));
@@ -353,7 +337,7 @@ dialog.lightbox{ border:none; padding:0; background:transparent }
   border-radius:.5rem; color:#e2e8f0; padding:.38rem .65rem; cursor:pointer
 }
 
-/* ---------- Pills (maintenance) ---------- */
+/* ---------- Pills ---------- */
 .pill-row{ display:flex; gap:.55rem; flex-wrap:wrap; justify-content:center; margin-top:.8rem }
 .pill{ border:1px solid var(--border); border-radius:999px; padding:.4rem .85rem; font-size:.96rem; background:#fff }
 
@@ -368,7 +352,7 @@ dialog.lightbox{ border:none; padding:0; background:transparent }
 .site-footer{
   margin-top:2rem; color:#fff; padding-top:1.2rem;
   background:
-    radial-gradient(900px 500px at -10% 0%, rgba(46,163,123,.25), transparent 60%),
+    radial-gradient(900px 500px at -10% 0%, rgba(46,163,123,.22), transparent 60%),
     linear-gradient(180deg, var(--ocean-900), var(--ocean-800));
 }
 .footer-grid{
