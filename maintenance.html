@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maintenance — Bruno's Aquariums</title>
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=9" />
+  <!-- Reef theme CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=10" />
   <link rel="icon" href="assets/img/favicon.png" />
 
   <meta name="description" content="On-site cleaning, testing, dosing, aquascaping, and emergency support for freshwater and saltwater tanks in Huron, SD." />
@@ -14,9 +15,6 @@
   <meta property="og:image" content="assets/img/brunos-logo.png" />
 
   <style>
-    /* Page-local polish */
-    .logo-img { height:36px; width:auto; display:block }
-    .card.centered p.muted { opacity:.85; margin-top:.25rem }
     .pill-row { display:flex; gap:.5rem; flex-wrap:wrap; justify-content:center; margin-top:.75rem }
     .pill { border:1px solid var(--border); border-radius:999px; padding:.35rem .8rem; font-size:.95rem }
     .checklist { padding-left:1.2rem; text-align:left; margin:.5rem auto 0; max-width:36ch }
@@ -25,131 +23,153 @@
 </head>
 
 <body>
-<header class="site-header" role="banner">
-  <div class="container header-inner">
-    <a class="brand" href="index.html" aria-label="Bruno's Aquariums — Home">
-      <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" />
-      <span class="brand-text">Bruno's Aquariums</span>
-    </a>
+  <!-- Header (shared across site) -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Bruno's Aquariums — Home">
+        <picture>
+          <source srcset="assets/img/brunos-logo.svg" type="image/svg+xml">
+          <img class="logo-img" src="assets/img/brunos-logo.png" alt="Bruno's Aquariums logo" loading="eager" />
+        </picture>
+        <span class="brand-text">Bruno's Aquariums</span>
+      </a>
 
-    <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false">Menu</button>
-    <nav id="site-nav" class="site-nav" role="navigation" aria-label="Main">
-      <ul>
-        <li><a href="aquariums.html">Aquariums</a></li>
-        <li><a href="accessories.html">Accessories</a></li>
-        <li><a href="livestock.html">Fish & Corals</a></li>
-        <li><a class="active" href="maintenance.html" aria-current="page">Maintenance</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a class="btn-ghost" href="appointments.html">Book&nbsp;Appointment</a></li>
-        <li><a class="btn" href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+      <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false">Menu</button>
+      <nav id="site-nav" class="site-nav" role="navigation" aria-label="Main">
+        <ul>
+          <li><a href="aquariums.html">Aquariums</a></li>
+          <li><a href="accessories.html">Accessories</a></li>
+          <li><a href="livestock.html">Fish & Corals</a></li>
+          <li><a href="maintenance.html">Maintenance</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a class="btn-ghost" href="appointments.html">Book Appointment</a></li>
+          <li><a class="btn" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-<main class="content">
-  <!-- HERO -->
-  <section class="page-hero centered section">
-    <div class="container">
-      <h1>Aquarium Maintenance</h1>
-      <p>On-site cleaning, testing, dosing, aquascaping, and emergency support for freshwater and saltwater systems.</p>
-      <div class="hero-cta" style="justify-content:center;margin-top:.6rem">
-        <a class="btn" href="appointments.html">Book Maintenance</a>
-        <a class="btn-outline" href="contact.html">Get a Quote</a>
+  <main class="content">
+    <!-- HERO -->
+    <section class="hero section">
+      <div class="container">
+        <h1>Aquarium Maintenance</h1>
+        <p>On-site cleaning, testing, dosing, aquascaping, and emergency support for freshwater and saltwater systems.</p>
+        <div class="hero-cta">
+          <a class="btn" href="appointments.html">Book Maintenance</a>
+          <a class="btn-outline" href="contact.html">Get a Quote</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wave divider -->
+    <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
+    </svg>
+
+    <!-- PACKAGES -->
+    <section class="container section reef-accent" aria-label="Maintenance Packages">
+      <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        <article class="card centered">
+          <h3>Starter Clean</h3>
+          <p>Water change, glass clean, substrate vac, basic tests.</p>
+          <p class="ink-70" style="margin-top:.25rem">Freshwater or Saltwater</p>
+          <ul class="checklist">
+            <li>Up to 60 min on-site</li>
+            <li>Dechlorinated water / salt mix (by system)</li>
+            <li>Quick gear check</li>
+          </ul>
+          <a class="btn" style="margin-top:.75rem" href="appointments.html">Book</a>
+        </article>
+
+        <article class="card centered">
+          <h3>Standard Care</h3>
+          <p>Everything in Starter + filter media service, algae treatment, tidy scape.</p>
+          <ul class="checklist">
+            <li>Up to 90 min on-site</li>
+            <li>Filter media rinse/replace</li>
+            <li>Water testing & guidance</li>
+          </ul>
+          <a class="btn" style="margin-top:.75rem" href="appointments.html">Book</a>
+        </article>
+
+        <article class="card centered">
+          <h3>Premium Reef</h3>
+          <p>Sump & skimmer service, dosing checks, coral inspection & placement.</p>
+          <ul class="checklist">
+            <li>Up to 120 min on-site</li>
+            <li>Skimmer/overflow maintenance</li>
+            <li>Dosing & parameter review</li>
+          </ul>
+          <a class="btn" style="margin-top:.75rem" href="appointments.html">Book</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Wave divider -->
+    <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
+    </svg>
+
+    <!-- FREQUENCY -->
+    <section class="container section centered" aria-label="Service Plans">
+      <h2>Service Plans</h2>
+      <div class="pill-row">
+        <span class="pill">One-time</span>
+        <span class="pill">Weekly</span>
+        <span class="pill">Bi-weekly</span>
+        <span class="pill">Monthly</span>
+      </div>
+      <p class="ink-70" style="margin-top:.6rem">Commercial accounts & emergency visits available.</p>
+    </section>
+
+    <!-- Wave divider -->
+    <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
+    </svg>
+
+    <!-- CTA -->
+    <section class="banner section" aria-label="Contact CTA">
+      <div class="container">
+        <p style="margin:.25rem 0">Need a custom quote or emergency visit?</p>
+        <div style="display:flex; gap:.6rem; flex-wrap:wrap; justify-content:center">
+          <a class="btn" href="appointments.html">Book Appointment</a>
+          <a class="btn-outline" href="contact.html">Contact Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (shared across site) -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-grid">
+      <div>
+        <p style="display:flex;align-items:center;gap:.6rem;margin:0 0 .5rem 0;">
+          <picture>
+            <source srcset="assets/img/brunos-logo.svg" type="image/svg+xml">
+            <img class="logo-img" src="assets/img/brunos-logo.png" alt="Bruno's Aquariums logo" style="height:20px" loading="lazy" />
+          </picture>
+          <strong>Bruno's Aquariums</strong>
+        </p>
+        <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <p><a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">256 Dakota Ave S, Huron, SD 57350</a></p>
+        <p><a href="tel:+16053506478">605-350-6478</a></p>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <p>Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
       </div>
     </div>
-  </section>
 
-  <!-- PACKAGES -->
-  <section class="container section" aria-label="Maintenance Packages">
-    <div class="grid-3">
-      <article class="card centered">
-        <h3>Starter Clean</h3>
-        <p>Water change, glass clean, substrate vac, basic tests.</p>
-        <p class="muted">Freshwater or Saltwater</p>
-        <ul class="checklist">
-          <li>Up to 60 min on-site</li>
-          <li>Dechlorinated water / salt mix (by system)</li>
-          <li>Quick gear check</li>
-        </ul>
-        <a class="btn" style="margin-top:.75rem" href="appointments.html">Book</a>
-      </article>
-
-      <article class="card centered">
-        <h3>Standard Care</h3>
-        <p>Everything in Starter + filter media service, algae treatment, tidy scape.</p>
-        <ul class="checklist">
-          <li>Up to 90 min on-site</li>
-          <li>Filter media rinse/replace</li>
-          <li>Water testing & guidance</li>
-        </ul>
-        <a class="btn" style="margin-top:.75rem" href="appointments.html">Book</a>
-      </article>
-
-      <article class="card centered">
-        <h3>Premium Reef</h3>
-        <p>Sump & skimmer service, dosing checks, coral inspection & placement.</p>
-        <ul class="checklist">
-          <li>Up to 120 min on-site</li>
-          <li>Skimmer/overflow maintenance</li>
-          <li>Dosing & parameter review</li>
-        </ul>
-        <a class="btn" style="margin-top:.75rem" href="appointments.html">Book</a>
-      </article>
+    <div class="container legal">
+      <p>© <span id="year"></span> Bruno's Aquariums. All rights reserved.</p>
     </div>
-  </section>
+  </footer>
 
-  <!-- FREQUENCY -->
-  <section class="container centered section" aria-label="Service Plans">
-    <h2>Service Plans</h2>
-    <div class="pill-row">
-      <span class="pill">One-time</span>
-      <span class="pill">Weekly</span>
-      <span class="pill">Bi-weekly</span>
-      <span class="pill">Monthly</span>
-    </div>
-    <p class="muted" style="margin-top:.6rem">Commercial accounts & emergency visits available.</p>
-  </section>
-
-  <!-- CTA -->
-  <section class="banner section" aria-label="Contact CTA">
-    <div class="container banner-inner">
-      <p style="margin:.25rem 0">Need a custom quote or emergency visit?</p>
-      <div style="display:flex; gap:.6rem; flex-wrap:wrap;">
-        <a class="btn" href="appointments.html">Book Appointment</a>
-        <a class="btn-outline" href="contact.html">Contact Us</a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="site-footer" role="contentinfo">
-  <div class="container footer-grid">
-    <div>
-      <p style="display:flex;align-items:center;gap:.6rem;margin:0 0 .5rem 0;">
-        <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" style="height:20px" />
-        <strong>Bruno's Aquariums</strong>
-      </p>
-      <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
-    </div>
-    <div>
-      <h4>Visit</h4>
-      <p><a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">256 Dakota Ave S, Huron, SD 57350</a></p>
-      <p><a href="tel:+16053506478">605-350-6478</a></p>
-    </div>
-    <div>
-      <h4>Hours</h4>
-      <p>Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
-    </div>
-  </div>
-  <div class="container legal">
-    <p>© <span id="year"></span> Bruno's Aquariums. All rights reserved.</p>
-  </div>
-</footer>
-
-<script src="assets/js/main.js?v=9"></script>
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+  <!-- JS -->
+  <script src="assets/js/main.js?v=10"></script>
 </body>
 </html>
