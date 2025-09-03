@@ -15,9 +15,16 @@
   <meta property="og:description" content="Request livestock, equipment, or maintenance. Secure form with quick responses." />
   <meta property="og:image" content="assets/img/brunos-logo.png" />
 
-  <!-- Page helpers for chip-style selectors & summary -->
+  <!-- Page helpers: centered layout, chip selectors & summary -->
   <style>
-    .chips{display:flex;flex-wrap:wrap;gap:.5rem}
+    /* Center the whole page content */
+    main .wrap { max-width: 860px; margin: 0 auto; padding: 0 1rem; }
+
+    /* Make both cards stack and centered */
+    .stack { display:flex; flex-direction:column; gap:1.25rem; }
+
+    /* Chips */
+    .chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
     .chip{
       display:inline-flex;align-items:center;gap:.45rem;
       padding:.5rem .75rem;border-radius:999px;
@@ -33,10 +40,12 @@
     .chip .other-input{display:none}
     .chip.other-active .other-input{display:inline-block}
 
-    .group{margin-top:1rem}
+    /* Groups */
+    .group{margin-top:1rem;text-align:center}
     .group h3{margin:.2rem 0 .4rem}
-    .group .note{font-size:.9rem;color:#94a3b8}
+    .group .note,.small{font-size:.9rem;color:#94a3b8}
 
+    /* Two-up inputs that collapse on mobile */
     .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
     @media(max-width:700px){.two-col{grid-template-columns:1fr}}
 
@@ -44,20 +53,24 @@
     .map-outer{border:1px solid #203047;border-radius:1rem;overflow:hidden}
     .map-outer iframe{display:block;width:100%;height:260px;border:0}
 
+    /* Summary card */
     .summary{
       margin-top:1rem;padding:1rem;border:1px solid #1f2a3a;border-radius:.8rem;
       background:#0f172a
     }
-    .summary h3{margin:.2rem 0 .6rem}
+    .summary h3{margin:.2rem 0 .6rem;text-align:center}
     .summary dl{display:grid;grid-template-columns:auto 1fr;gap:.4rem 1rem;margin:0}
     .summary dt{color:#94a3b8}
     .summary dd{margin:0}
+
+    /* Minor tweaks */
     .logo-img{height:36px;width:auto;display:block}
-    .small{font-size:.9rem;color:#94a3b8}
     .inline-input{
       background:#0b1220;border:1px solid #375478;border-radius:.5rem;
       padding:.35rem .5rem;color:#e2e8f0;width:14ch
     }
+    form.card h2, aside.card h2, aside.card h3 { text-align:center }
+    button[type="submit"]{ display:block; margin:1rem auto 0; }
   </style>
 </head>
 
@@ -87,14 +100,14 @@
 <main class="content">
   <!-- HERO -->
   <section class="page-hero centered section">
-    <div class="container">
+    <div class="wrap">
       <h1>Contact & Order Request</h1>
       <p>Pick what you need (fish, gear, or maintenance), add details, and we’ll reply fast.</p>
     </div>
   </section>
 
-  <!-- FORM + SIDEBAR -->
-  <section class="container grid-2" aria-label="Contact form and store information">
+  <!-- STACKED CENTERED CONTENT -->
+  <section class="wrap stack" aria-label="Contact form and store information">
     <!-- SECURE FORM (Formspree) -->
     <form class="card form" id="contactForm"
           action="https://formspree.io/f/mldworzo"
@@ -117,8 +130,8 @@
 
       <div class="divider"></div>
 
-      <h2>What are you looking for?</h2>
-      <p class="small">Check all that apply. Your choices will be grouped, sorted, and summarized below.</p>
+      <h2 style="text-align:center">What are you looking for?</h2>
+      <p class="small" style="text-align:center;margin-top:-.25rem">Check all that apply. Your choices will be grouped, sorted, and summarized below.</p>
 
       <!-- SALTWATER FISH -->
       <fieldset class="group">
@@ -217,6 +230,7 @@
         </div>
       </fieldset>
 
+      <!-- Live grouped summary -->
       <div class="summary" id="selectionSummary" aria-live="polite">
         <h3>Your Selections</h3>
         <dl></dl>
@@ -226,7 +240,7 @@
       <div class="divider"></div>
 
       <!-- DETAILS -->
-      <h2>Details</h2>
+      <h2 style="text-align:center">Details</h2>
       <div class="two-col">
         <div>
           <label for="when">Preferred Date</label>
@@ -234,7 +248,7 @@
         </div>
         <div>
           <label>Contact Preference</label>
-          <div class="chips" role="radiogroup" aria-label="Contact Preference">
+          <div class="chips" role="radiogroup" aria-label="Contact Preference" style="justify-content:flex-start">
             <label class="chip"><input type="radio" name="contact_preference" value="Either" checked />Either</label>
             <label class="chip"><input type="radio" name="contact_preference" value="Phone" />Phone</label>
             <label class="chip"><input type="radio" name="contact_preference" value="Email" />Email</label>
@@ -264,26 +278,26 @@
       <input type="hidden" name="selection_summary" />
 
       <button type="submit" class="btn">Send Request</button>
-      <p class="help small">This form submits securely over HTTPS. You’ll see a confirmation if it sends successfully.</p>
+      <p class="help small" style="text-align:center">This form submits securely over HTTPS. You’ll see a confirmation if it sends successfully.</p>
     </form>
 
-    <!-- SIDEBAR INFO -->
+    <!-- INFO CARD -->
     <aside class="card" aria-label="Store information">
       <h2>Visit Bruno's Aquariums</h2>
-      <p><strong>Address:</strong><br />
+      <p style="text-align:center"><strong>Address</strong><br />
         <a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
           256 Dakota Ave S, Huron, SD 57350</a></p>
-      <p><strong>Phone:</strong> <a href="tel:+16053506478">605-350-6478</a></p>
+      <p style="text-align:center"><strong>Phone</strong> <a href="tel:+16053506478">605-350-6478</a></p>
 
       <h3>Hours</h3>
-      <p>Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
+      <p style="text-align:center">Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
 
       <div class="map-outer" aria-label="Google Map">
         <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
           src="https://www.google.com/maps?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350&output=embed"></iframe>
       </div>
 
-      <p class="small" style="margin-top:.6rem">
+      <p class="small" style="margin-top:.6rem; text-align:center">
         Prefer to pick a time directly? <a href="appointments.html">Book an appointment</a>.
       </p>
     </aside>
@@ -291,26 +305,6 @@
 </main>
 
 <footer class="site-footer" role="contentinfo">
-  <div class="container footer-grid">
-    <div>
-      <p style="display:flex;align-items:center;gap:.6rem;margin:0 0 .5rem 0;">
-        <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" style="height:20px" />
-        <strong>Bruno's Aquariums</strong>
-      </p>
-      <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
-    </div>
-    <div>
-      <h4>Visit</h4>
-      <p><a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
-        256 Dakota Ave S, Huron, SD 57350</a></p>
-      <p><a href="tel:+16053506478">605-350-6478</a></p>
-    </div>
-    <div>
-      <h4>Hours</h4>
-      <p>Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
-    </div>
-  </div>
-
   <div class="container legal">
     <p>© <span id="year"></span> Bruno's Aquariums. All rights reserved.</p>
   </div>
@@ -344,11 +338,9 @@
         const chip = input.closest('.chip');
         if (!chip) return;
 
-        // Checkbox/radio state visual
         if (input.type === 'checkbox') {
           chip.classList.toggle('selected', input.checked);
         } else if (input.type === 'radio') {
-          // radios: clear siblings
           chips.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
           chip.classList.add('selected');
         }
@@ -359,17 +351,16 @@
         if (isOther) {
           if (input.checked) {
             chip.classList.add('other-active');
-            otherField.focus();
+            otherField && otherField.focus();
           } else {
             chip.classList.remove('other-active');
-            otherField.value = '';
+            if (otherField) otherField.value = '';
           }
         }
 
         updateSummary();
       });
 
-      // Typing in "Other" should update summary live
       chips.addEventListener('input', e => {
         if (e.target.classList.contains('other-input')) updateSummary();
       });
@@ -385,21 +376,18 @@
         wrap.querySelectorAll('.chip').forEach(chip => {
           const box = chip.querySelector('input[type="checkbox"]');
           if (!box) return;
-
           if (box.checked) {
             const isOther = chip.classList.contains('chip--other');
             if (isOther) {
               const val = (chip.querySelector('.other-input')?.value || '').trim();
               if (val) items.push(val);
             } else {
-              // Use label text (clean) for nicer summary
               const text = chip.textContent.replace(/\s+$/, '').trim();
               items.push(text.replace(/^Other$/,'').trim());
             }
           }
         });
 
-        // Clean empties, sort alphabetically
         const sorted = items.filter(Boolean).sort((a,b)=>a.localeCompare(b, undefined, {sensitivity:'base'}));
         data[g.key] = sorted;
       });
@@ -419,7 +407,6 @@
         }
       });
 
-      // If nothing selected, show a gentle hint
       if (!summary.children.length) {
         const dt = document.createElement('dt'); dt.textContent = 'Selections:';
         const dd = document.createElement('dd'); dd.textContent = 'None yet. Pick items above.';
@@ -427,8 +414,7 @@
       }
     }
 
-    // Before submit, populate hidden fields with grouped, sorted values
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', () => {
       const data = getSelections();
 
       groups.forEach(g => {
@@ -436,7 +422,6 @@
         if (hidden) hidden.value = (data[g.key] || []).join(', ');
       });
 
-      // Add a single combined summary string as well
       const parts = groups.map(g => {
         const arr = data[g.key] || [];
         return arr.length ? `${g.label}: ${arr.join(', ')}` : null;
@@ -445,11 +430,8 @@
       const combined = parts.join(' | ');
       const summaryHidden = form.querySelector('input[name="selection_summary"]');
       if (summaryHidden) summaryHidden.value = combined;
-
-      // Let the form submit to Formspree
     });
 
-    // Initial summary
     updateSummary();
   })();
 </script>
