@@ -5,23 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bruno's Aquariums — Aquariums • Fish & Corals • Maintenance</title>
 
-  <!-- Core styles (make sure this is your latest v9) -->
   <link rel="stylesheet" href="assets/css/styles.css?v=9" />
   <link rel="icon" href="assets/img/favicon.png" />
 
-  <!-- Meta / Open Graph -->
   <meta name="description" content="Saltwater & freshwater aquariums, fish & corals, accessories, and professional maintenance in Huron, SD." />
   <meta property="og:title" content="Bruno's Aquariums — Aquariums • Accessories • Maintenance" />
   <meta property="og:description" content="From beginner freshwater tanks to advanced reef systems. Tanks, gear, livestock & expert care." />
   <meta property="og:image" content="assets/img/brunos-logo.png" />
   <meta property="og:type" content="website" />
 
-  <!-- Small header hardening to stop button wrapping -->
   <style>
     .logo-img{height:36px;width:auto;display:block}
     .site-nav a{white-space:nowrap}
     .btn-ghost{padding:.55rem .9rem;border:1px solid currentColor;border-radius:.6rem;white-space:nowrap}
-    .hero .container{ text-align:center }
+    .hero .container{text-align:center}
     .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
     @media(max-width:420px){.brand-text{display:none}}
   </style>
@@ -43,8 +40,7 @@
         <li><a href="livestock.html">Fish & Corals</a></li>
         <li><a href="maintenance.html">Maintenance</a></li>
         <li><a href="about.html">About</a></li>
-        <!-- This button jumps to the tank-cleaning embed section below -->
-        <li><a class="btn-ghost" href="#appointments">Book&nbsp;Tank&nbsp;Cleaning</a></li>
+        <li><a class="btn-ghost" href="appointments.html">Book Appointment</a></li>
         <li><a class="btn" href="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -59,8 +55,7 @@
       <p>From beginner freshwater setups to advanced reef systems, we’ve got tanks, gear, and expert care.</p>
       <div class="hero-cta">
         <a class="btn" href="aquariums.html">Shop Aquariums</a>
-        <!-- Point directly to tank-cleaning anchor -->
-        <a class="btn-outline" href="#appointments">Book Tank Cleaning</a>
+        <a class="btn-outline" href="appointments.html">Book Tank Cleaning</a>
         <a class="btn-ghost" href="livestock.html">This Week’s Fish & Corals</a>
       </div>
     </div>
@@ -83,8 +78,7 @@
     <article class="card">
       <h3>Maintenance Services</h3>
       <p>Water changes, testing, dosing, aquascaping, emergency visits & service plans.</p>
-      <!-- Also link to tank-cleaning since that's your online booking -->
-      <a class="link" href="#appointments">Book Tank Cleaning →</a>
+      <a class="link" href="appointments.html">Book Tank Cleaning →</a>
     </article>
 
     <article class="card">
@@ -92,28 +86,6 @@
       <p>Quarantined freshwater & marine livestock, corals and invertebrates.</p>
       <a class="link" href="livestock.html">This Week’s Stock →</a>
     </article>
-  </section>
-
-  <!-- APPOINTMENTS: Calendly embed for *Tank Cleaning only* -->
-  <section id="appointments" class="section appointments" aria-label="Book Tank Cleaning">
-    <div class="container">
-      <h2 class="centered" style="margin-top:0">Book Tank Cleaning</h2>
-      <p class="centered muted" style="margin-top:-.4rem">
-        Choose a time for an on-site tank cleaning (freshwater or saltwater).
-      </p>
-
-      <!-- Replace the data-url with your exact event link:
-           Example: https://calendly.com/YOUR-CALENDLY-USERNAME/tank-cleaning -->
-      <div class="calendly-inline-widget"
-           data-url="https://calendly.com/brunosaquariums"
-           style="min-width:320px;height:700px;"></div>
-      <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
-      <!-- Optional fallback link -->
-      <p class="centered" style="margin-top:.85rem">
-        Prefer a direct link? <a href="https://calendly.com/YOUR-CALENDLY-USERNAME/tank-cleaning" target="_blank" rel="noopener">Open the tank cleaning booking page</a>.
-      </p>
-    </div>
   </section>
 
   <!-- CTA BANNER -->
@@ -158,10 +130,8 @@
 
 <script src="assets/js/main.js?v=9"></script>
 <script>
-  // Auto-year
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Mark active nav item (optional; your main.js may handle this on mobile toggle)
+  // Optional: mark active nav for index
   (function(){
     const current = 'index.html';
     document.querySelectorAll('#site-nav a').forEach(a=>{
@@ -171,30 +141,6 @@
       }
     });
   })();
-</script>
-
-<!-- Local Business schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "PetStore",
-  "name": "Bruno's Aquariums",
-  "url": "https://brunosaquarium.com",
-  "image": "https://brunosaquarium.com/assets/img/brunos-logo.png",
-  "telephone": "+16053506478",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "256 Dakota Ave S",
-    "addressLocality": "Huron",
-    "addressRegion": "SD",
-    "postalCode": "57350",
-    "addressCountry": "US"
-  },
-  "openingHoursSpecification": [
-    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"10:00","closes":"20:00"},
-    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"10:00","closes":"20:00"}
-  ]
-}
 </script>
 </body>
 </html>
