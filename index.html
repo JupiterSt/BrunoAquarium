@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bruno's Aquariums — Aquariums • Fish & Corals • Maintenance</title>
 
-  <!-- Core styles -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=8" />
+  <!-- Core styles (make sure this is your latest v9) -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=9" />
   <link rel="icon" href="assets/img/favicon.png" />
 
   <!-- Meta / Open Graph -->
-  <meta name="description" content="Saltwater & freshwater aquariums, fish & corals, accessories, and maintenance in Huron, SD." />
+  <meta name="description" content="Saltwater & freshwater aquariums, fish & corals, accessories, and professional maintenance in Huron, SD." />
   <meta property="og:title" content="Bruno's Aquariums — Aquariums • Accessories • Maintenance" />
   <meta property="og:description" content="From beginner freshwater tanks to advanced reef systems. Tanks, gear, livestock & expert care." />
   <meta property="og:image" content="assets/img/brunos-logo.png" />
@@ -21,7 +21,8 @@
     .logo-img{height:36px;width:auto;display:block}
     .site-nav a{white-space:nowrap}
     .btn-ghost{padding:.55rem .9rem;border:1px solid currentColor;border-radius:.6rem;white-space:nowrap}
-    .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap}
+    .hero .container{ text-align:center }
+    .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
     @media(max-width:420px){.brand-text{display:none}}
   </style>
 </head>
@@ -42,7 +43,8 @@
         <li><a href="livestock.html">Fish & Corals</a></li>
         <li><a href="maintenance.html">Maintenance</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a class="btn-ghost" href="#appointments">Book&nbsp;Appointment</a></li>
+        <!-- This button jumps to the tank-cleaning embed section below -->
+        <li><a class="btn-ghost" href="#appointments">Book&nbsp;Tank&nbsp;Cleaning</a></li>
         <li><a class="btn" href="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -57,14 +59,15 @@
       <p>From beginner freshwater setups to advanced reef systems, we’ve got tanks, gear, and expert care.</p>
       <div class="hero-cta">
         <a class="btn" href="aquariums.html">Shop Aquariums</a>
-        <a class="btn-outline" href="maintenance.html">Book Maintenance</a>
+        <!-- Point directly to tank-cleaning anchor -->
+        <a class="btn-outline" href="#appointments">Book Tank Cleaning</a>
         <a class="btn-ghost" href="livestock.html">This Week’s Fish & Corals</a>
       </div>
     </div>
   </section>
 
   <!-- FEATURE CARDS -->
-  <section class="cards container" aria-label="Main categories">
+  <section class="cards container section" aria-label="Main categories">
     <article class="card">
       <h3>Aquariums</h3>
       <p>Glass & acrylic tanks, stands, sumps, plumbing kits, and custom builds.</p>
@@ -80,7 +83,8 @@
     <article class="card">
       <h3>Maintenance Services</h3>
       <p>Water changes, testing, dosing, aquascaping, emergency visits & service plans.</p>
-      <a class="link" href="maintenance.html">See Packages →</a>
+      <!-- Also link to tank-cleaning since that's your online booking -->
+      <a class="link" href="#appointments">Book Tank Cleaning →</a>
     </article>
 
     <article class="card">
@@ -90,22 +94,30 @@
     </article>
   </section>
 
-  <!-- APPOINTMENTS (simple, no external embed needed) -->
-  <section id="appointments" class="section appointments">
-    <div class="container card" style="padding:1.25rem">
-      <h2 class="centered" style="margin-top:0">Book an Appointment</h2>
+  <!-- APPOINTMENTS: Calendly embed for *Tank Cleaning only* -->
+  <section id="appointments" class="section appointments" aria-label="Book Tank Cleaning">
+    <div class="container">
+      <h2 class="centered" style="margin-top:0">Book Tank Cleaning</h2>
       <p class="centered muted" style="margin-top:-.4rem">
-        Pick-up orders, consultations, installs, or in-store help.
+        Choose a time for an on-site tank cleaning (freshwater or saltwater).
       </p>
-      <div class="hero-cta" style="justify-content:center;margin-top:.6rem">
-        <a class="btn" href="contact.html">Send Request</a>
-        <a class="btn-outline" href="maintenance.html">Maintenance Plans</a>
-      </div>
+
+      <!-- Replace the data-url with your exact event link:
+           Example: https://calendly.com/YOUR-CALENDLY-USERNAME/tank-cleaning -->
+      <div class="calendly-inline-widget"
+           data-url="https://calendly.com/YOUR-CALENDLY-USERNAME/tank-cleaning"
+           style="min-width:320px;height:700px;"></div>
+      <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+      <!-- Optional fallback link -->
+      <p class="centered" style="margin-top:.85rem">
+        Prefer a direct link? <a href="https://calendly.com/YOUR-CALENDLY-USERNAME/tank-cleaning" target="_blank" rel="noopener">Open the tank cleaning booking page</a>.
+      </p>
     </div>
   </section>
 
   <!-- CTA BANNER -->
-  <section class="banner" aria-label="Contact CTA">
+  <section class="banner section" aria-label="Contact CTA">
     <div class="container banner-inner">
       <p style="margin:.25rem 0">Need a custom build or a service quote?</p>
       <div style="display:flex;gap:.6rem;flex-wrap:wrap">
@@ -144,23 +156,24 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=8"></script>
+<script src="assets/js/main.js?v=9"></script>
 <script>
   // Auto-year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Mark the active nav item for this page
+  // Mark active nav item (optional; your main.js may handle this on mobile toggle)
   (function(){
-    var current = 'index.html';
-    document.querySelectorAll('#site-nav a').forEach(function(a){
-      if ((a.getAttribute('href') || '') === current) {
-        a.classList.add('active'); a.setAttribute('aria-current','page');
+    const current = 'index.html';
+    document.querySelectorAll('#site-nav a').forEach(a=>{
+      if ((a.getAttribute('href')||'') === current) {
+        a.classList.add('active');
+        a.setAttribute('aria-current','page');
       }
     });
   })();
 </script>
 
-<!-- Local Business schema (valid & human-readable hours) -->
+<!-- Local Business schema -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
