@@ -3,22 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Accessories — Bruno's Aquariums</title>
+  <title>About — Bruno's Aquariums</title>
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=6">
+  <link rel="stylesheet" href="assets/css/styles.css?v=8">
   <link rel="icon" href="assets/img/favicon.png">
 
-  <meta property="og:title" content="Bruno's Aquariums — Accessories & Food">
-  <meta property="og:description" content="Everything to run saltwater & freshwater tanks: filtration, pumps, lighting, water care, rock, plumbing, tools, and foods.">
+  <meta property="og:title" content="Bruno's Aquariums — About">
+  <meta property="og:description" content="Local, family-run shop for saltwater & freshwater tanks, fish, corals, gear, and expert maintenance.">
   <meta property="og:image" content="assets/img/brunos-logo.png">
+  <meta name="description" content="Learn about Bruno's Aquariums — saltwater & freshwater aquariums, livestock, accessories, and professional maintenance in Huron, SD.">
 
   <style>
     .logo-img{height:36px;width:auto;display:block}
     .btn-ghost{padding:.55rem .9rem;border:1px solid currentColor;border-radius:.5rem}
-    .grid-3{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-    .bullets{padding-left:1.1rem}
-    .bullets li{margin:.25rem 0}
-    .section{padding:3.5rem 0}
+    .grid-2{display:grid;gap:1rem;grid-template-columns:1fr 1fr}
+    @media(max-width:980px){.grid-2{grid-template-columns:1fr}}
+    .about-photo{background:#0a1728;border:1px solid #203047;border-radius:1rem;
+      min-height:260px;display:flex;align-items:center;justify-content:center;
+      color:#94a3b8;text-align:center;padding:1rem}
+    .bullets{padding-left:1.2rem}
+    .bullets li{margin:.35rem 0}
   </style>
 </head>
 <body>
@@ -33,11 +37,11 @@
     <nav id="site-nav" class="site-nav" role="navigation" aria-label="Main">
       <ul>
         <li><a href="aquariums.html">Aquariums</a></li>
-        <li><a class="active" href="accessories.html">Accessories</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
         <li><a href="maintenance.html">Maintenance</a></li>
         <li><a href="livestock.html">Fish & Corals</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a class="btn-ghost" href="index.html#appointments">Book Appointment</a></li>
+        <li><a class="active" href="about.html" aria-current="page">About</a></li>
+        <li><a class="btn-ghost" href="index.html#appointments">Book&nbsp;Appointment</a></li>
         <li><a class="btn" href="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -48,101 +52,50 @@
   <!-- HERO -->
   <section class="page-hero centered section">
     <div class="container">
-      <h1>Accessories & Food</h1>
-      <p>Everything to run saltwater & freshwater tanks.</p>
+      <h1>About Bruno's Aquariums</h1>
+      <p>Local, family-run shop for saltwater & freshwater tanks, fish, corals, gear, and expert maintenance.</p>
     </div>
   </section>
 
-  <!-- CATEGORIES -->
-  <section class="container grid-3 section" aria-label="Accessory Categories">
-    <article class="card">
-      <h3>Filtration</h3>
-      <ul class="bullets">
-        <li>HOB & canister filters</li>
-        <li>Protein skimmers</li>
-        <li>Filter media & socks</li>
-      </ul>
-    </article>
+  <!-- STORY + IMAGE -->
+  <section class="container section">
+    <div class="grid-2">
+      <article class="card">
+        <h2>Our Story</h2>
+        <p>We started Bruno’s Aquariums to help hobbyists build beautiful, healthy aquariums — whether it’s your first freshwater tank or a custom reef showpiece. We focus on honest advice, quarantined livestock, and reliable service so your system thrives for the long haul.</p>
+        <p>From tank selection and aquascaping to water chemistry and long-term care, we love guiding customers at every step.</p>
+      </article>
+      <aside class="about-photo">
+        Shop / Team Photo Placeholder
+      </aside>
+    </div>
+  </section>
 
-    <article class="card">
-      <h3>Pumps & Flow</h3>
-      <ul class="bullets">
-        <li>Return pumps</li>
-        <li>Wavemakers / Powerheads</li>
-        <li>ATO systems</li>
-      </ul>
-    </article>
-
-    <article class="card">
-      <h3>Lighting</h3>
-      <ul class="bullets">
-        <li>Reef LEDs</li>
-        <li>Planted LEDs</li>
-        <li>Timers & mounts</li>
-      </ul>
-    </article>
-
-    <article class="card">
-      <h3>Heating / Cooling</h3>
-      <ul class="bullets">
-        <li>Heaters & controllers</li>
-        <li>Cooling fans</li>
-        <li>Thermometers</li>
-      </ul>
-    </article>
-
-    <article class="card">
-      <h3>Water & Test</h3>
-      <ul class="bullets">
-        <li>RO/DI & salt mix</li>
-        <li>Conditioners</li>
-        <li>Test kits & refractometers</li>
-      </ul>
-    </article>
-
-    <article class="card">
-      <h3>Substrate & Rock</h3>
-      <ul class="bullets">
-        <li>Sand & gravel</li>
-        <li>Aquasoil</li>
-        <li>Dry rock & wood</li>
-      </ul>
-    </article>
-
-    <article class="card">
-      <h3>Food</h3>
-      <ul class="bullets">
-        <li>Flakes & pellets</li>
-        <li>Frozen foods</li>
-        <li>Coral foods</li>
-      </ul>
-    </article>
-
-    <article class="card">
-      <h3>Plumbing</h3>
-      <ul class="bullets">
-        <li>Bulkheads & PVC</li>
-        <li>Tubing & valves</li>
-        <li>Overflow kits</li>
-      </ul>
-    </article>
-
-    <article class="card">
-      <h3>Maintenance Tools</h3>
-      <ul class="bullets">
-        <li>Gravel vacs & siphons</li>
-        <li>Scrapers & nets</li>
-        <li>Buckets & hoses</li>
-      </ul>
-    </article>
+  <!-- WHAT WE OFFER -->
+  <section class="container section">
+    <div class="grid-2">
+      <article class="card">
+        <h2>What We Offer</h2>
+        <ul class="bullets">
+          <li>Aquariums & custom builds (freshwater & reef)</li>
+          <li>Accessories & parts: filtration, pumps, lighting, plumbing, rock/substrate, foods</li>
+          <li>Quarantined freshwater & marine fish, corals, and invertebrates</li>
+          <li>On-site maintenance & emergency support</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h2>Our Commitment</h2>
+        <p>We believe aquariums bring peace, beauty, and a sense of wonder into homes and businesses. Our goal is to make that experience stress-free with healthy livestock, dependable products, and hands-on guidance.</p>
+      </article>
+    </div>
   </section>
 
   <!-- CTA -->
-  <section class="banner section" aria-label="Special Orders">
+  <section class="banner section">
     <div class="container banner-inner">
-      <p>Need a part we don’t list?</p>
+      <p>Want to start your dream aquarium?</p>
       <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
-        <a class="btn" href="contact.html">Request a Special Order</a>
+        <a class="btn" href="contact.html">Get in Touch</a>
         <a class="btn-outline" href="index.html#appointments">Book Appointment</a>
       </div>
     </div>
@@ -177,7 +130,7 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=6"></script>
+<script src="assets/js/main.js?v=8"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
