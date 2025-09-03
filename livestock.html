@@ -5,25 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fish & Corals — Bruno's Aquariums</title>
 
+  <!-- Core styles -->
   <link rel="stylesheet" href="assets/css/styles.css?v=9" />
   <link rel="icon" href="assets/img/favicon.png" />
+
   <meta name="description" content="Weekly arrivals and in-stock livestock: freshwater fish, saltwater fish, and corals & inverts at Bruno’s Aquariums, Huron SD.">
 
   <style>
+    /* Centered section headings */
+    .section h2 { text-align:center; }
+
     /* Gallery layout */
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;justify-content:center}
-    .tile{position:relative;overflow:hidden;border-radius:.8rem;border:1px solid #1f2a3a;background:#0f172a;box-shadow:var(--shadow)}
-    .tile img{display:block;width:100%;height:180px;object-fit:cover;transition:transform .25s ease}
-    .tile:hover img{transform:scale(1.04)}
-    .cap{padding:.55rem .65rem;font-size:.95rem;border-top:1px solid #1f2a3a}
-    .badge{position:absolute;left:.55rem;top:.55rem;background:rgba(14,165,233,.9);color:#06131f;font-weight:700;border-radius:.5rem;padding:.2rem .45rem;font-size:.8rem}
+    .gallery{
+      --min: 200px;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(var(--min), 1fr));
+      gap:1rem;
+      align-items:start;
+      justify-items:center;        /* keeps tiles centered in their grid cells */
+    }
+    .tile{
+      width:100%;
+      max-width:360px;             /* prevents super-wide tiles on big screens */
+      position:relative; overflow:hidden;
+      border-radius:.8rem; border:1px solid #1f2a3a;
+      background:#0f172a; box-shadow:var(--shadow);
+    }
+    .tile a{ display:block; line-height:0 }
+    .tile img{
+      width:100%; height:180px; object-fit:cover; display:block;
+      transition:transform .25s ease;
+    }
+    .tile:hover img{ transform:scale(1.04) }
+    .cap{ padding:.55rem .65rem; font-size:.95rem; border-top:1px solid #1f2a3a }
+    .badge{
+      position:absolute; left:.55rem; top:.55rem;
+      background:rgba(14,165,233,.9); color:#06131f; font-weight:700;
+      border-radius:.5rem; padding:.2rem .45rem; font-size:.8rem
+    }
 
     /* Simple lightbox */
-    dialog.lightbox{border:none;padding:0;background:transparent}
-    .lightbox::backdrop{background:rgba(0,0,0,.75)}
-    .lightbox img{max-width:90vw;max-height:85vh;border-radius:.8rem;display:block}
-    .lightbox .meta{margin-top:.4rem;color:#e2e8f0;text-align:center}
-    .lightbox .close{position:absolute;top:1rem;right:1rem;background:rgba(15,23,42,.9);border:1px solid #334155;border-radius:.5rem;color:#e2e8f0;padding:.35rem .6rem;cursor:pointer}
+    dialog.lightbox{ border:none; padding:0; background:transparent }
+    .lightbox::backdrop{ background:rgba(0,0,0,.78) }
+    .lightbox .wrap{ position:relative; margin:0; }
+    .lightbox img{ max-width:90vw; max-height:85vh; border-radius:.8rem; display:block }
+    .lightbox .meta{ margin-top:.5rem; color:#e2e8f0; text-align:center }
+    .lightbox .close{
+      position:absolute; top:.75rem; right:.75rem;
+      background:rgba(15,23,42,.95); border:1px solid #334155;
+      border-radius:.5rem; color:#e2e8f0; padding:.35rem .6rem; cursor:pointer
+    }
+
+    /* Small polish for brand image */
+    .logo-img{ height:36px; width:auto; display:block }
   </style>
 </head>
 
@@ -31,7 +65,7 @@
 <header class="site-header" role="banner">
   <div class="container header-inner">
     <a class="brand" href="index.html" aria-label="Bruno's Aquariums — Home">
-      <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" style="height:36px">
+      <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo">
       <span class="brand-text">Bruno's Aquariums</span>
     </a>
 
@@ -43,7 +77,7 @@
         <li><a class="active" href="livestock.html" aria-current="page">Fish & Corals</a></li>
         <li><a href="maintenance.html">Maintenance</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a class="btn-ghost" href="index.html#appointments">Book&nbsp;Appointment</a></li>
+        <li><a class="btn-ghost" href="appointments.html">Book&nbsp;Appointment</a></li>
         <li><a class="btn" href="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -60,26 +94,26 @@
   </section>
 
   <!-- WEEKLY -->
-  <section class="container section">
+  <section class="container section" aria-label="This Week’s Arrivals">
     <h2>🗓 This Week’s Arrivals</h2>
-    <p class="muted" style="margin-top:-.25rem">Update photos in <code>assets/data/livestock.json</code>.</p>
+    <p class="muted" style="margin-top:-.25rem;text-align:center">Update photos in <code>assets/data/livestock.json</code>.</p>
     <div class="gallery" id="weekly"></div>
   </section>
 
   <!-- FRESHWATER -->
-  <section class="container section">
+  <section class="container section" aria-label="Freshwater Fish">
     <h2>Freshwater Fish</h2>
     <div class="gallery" id="freshwater"></div>
   </section>
 
   <!-- SALTWATER -->
-  <section class="container section">
+  <section class="container section" aria-label="Saltwater Fish">
     <h2>Saltwater Fish</h2>
     <div class="gallery" id="saltwater"></div>
   </section>
 
   <!-- CORALS & INVERTS -->
-  <section class="container section">
+  <section class="container section" aria-label="Corals and Invertebrates">
     <h2>Corals & Inverts</h2>
     <div class="gallery" id="corals"></div>
   </section>
@@ -127,25 +161,51 @@
 
   function tile(item){
     const fig = el('figure', {class: 'tile'});
+
     if (item.badge) fig.appendChild(el('span',{class:'badge'}, item.badge));
-    const a = el('a', {href:'#','data-full':item.src,'data-alt':item.alt||'','data-caption':item.caption||''});
-    const img = el('img', {src:item.src, alt:item.alt||item.caption||'Livestock image', loading:'lazy'});
+
+    const a = el('a', {
+      href:'#',
+      'data-full': item.src,
+      'data-alt': item.alt || '',
+      'data-caption': item.caption || ''
+    });
+
+    const img = el('img', {
+      src: item.src,
+      alt: item.alt || item.caption || 'Livestock image',
+      loading: 'lazy',
+      decoding: 'async'
+    });
+
+    // Fallback if an image fails to load
+    img.addEventListener('error', () => {
+      img.remove();
+      a.replaceWith(el('div',{class:'cap'}, 'Photo unavailable'));
+    });
+
     a.appendChild(img);
     fig.appendChild(a);
+
     if (item.caption) fig.appendChild(el('figcaption',{class:'cap'}, item.caption));
+
     return fig;
   }
 
   // Lightbox
   const lb = document.createElement('dialog');
   lb.className = 'lightbox';
+  lb.setAttribute('aria-label','Image preview');
   lb.innerHTML = `
-    <button class="close" aria-label="Close">Close</button>
-    <img alt="">
-    <div class="meta"></div>
+    <div class="wrap">
+      <button class="close" aria-label="Close">Close</button>
+      <img alt="">
+      <div class="meta" role="note"></div>
+    </div>
   `;
   document.body.appendChild(lb);
   lb.querySelector('.close').addEventListener('click', ()=> lb.close());
+  lb.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') lb.close(); });
   lb.addEventListener('click', (e)=> { if (e.target === lb) lb.close(); });
 
   function bindLightbox(root){
@@ -153,22 +213,29 @@
       const a = e.target.closest('a[data-full]');
       if (!a) return;
       e.preventDefault();
-      lb.querySelector('img').src = a.dataset.full;
-      lb.querySelector('img').alt = a.dataset.alt || '';
+      const img = lb.querySelector('img');
+      img.src = a.dataset.full;
+      img.alt = a.dataset.alt || '';
       lb.querySelector('.meta').textContent = a.dataset.caption || '';
       lb.showModal();
+      lb.querySelector('.close').focus();
     });
   }
 
-  // Load JSON and render galleries
+  // Load JSON and render galleries in a fixed order
   fetch('assets/data/livestock.json')
     .then(r => r.json())
     .then(data => {
-      const sections = ['weekly','freshwater','saltwater','corals'];
-      sections.forEach(id => {
+      const order = ['weekly','freshwater','saltwater','corals'];
+      order.forEach(id => {
         const root = document.getElementById(id);
-        if (!root || !Array.isArray(data[id])) return;
-        data[id].forEach(item => root.appendChild(tile(item)));
+        const list = Array.isArray(data[id]) ? data[id] : [];
+        if (!root) return;
+        if (!list.length) {
+          root.innerHTML = '<p class="muted" style="text-align:center">Photos coming soon.</p>';
+          return;
+        }
+        list.forEach(item => root.appendChild(tile(item)));
         bindLightbox(root);
       });
     })
@@ -176,7 +243,7 @@
       console.error('Failed to load livestock.json', err);
       ['weekly','freshwater','saltwater','corals'].forEach(id=>{
         const root = document.getElementById(id);
-        if (root) root.innerHTML = '<p class="muted">Photos coming soon.</p>';
+        if (root) root.innerHTML = '<p class="muted" style="text-align:center">Photos coming soon.</p>';
       });
     });
 </script>
