@@ -1,1 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book Appointment — Bruno's Aquariums</title>
+
+  <link rel="stylesheet" href="assets/css/styles.css?v=9" />
+  <link rel="icon" href="assets/img/favicon.png" />
+
+  <meta name="description" content="Book a tank cleaning appointment with Bruno’s Aquariums in Huron, SD." />
+  <meta property="og:title" content="Book Tank Cleaning — Bruno's Aquariums" />
+  <meta property="og:description" content="Choose a time for on-site tank cleaning (freshwater or saltwater)." />
+  <meta property="og:image" content="assets/img/brunos-logo.png" />
+
+  <style>
+    .logo-img{height:36px;width:auto;display:block}
+    .centered{text-align:center}
+    .section{padding:3.5rem 0}
+  </style>
+</head>
+
+<body>
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="Bruno's Aquariums — Home">
+      <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" />
+      <span class="brand-text">Bruno's Aquariums</span>
+    </a>
+
+    <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false">Menu</button>
+    <nav id="site-nav" class="site-nav" role="navigation" aria-label="Main">
+      <ul>
+        <li><a href="aquariums.html">Aquariums</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+        <li><a href="livestock.html">Fish & Corals</a></li>
+        <li><a href="maintenance.html">Maintenance</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a class="active btn-ghost" href="appointments.html" aria-current="page">Book Appointment</a></li>
+        <li><a class="btn" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="content">
+  <section class="page-hero centered section">
+    <div class="container">
+      <h1>Book Tank Cleaning</h1>
+      <p class="muted">Select a time for an on-site cleaning (freshwater or saltwater). We’ll confirm details by email.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <!-- Replace with your exact event link -->
+      <div class="calendly-inline-widget"
+           data-url="https://calendly.com/YOUR-CALENDLY-USERNAME/tank-cleaning"
+           style="min-width:320px;height:700px;"></div>
+      <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+      <p class="centered" style="margin-top:.85rem">
+        Prefer a direct link? <a href="https://calendly.com/YOUR-CALENDLY-USERNAME/tank-cleaning" target="_blank" rel="noopener">Open the booking page</a>.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-grid">
+    <div>
+      <p style="display:flex;align-items:center;gap:.6rem;margin:0 0 .5rem 0;">
+        <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" style="height:20px" />
+        <strong>Bruno's Aquariums</strong>
+      </p>
+      <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
+    </div>
+    <div>
+      <h4>Visit</h4>
+      <p><a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
+        256 Dakota Ave S, Huron, SD 57350</a></p>
+      <p><a href="tel:+16053506478">605-350-6478</a></p>
+    </div>
+    <div>
+      <h4>Hours</h4>
+      <p>Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
+    </div>
+  </div>
+
+  <div class="container legal">
+    <p>© <span id="year"></span> Bruno's Aquariums. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js?v=9"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
 
