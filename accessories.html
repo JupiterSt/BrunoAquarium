@@ -1,31 +1,37 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Accessories — Bruno's Aquariums</title>
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=6">
-  <link rel="icon" href="assets/img/favicon.png">
+  <!-- Latest site CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=9" />
+  <link rel="icon" href="assets/img/favicon.png" />
 
-  <meta property="og:title" content="Bruno's Aquariums — Accessories & Food">
-  <meta property="og:description" content="Everything to run freshwater & reef tanks: filtration, pumps, lighting, water care, rock, plumbing, tools, and foods.">
-  <meta property="og:image" content="assets/img/brunos-logo.png">
+  <!-- Meta / Open Graph -->
+  <meta name="description" content="Everything to run saltwater & freshwater tanks: filtration, pumps, lighting, water care, rock, plumbing, tools, and foods." />
+  <meta property="og:title" content="Bruno's Aquariums — Accessories & Food" />
+  <meta property="og:description" content="Filtration, pumps, lighting, water care, rock, plumbing, tools, and foods for saltwater & freshwater tanks." />
+  <meta property="og:image" content="assets/img/brunos-logo.png" />
 
+  <!-- Page-local helpers -->
   <style>
     .logo-img{height:36px;width:auto;display:block}
-    .btn-ghost{padding:.55rem .9rem;border:1px solid currentColor;border-radius:.5rem}
+    .btn-ghost{padding:.55rem .9rem;border:1px solid currentColor;border-radius:.6rem}
+    .section{padding:3.5rem 0}
     .grid-3{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
     .bullets{padding-left:1.1rem}
     .bullets li{margin:.25rem 0}
-    .section{padding:3.5rem 0}
+    .page-hero .container{text-align:center}
   </style>
 </head>
+
 <body>
 <header class="site-header" role="banner">
   <div class="container header-inner">
     <a class="brand" href="index.html" aria-label="Bruno's Aquariums — Home">
-      <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo">
+      <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" />
       <span class="brand-text">Bruno's Aquariums</span>
     </a>
 
@@ -33,11 +39,11 @@
     <nav id="site-nav" class="site-nav" role="navigation" aria-label="Main">
       <ul>
         <li><a href="aquariums.html">Aquariums</a></li>
-        <li><a class="active" href="accessories.html">Accessories</a></li>
+        <li><a class="active" href="accessories.html" aria-current="page">Accessories</a></li>
         <li><a href="livestock.html">Fish & Corals</a></li>
         <li><a href="maintenance.html">Maintenance</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a class="btn-ghost" href="index.html#appointments">Book Appointment</a></li>
+        <li><a class="btn-ghost" href="appointments.html">Book Appointment</a></li>
         <li><a class="btn" href="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -46,10 +52,10 @@
 
 <main class="content">
   <!-- HERO -->
-  <section class="page-hero centered section">
+  <section class="page-hero section">
     <div class="container">
       <h1>Accessories & Food</h1>
-      <p>Everything to run freshwater & reef tanks.</p>
+      <p>Everything to run saltwater & freshwater tanks.</p>
     </div>
   </section>
 
@@ -143,7 +149,7 @@
       <p>Need a part we don’t list?</p>
       <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
         <a class="btn" href="contact.html">Request a Special Order</a>
-        <a class="btn-outline" href="index.html#appointments">Book Appointment</a>
+        <a class="btn-outline" href="appointments.html">Book Appointment</a>
       </div>
     </div>
   </section>
@@ -153,7 +159,7 @@
   <div class="container footer-grid">
     <div>
       <p style="display:flex;align-items:center;gap:.6rem;margin:0 0 .5rem 0;">
-        <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" style="height:20px">
+        <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" style="height:20px" />
         <strong>Bruno's Aquariums</strong>
       </p>
       <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
@@ -177,7 +183,7 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=6"></script>
+<script src="assets/js/main.js?v=9"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
