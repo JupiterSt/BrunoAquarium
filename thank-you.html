@@ -1,68 +1,92 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Thanks — Bruno's Aquariums</title>
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=8">
-  <link rel="icon" href="assets/img/favicon.png">
+  <!-- Reef theme CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=10" />
+  <link rel="icon" href="assets/img/favicon.png" />
 
-  <meta name="description" content="Thank you for contacting Bruno's Aquariums. We’ll get back to you soon.">
-  <meta property="og:title" content="Bruno's Aquariums — Thank You">
-  <meta property="og:description" content="We received your request and will be in touch shortly.">
-  <meta property="og:image" content="assets/img/brunos-logo.png">
+  <meta name="description" content="Thank you for contacting Bruno's Aquariums. We’ll get back to you soon." />
+  <meta property="og:title" content="Bruno's Aquariums — Thank You" />
+  <meta property="og:description" content="We received your request and will be in touch shortly." />
+  <meta property="og:image" content="assets/img/brunos-logo.png" />
 
   <style>
-    .thankyou{padding:4rem 1rem;text-align:center}
-    .thankyou h1{font-size:2rem;margin-bottom:1rem}
-    .thankyou p{font-size:1.1rem;margin-bottom:2rem;color:#94a3b8}
-    .thankyou .hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-    .redirect-note{margin-top:1rem;font-size:.95rem;color:#64748b}
+    .thankyou { text-align:center }
+    .thankyou h1 { margin-bottom:.4rem }
+    .thankyou p.lead { font-size:1.05rem }
+    .redirect-note { margin-top:.8rem; opacity:.8 }
   </style>
 </head>
 <body>
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="index.html" aria-label="Bruno's Aquariums — Home">
-      <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" style="height:32px">
-      <span class="brand-text">Bruno's Aquariums</span>
-    </a>
-  </div>
-</header>
-
-<main class="content">
-  <section class="thankyou">
-    <h1>Thank you!</h1>
-    <p>Your request was sent successfully. We’ll reply to <strong>brunosaquarium@gmail.com</strong> or call if you left a number.</p>
-    <div class="hero-cta">
-      <a class="btn" href="index.html">Back to Home</a>
-      <a class="btn-outline" href="index.html#appointments">Book Another Appointment</a>
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Bruno's Aquariums — Home">
+        <picture>
+          <source srcset="assets/img/brunos-logo.svg" type="image/svg+xml">
+          <img class="logo-img" src="assets/img/brunos-logo.png" alt="Bruno's Aquariums logo" loading="eager" />
+        </picture>
+        <span class="brand-text">Bruno's Aquariums</span>
+      </a>
     </div>
-    <p class="redirect-note">You’ll be redirected to the homepage in <span id="countdown">8</span> seconds…</p>
-  </section>
-</main>
+  </header>
 
-<footer class="site-footer">
-  <div class="container legal">
-    <p>© <span id="year"></span> Bruno's Aquariums. All rights reserved.</p>
-  </div>
-</footer>
+  <main class="content">
+    <!-- HERO -->
+    <section class="hero section thankyou" aria-labelledby="thanks-title">
+      <div class="container">
+        <h1 id="thanks-title">Thank you!</h1>
+        <p class="lead">Your request was sent successfully. We’ll reply to <strong>brunosaquarium@gmail.com</strong> or call if you left a number.</p>
+        <div class="hero-cta" style="justify-content:center">
+          <a class="btn" href="index.html">Back to Home</a>
+          <a class="btn-outline" href="appointments.html">Book Another Appointment</a>
+        </div>
+        <p class="redirect-note">You’ll be redirected to the homepage in <span id="countdown">8</span> seconds…</p>
+      </div>
+    </section>
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+    <!-- Wave divider -->
+    <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
+    </svg>
 
-  // Auto redirect countdown
-  let seconds = 8;
-  const countdownEl = document.getElementById('countdown');
-  const timer = setInterval(() => {
-    seconds--;
-    countdownEl.textContent = seconds;
-    if (seconds <= 0) {
-      clearInterval(timer);
-      window.location.href = "index.html";
-    }
-  }, 1000);
-</script>
+    <!-- Friendly CTA -->
+    <section class="banner section" aria-label="Explore more">
+      <div class="container">
+        <p style="margin:.25rem 0">While you’re here, want to browse tanks or this week’s stock?</p>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center">
+          <a class="btn" href="aquariums.html">Shop Aquariums</a>
+          <a class="btn-outline" href="livestock.html">Fish & Corals</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container legal">
+      <p>© <span id="year"></span> Bruno's Aquariums. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="assets/js/main.js?v=10"></script>
+  <script>
+    // Auto redirect countdown
+    let seconds = 8;
+    const countdownEl = document.getElementById('countdown');
+    const timer = setInterval(() => {
+      seconds--;
+      countdownEl.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(timer);
+        window.location.href = "index.html";
+      }
+    }, 1000);
+  </script>
 </body>
 </html>
