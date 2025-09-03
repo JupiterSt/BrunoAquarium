@@ -1,5 +1,5 @@
 /* =====================================================
-   Bruno's Aquariums — Ocean + Freshwater Theme (v21)
+   Bruno's Aquariums — Ocean + Freshwater Theme (v20)
    Sandier background • Readable blue chips • No side waves
    Mobile-first • Accessible • Drop-in across all pages
 ===================================================== */
@@ -44,7 +44,7 @@
   --tap: 44px;
 
   /* Chip selection (high contrast) */
-  --chip-bg:#d9efff;     /* light blue pill (selected) */
+  --chip-bg:#d9efff;     /* light blue pill */
   --chip-text:#062a3a;   /* dark ink on blue */
   --chip-border:#0a6b84; /* teal border */
 }
@@ -150,6 +150,7 @@ a.link::after{
 }
 .hero p{ margin:.25rem auto 1.2rem; max-width:58ch; color:#e6fbff; opacity:.92 }
 .hero-cta{ display:flex; gap:.85rem; flex-wrap:wrap; justify-content:center }
+.wave-sep{ display:block; width:100%; height:90px; fill:var(--ocean-700); margin:-28px 0 0 }
 
 /* ---------- Cards & grids ---------- */
 .cards{ display:grid; gap:1rem; grid-template-columns:repeat(12,1fr) }
@@ -184,66 +185,55 @@ label.required::after{ content:" *"; color:var(--coral); font-weight:800 }
 /* Chip group */
 .chips{ display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center }
 
-/* Chip base (accessible label with visually-hidden input inside) */
+/* Chip base */
 .chip{
   --b: var(--chip-border);
   display:inline-flex; align-items:center; gap:.55rem;
   padding:.65rem 1.05rem; border-radius:999px;
   border:1.5px solid var(--b);
-  background:#fff;                 /* white by default */
-  color:var(--ink);                /* dark text by default */
-  cursor:pointer; user-select:none; transition:background .15s ease, color .15s ease, box-shadow .15s ease;
+  background:#fff;
+  color:var(--ink);
+  cursor:pointer; user-select:none; transition:.15s ease; font-weight:600;
   position:relative;
 }
 
-/* Keep inputs keyboard-focusable & clickable */
+/* Keep the input accessible but out of the way */
 .chip > input{
-  position:absolute; inset:auto auto auto auto;
-  width:1px; height:1px; opacity:0; pointer-events:none;
+  position:absolute; width:1px; height:1px; opacity:0; pointer-events:none;
 }
 
-/* Selected style — via :has OR JS .selected fallback */
-.chip:has(input:checked),
+/* Selected chip — works with :checked OR your JS .selected class */
+.chip input:checked + .other-input,      /* show box for Other when checked */
+.chip.selected .other-input,
+.chip.other-active .other-input{ display:inline-block }
+
+.chip input:checked ~ * ,                /* color text when checked */
+.chip.selected{ color:var(--chip-text) }
+
+.chip:has(input:checked),                /* modern browsers */
 .chip.selected{
-  background:var(--chip-bg);       /* light blue */
-  color:var(--chip-text);          /* dark readable text */
+  background:var(--chip-bg);
   border-color:var(--chip-border);
   box-shadow: inset 0 0 0 2px color-mix(in oklab, var(--chip-border) 35%, white);
 }
 
-/* Custom checkbox/radio square */
-.chip::before{
-  content:"";
-  width:1.05rem; height:1.05rem; border-radius:.25rem;
-  border:1.5px solid var(--chip-border); background:#fff;
-  box-sizing:border-box; flex:0 0 auto;
-}
-.chip:has(input:checked)::before,
-.chip.selected::before{
-  background:var(--chip-border);
-  border-color:var(--chip-border);
-  box-shadow: inset 0 0 0 .22rem #fff;
-}
-
-/* “Other” text input — stays visible when selected OR focused */
+/* “Other” text input (hidden until selected or focused) */
 .chip .other-input{
   display:none;
   flex:0 1 auto;
   background:#fff; color:var(--ink);
   border:1px solid var(--chip-border);
-  border-radius:.55rem; padding:.42rem .6rem;
-  width:min(24ch, 62vw); margin-left:.25rem;
-  caret-color:var(--ocean-600);
+  border-radius:.5rem; padding:.4rem .55rem;
+  width:min(22ch, 60vw);
+  margin-left:.2rem;
 }
-.chip .other-input::placeholder{ color:#7a8a90; opacity:.9 }
+/* If a user clicks straight into the box, keep it visible */
+.chip .other-input:focus{ display:inline-block }
 
-.chip:has(input:checked) .other-input,
-.chip.other-active .other-input,
-.chip .other-input:focus{
-  display:inline-block;           /* ensure you can always type when focused */
-}
+/* In browsers without :has, keep appearance via JS .selected / .other-active,
+   which your script already toggles. */
 
-/* Focus ring for keyboard users */
+/* Focus ring */
 .chip:focus-within{
   outline:3px solid color-mix(in oklab, var(--chip-border) 55%, white);
   outline-offset:2px;
