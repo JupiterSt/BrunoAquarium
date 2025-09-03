@@ -1,34 +1,35 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact & Orders — Bruno's Aquariums</title>
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=8">
-  <link rel="icon" href="assets/img/favicon.png">
+  <!-- Core styles -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=8" />
+  <link rel="icon" href="assets/img/favicon.png" />
 
-  <meta name="description" content="Request fish & corals, order equipment, or book maintenance. Saltwater & freshwater specialists in Huron, SD.">
-  <meta property="og:title" content="Bruno's Aquariums — Contact & Orders">
-  <meta property="og:description" content="Request livestock, equipment, or maintenance. Secure form with quick responses.">
-  <meta property="og:image" content="assets/img/brunos-logo.png">
+  <!-- Meta -->
+  <meta name="description" content="Request fish & corals, order equipment, or book maintenance. Saltwater & freshwater specialists in Huron, SD." />
+  <meta property="og:title" content="Bruno's Aquariums — Contact & Orders" />
+  <meta property="og:description" content="Request livestock, equipment, or maintenance. Secure form with quick responses." />
+  <meta property="og:image" content="assets/img/brunos-logo.png" />
 
+  <!-- Page-specific helpers for chip-style selectors -->
   <style>
-    /* Page-specific helpers for chip-style selectors */
     .chips{display:flex;flex-wrap:wrap;gap:.5rem}
     .chip{
-      display:inline-flex; align-items:center; gap:.45rem;
-      padding:.5rem .75rem; border-radius:999px;
-      border:1px solid #1f2a3a; background:#0a1728; cursor:pointer;
-      user-select:none; transition:border-color .15s ease, background .15s ease;
-      font-size:.95rem;
+      display:inline-flex;align-items:center;gap:.45rem;
+      padding:.5rem .75rem;border-radius:999px;
+      border:1px solid #1f2a3a;background:#0a1728;cursor:pointer;
+      user-select:none;transition:border-color .15s,background .15s;font-size:.95rem
     }
-    .chip input{appearance:none; width:1.1rem; height:1.1rem; border:1px solid #375478;
-      border-radius:.25rem; display:inline-block; position:relative; background:#0b1220}
-    .chip input:checked{background:#0ea5e9; border-color:#0ea5e9}
-    .chip input:checked::after{content:""; position:absolute; inset:.18rem; background:#06131f}
+    .chip input{appearance:none;width:1.1rem;height:1.1rem;border:1px solid #375478;
+      border-radius:.25rem;display:inline-block;position:relative;background:#0b1220}
+    .chip input:checked{background:#0ea5e9;border-color:#0ea5e9}
+    .chip input:checked::after{content:"";position:absolute;inset:.18rem;background:#06131f}
     .group{margin-top:1rem}
-    .group h3{margin:.2rem 0 .4rem 0}
+    .group h3{margin:.2rem 0 .4rem}
     .note{font-size:.9rem;color:#94a3b8}
     .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
     @media(max-width:700px){.two-col{grid-template-columns:1fr}}
@@ -42,7 +43,7 @@
 <header class="site-header" role="banner">
   <div class="container header-inner">
     <a class="brand" href="index.html" aria-label="Bruno's Aquariums — Home">
-      <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo">
+      <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" style="height:36px" />
       <span class="brand-text">Bruno's Aquariums</span>
     </a>
 
@@ -62,6 +63,7 @@
 </header>
 
 <main class="content">
+  <!-- HERO -->
   <section class="page-hero centered section">
     <div class="container">
       <h1>Contact & Order Request</h1>
@@ -69,25 +71,25 @@
     </div>
   </section>
 
+  <!-- FORM + SIDEBAR -->
   <section class="container grid-2" aria-label="Contact form and store information">
-    <!-- SECURE FORM: Your live Formspree endpoint -->
+    <!-- SECURE FORM (Formspree) -->
     <form class="card form" id="contactForm"
           action="https://formspree.io/f/mldworzo"
           method="POST" autocomplete="on">
       <h2>Your Info</h2>
 
       <label class="required" for="name">Full Name</label>
-      <input id="name" name="Name" type="text" autocomplete="name" required>
+      <input id="name" name="name" type="text" autocomplete="name" required />
 
       <div class="two-col">
         <div>
           <label class="required" for="email">Email</label>
-          <input id="email" name="Email" type="email" autocomplete="email" required>
+          <input id="email" name="email" type="email" autocomplete="email" required />
         </div>
         <div>
           <label for="phone">Phone</label>
-          <input id="phone" name="Phone" type="tel" inputmode="tel" autocomplete="tel"
-                 placeholder="605-350-6478">
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="605-350-6478" />
         </div>
       </div>
 
@@ -100,15 +102,15 @@
       <div class="group">
         <h3>Saltwater Fish</h3>
         <div class="chips">
-          <label class="chip"><input type="checkbox" name="Saltwater Fish[]" value="Clownfish">Clownfish</label>
-          <label class="chip"><input type="checkbox" name="Saltwater Fish[]" value="Gobies">Gobies</label>
-          <label class="chip"><input type="checkbox" name="Saltwater Fish[]" value="Blennies">Blennies</label>
-          <label class="chip"><input type="checkbox" name="Saltwater Fish[]" value="Wrasses">Wrasses</label>
-          <label class="chip"><input type="checkbox" name="Saltwater Fish[]" value="Tangs (by order)">Tangs</label>
-          <label class="chip"><input type="checkbox" name="Saltwater Fish[]" value="Cardinals">Cardinals</label>
-          <label class="chip"><input type="checkbox" name="Saltwater Fish[]" value="Firefish">Firefish</label>
-          <label class="chip"><input type="checkbox" name="Saltwater Fish[]" value="Damsels">Damsels</label>
-          <label class="chip"><input type="checkbox" name="Saltwater Fish[]" value="Other">Other</label>
+          <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Clownfish" />Clownfish</label>
+          <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Gobies" />Gobies</label>
+          <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Blennies" />Blennies</label>
+          <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Wrasses" />Wrasses</label>
+          <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Tangs (by order)" />Tangs</label>
+          <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Cardinals" />Cardinals</label>
+          <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Firefish" />Firefish</label>
+          <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Damsels" />Damsels</label>
+          <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Other" />Other</label>
         </div>
       </div>
 
@@ -116,16 +118,16 @@
       <div class="group">
         <h3>Freshwater Fish</h3>
         <div class="chips">
-          <label class="chip"><input type="checkbox" name="Freshwater Fish[]" value="Neon/Cardinal Tetras">Tetras</label>
-          <label class="chip"><input type="checkbox" name="Freshwater Fish[]" value="Guppies/Endlers">Guppies</label>
-          <label class="chip"><input type="checkbox" name="Freshwater Fish[]" value="Platies/Swordtails">Livebearers</label>
-          <label class="chip"><input type="checkbox" name="Freshwater Fish[]" value="Corydoras">Corydoras</label>
-          <label class="chip"><input type="checkbox" name="Freshwater Fish[]" value="Plecos">Plecos</label>
-          <label class="chip"><input type="checkbox" name="Freshwater Fish[]" value="Angelfish (by order)">Angelfish</label>
-          <label class="chip"><input type="checkbox" name="Freshwater Fish[]" value="Discus (by order)">Discus</label>
-          <label class="chip"><input type="checkbox" name="Freshwater Fish[]" value="African Cichlids">African Cichlids</label>
-          <label class="chip"><input type="checkbox" name="Freshwater Fish[]" value="Kribensis/Rams">Dwarf Cichlids</label>
-          <label class="chip"><input type="checkbox" name="Freshwater Fish[]" value="Other">Other</label>
+          <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="Tetras (Neon/Cardinal)" />Tetras</label>
+          <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="Guppies/Endlers" />Guppies</label>
+          <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="Livebearers (Platies/Swordtails)" />Livebearers</label>
+          <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="Corydoras" />Corydoras</label>
+          <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="Plecos" />Plecos</label>
+          <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="Angelfish (by order)" />Angelfish</label>
+          <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="Discus (by order)" />Discus</label>
+          <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="African Cichlids" />African Cichlids</label>
+          <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="Dwarf Cichlids (Kribensis/Rams)" />Dwarf Cichlids</label>
+          <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="Other" />Other</label>
         </div>
       </div>
 
@@ -133,14 +135,14 @@
       <div class="group">
         <h3>Corals & Inverts</h3>
         <div class="chips">
-          <label class="chip"><input type="checkbox" name="Corals/Inverts[]" value="Soft Corals">Soft</label>
-          <label class="chip"><input type="checkbox" name="Corals/Inverts[]" value="LPS Corals">LPS</label>
-          <label class="chip"><input type="checkbox" name="Corals/Inverts[]" value="SPS Corals">SPS</label>
-          <label class="chip"><input type="checkbox" name="Corals/Inverts[]" value="Shrimp">Shrimp</label>
-          <label class="chip"><input type="checkbox" name="Corals/Inverts[]" value="Snails">Snails</label>
-          <label class="chip"><input type="checkbox" name="Corals/Inverts[]" value="Hermit Crabs">Hermits</label>
-          <label class="chip"><input type="checkbox" name="Corals/Inverts[]" value="Anemones">Anemones</label>
-          <label class="chip"><input type="checkbox" name="Corals/Inverts[]" value="Other">Other</label>
+          <label class="chip"><input type="checkbox" name="corals_inverts[]" value="Soft Corals" />Soft</label>
+          <label class="chip"><input type="checkbox" name="corals_inverts[]" value="LPS Corals" />LPS</label>
+          <label class="chip"><input type="checkbox" name="corals_inverts[]" value="SPS Corals" />SPS</label>
+          <label class="chip"><input type="checkbox" name="corals_inverts[]" value="Shrimp" />Shrimp</label>
+          <label class="chip"><input type="checkbox" name="corals_inverts[]" value="Snails" />Snails</label>
+          <label class="chip"><input type="checkbox" name="corals_inverts[]" value="Hermit Crabs" />Hermits</label>
+          <label class="chip"><input type="checkbox" name="corals_inverts[]" value="Anemones" />Anemones</label>
+          <label class="chip"><input type="checkbox" name="corals_inverts[]" value="Other" />Other</label>
         </div>
       </div>
 
@@ -148,16 +150,16 @@
       <div class="group">
         <h3>Equipment / Supplies</h3>
         <div class="chips">
-          <label class="chip"><input type="checkbox" name="Equipment[]" value="Filtration (HOB/Canister/Skimmer)">Filtration</label>
-          <label class="chip"><input type="checkbox" name="Equipment[]" value="Pumps & Flow (Return/Wavemaker)">Pumps & Flow</label>
-          <label class="chip"><input type="checkbox" name="Equipment[]" value="Lighting (Reef/Planted)">Lighting</label>
-          <label class="chip"><input type="checkbox" name="Equipment[]" value="Heaters & Controllers">Heaters</label>
-          <label class="chip"><input type="checkbox" name="Equipment[]" value="Water & Testing (RO/DI, salt mix, kits)">Water & Testing</label>
-          <label class="chip"><input type="checkbox" name="Equipment[]" value="Substrate/Rock (Sand, Gravel, Aquasoil, Dry Rock)">Substrate & Rock</label>
-          <label class="chip"><input type="checkbox" name="Equipment[]" value="Plumbing (Bulkheads, PVC, Valves)">Plumbing</label>
-          <label class="chip"><input type="checkbox" name="Equipment[]" value="Food (Flake, Pellet, Frozen, Coral)">Food</label>
-          <label class="chip"><input type="checkbox" name="Equipment[]" value="Maintenance Tools">Maintenance Tools</label>
-          <label class="chip"><input type="checkbox" name="Equipment[]" value="Other">Other</label>
+          <label class="chip"><input type="checkbox" name="equipment[]" value="Filtration (HOB/Canister/Skimmer)" />Filtration</label>
+          <label class="chip"><input type="checkbox" name="equipment[]" value="Pumps & Flow (Return/Wavemaker)" />Pumps & Flow</label>
+          <label class="chip"><input type="checkbox" name="equipment[]" value="Lighting (Reef/Planted)" />Lighting</label>
+          <label class="chip"><input type="checkbox" name="equipment[]" value="Heaters & Controllers" />Heaters</label>
+          <label class="chip"><input type="checkbox" name="equipment[]" value="Water & Testing (RO/DI, salt mix, kits)" />Water & Testing</label>
+          <label class="chip"><input type="checkbox" name="equipment[]" value="Substrate/Rock (Sand, Gravel, Aquasoil, Dry Rock)" />Substrate & Rock</label>
+          <label class="chip"><input type="checkbox" name="equipment[]" value="Plumbing (Bulkheads, PVC, Valves)" />Plumbing</label>
+          <label class="chip"><input type="checkbox" name="equipment[]" value="Food (Flake, Pellet, Frozen, Coral)" />Food</label>
+          <label class="chip"><input type="checkbox" name="equipment[]" value="Maintenance Tools" />Maintenance Tools</label>
+          <label class="chip"><input type="checkbox" name="equipment[]" value="Other" />Other</label>
         </div>
       </div>
 
@@ -165,16 +167,16 @@
       <div class="group">
         <h3>Maintenance & Care</h3>
         <div class="chips">
-          <label class="chip"><input type="checkbox" name="Maintenance[]" value="Starter Clean">Starter Clean</label>
-          <label class="chip"><input type="checkbox" name="Maintenance[]" value="Standard Care">Standard Care</label>
-          <label class="chip"><input type="checkbox" name="Maintenance[]" value="Premium Reef">Premium Reef</label>
-          <label class="chip"><input type="checkbox" name="Maintenance[]" value="Emergency Visit">Emergency Visit</label>
+          <label class="chip"><input type="checkbox" name="maintenance_services[]" value="Starter Clean" />Starter Clean</label>
+          <label class="chip"><input type="checkbox" name="maintenance_services[]" value="Standard Care" />Standard Care</label>
+          <label class="chip"><input type="checkbox" name="maintenance_services[]" value="Premium Reef" />Premium Reef</label>
+          <label class="chip"><input type="checkbox" name="maintenance_services[]" value="Emergency Visit" />Emergency Visit</label>
         </div>
         <div class="chips" style="margin-top:.5rem">
-          <label class="chip"><input type="checkbox" name="Frequency[]" value="One-time">One-time</label>
-          <label class="chip"><input type="checkbox" name="Frequency[]" value="Weekly">Weekly</label>
-          <label class="chip"><input type="checkbox" name="Frequency[]" value="Bi-weekly">Bi-weekly</label>
-          <label class="chip"><input type="checkbox" name="Frequency[]" value="Monthly">Monthly</label>
+          <label class="chip"><input type="checkbox" name="maintenance_frequency[]" value="One-time" />One-time</label>
+          <label class="chip"><input type="checkbox" name="maintenance_frequency[]" value="Weekly" />Weekly</label>
+          <label class="chip"><input type="checkbox" name="maintenance_frequency[]" value="Bi-weekly" />Bi-weekly</label>
+          <label class="chip"><input type="checkbox" name="maintenance_frequency[]" value="Monthly" />Monthly</label>
         </div>
       </div>
 
@@ -185,30 +187,30 @@
       <div class="two-col">
         <div>
           <label for="when">Preferred Date</label>
-          <input id="when" name="Preferred Date" type="date">
+          <input id="when" name="preferred_date" type="date" />
         </div>
         <div>
-          <label for="contactPref">Contact Preference</label>
-          <div class="chips" id="contactPref">
-            <label class="chip"><input type="radio" name="Contact Preference" value="Either" checked>Either</label>
-            <label class="chip"><input type="radio" name="Contact Preference" value="Phone">Phone</label>
-            <label class="chip"><input type="radio" name="Contact Preference" value="Email">Email</label>
+          <label>Contact Preference</label>
+          <div class="chips" role="radiogroup" aria-label="Contact Preference">
+            <label class="chip"><input type="radio" name="contact_preference" value="Either" checked />Either</label>
+            <label class="chip"><input type="radio" name="contact_preference" value="Phone" />Phone</label>
+            <label class="chip"><input type="radio" name="contact_preference" value="Email" />Email</label>
           </div>
         </div>
       </div>
 
       <label for="address">Service Address (for maintenance)</label>
-      <input id="address" name="Service Address" type="text" placeholder="Street, City, ZIP">
+      <input id="address" name="service_address" type="text" placeholder="Street, City, ZIP" />
 
       <label for="notes">Notes / Special requests</label>
-      <textarea id="notes" name="Notes" rows="6" placeholder="Species list, sizes/quantities, model names, tank size, timing, etc."></textarea>
+      <textarea id="notes" name="notes" rows="6" placeholder="Species list, sizes/quantities, model names, tank size, timing, etc."></textarea>
 
       <!-- Formspree helpers -->
-      <input type="hidden" name="_subject" value="New request from Bruno's Aquariums">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_redirect" value="thank-you.html">
+      <input type="hidden" name="_subject" value="New request from Bruno's Aquariums" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_redirect" value="thank-you.html" />
       <!-- Honeypot (spam protection) -->
-      <input type="text" name="_gotcha" style="display:none">
+      <input type="text" name="_gotcha" style="display:none" />
 
       <button type="submit" class="btn">Send Request</button>
       <p class="help note">This form submits securely over HTTPS. You’ll see a confirmation if it sends successfully.</p>
@@ -217,7 +219,7 @@
     <!-- SIDEBAR INFO -->
     <aside class="card" aria-label="Store information">
       <h2>Visit Bruno's Aquariums</h2>
-      <p><strong>Address:</strong><br>
+      <p><strong>Address:</strong><br />
         <a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
           256 Dakota Ave S, Huron, SD 57350</a></p>
       <p><strong>Phone:</strong> <a href="tel:+16053506478">605-350-6478</a></p>
@@ -226,11 +228,8 @@
       <p>Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
 
       <div class="map-outer" aria-label="Google Map">
-        <iframe
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350&output=embed">
-        </iframe>
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350&output=embed"></iframe>
       </div>
 
       <p class="note" style="margin-top:.6rem">
@@ -244,7 +243,7 @@
   <div class="container footer-grid">
     <div>
       <p style="display:flex;align-items:center;gap:.6rem;margin:0 0 .5rem 0;">
-        <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" style="height:20px">
+        <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" style="height:20px" />
         <strong>Bruno's Aquariums</strong>
       </p>
       <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
