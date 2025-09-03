@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bruno's Aquariums — Aquariums • Fish & Corals • Maintenance</title>
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=9" />
+  <!-- Reef theme CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=10" />
   <link rel="icon" href="assets/img/favicon.png" />
 
   <meta name="description" content="Saltwater & freshwater aquariums, fish & corals, accessories, and professional maintenance in Huron, SD." />
@@ -13,140 +14,131 @@
   <meta property="og:description" content="From beginner freshwater tanks to advanced reef systems. Tanks, gear, livestock & expert care." />
   <meta property="og:image" content="assets/img/brunos-logo.png" />
   <meta property="og:type" content="website" />
-
-  <style>
-    .logo-img{height:36px;width:auto;display:block}
-    .site-nav a{white-space:nowrap}
-    .btn-ghost{padding:.55rem .9rem;border:1px solid currentColor;border-radius:.6rem;white-space:nowrap}
-    .hero .container{text-align:center}
-    .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
-    @media(max-width:420px){.brand-text{display:none}}
-  </style>
 </head>
 
 <body>
-<header class="site-header" role="banner">
-  <div class="container header-inner">
-    <a class="brand" href="index.html" aria-label="Bruno's Aquariums — Home">
-      <picture>
-        <source srcset="assets/img/brunos-logo.svg" type="image/svg+xml">
-        <img class="logo-img" src="assets/img/brunos-logo.png" alt="Bruno's Aquariums logo" loading="eager" />
-      </picture>
-      <span class="brand-text">Bruno's Aquariums</span>
-    </a>
-
-    <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false">Menu</button>
-    <nav id="site-nav" class="site-nav" role="navigation" aria-label="Main">
-      <ul>
-        <li><a href="aquariums.html">Aquariums</a></li>
-        <li><a href="accessories.html">Accessories</a></li>
-        <li><a href="livestock.html">Fish & Corals</a></li>
-        <li><a href="maintenance.html">Maintenance</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a class="btn-ghost" href="appointments.html">Book Appointment</a></li>
-        <li><a class="btn" href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<main class="content">
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <h1>Aquariums, Livestock & Maintenance — All in One Place</h1>
-      <p>From beginner freshwater setups to advanced reef systems, we’ve got tanks, gear, and expert care.</p>
-      <div class="hero-cta">
-        <a class="btn" href="aquariums.html">Shop Aquariums</a>
-        <a class="btn-outline" href="appointments.html">Book Tank Cleaning</a>
-        <a class="btn-ghost" href="livestock.html">This Week’s Fish & Corals</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURE CARDS -->
-  <section class="cards container section" aria-label="Main categories">
-    <article class="card">
-      <h3>Aquariums</h3>
-      <p>Glass & acrylic tanks, stands, sumps, plumbing kits, and custom builds.</p>
-      <a class="link" href="aquariums.html">Explore Tanks →</a>
-    </article>
-
-    <article class="card">
-      <h3>Accessories & Food</h3>
-      <p>Skimmers, filters, LEDs, pumps, substrate, décor, test kits, foods & more.</p>
-      <a class="link" href="accessories.html">Browse Accessories →</a>
-    </article>
-
-    <article class="card">
-      <h3>Maintenance Services</h3>
-      <p>Water changes, testing, dosing, aquascaping, emergency visits & service plans.</p>
-      <a class="link" href="appointments.html">Book Tank Cleaning →</a>
-    </article>
-
-    <article class="card">
-      <h3>Fish & Corals</h3>
-      <p>Quarantined freshwater & marine livestock, corals and invertebrates.</p>
-      <a class="link" href="livestock.html">This Week’s Stock →</a>
-    </article>
-  </section>
-
-  <!-- CTA BANNER -->
-  <section class="banner section" aria-label="Contact CTA">
-    <div class="container banner-inner">
-      <p style="margin:.25rem 0">Need a custom build or a service quote?</p>
-      <div style="display:flex;gap:.6rem;flex-wrap:wrap">
-        <a class="btn" href="contact.html">Contact Us</a>
-        <a class="btn-outline" href="about.html">About Bruno’s</a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="site-footer" role="contentinfo">
-  <div class="container footer-grid">
-    <div>
-      <p style="display:flex;align-items:center;gap:.6rem;margin:0 0 .5rem 0;">
+  <!-- Header (shared across site) -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Bruno's Aquariums — Home">
         <picture>
           <source srcset="assets/img/brunos-logo.svg" type="image/svg+xml">
-          <img class="logo-img" src="assets/img/brunos-logo.png" alt="Bruno's Aquariums logo" style="height:20px" loading="lazy" />
+          <img class="logo-img" src="assets/img/brunos-logo.png" alt="Bruno's Aquariums logo" loading="eager" />
         </picture>
-        <strong>Bruno's Aquariums</strong>
-      </p>
-      <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
+        <span class="brand-text">Bruno's Aquariums</span>
+      </a>
+
+      <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false">Menu</button>
+      <nav id="site-nav" class="site-nav" role="navigation" aria-label="Main">
+        <ul>
+          <li><a href="aquariums.html">Aquariums</a></li>
+          <li><a href="accessories.html">Accessories</a></li>
+          <li><a href="livestock.html">Fish & Corals</a></li>
+          <li><a href="maintenance.html">Maintenance</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a class="btn-ghost" href="appointments.html">Book Appointment</a></li>
+          <li><a class="btn" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content">
+    <!-- HERO -->
+    <section class="hero section">
+      <div class="container">
+        <h1>Aquariums, Livestock & Maintenance — All in One Place</h1>
+        <p>From beginner freshwater setups to advanced reef systems, we’ve got tanks, gear, and expert care.</p>
+        <div class="hero-cta">
+          <a class="btn" href="aquariums.html">Shop Aquariums</a>
+          <a class="btn-outline" href="appointments.html">Book Tank Cleaning</a>
+          <a class="btn-ghost" href="livestock.html">This Week’s Fish & Corals</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wave divider -->
+    <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
+    </svg>
+
+    <!-- FEATURE CARDS -->
+    <section class="cards container section reef-accent" aria-label="Main categories">
+      <article class="card">
+        <h3>Aquariums</h3>
+        <p>Glass & acrylic tanks, stands, sumps, plumbing kits, and custom builds.</p>
+        <a class="link" href="aquariums.html">Explore Tanks →</a>
+      </article>
+
+      <article class="card">
+        <h3>Accessories & Food</h3>
+        <p>Skimmers, filters, LEDs, pumps, substrate, décor, test kits, foods & more.</p>
+        <a class="link" href="accessories.html">Browse Accessories →</a>
+      </article>
+
+      <article class="card">
+        <h3>Maintenance Services</h3>
+        <p>Water changes, testing, dosing, aquascaping, emergency visits & service plans.</p>
+        <a class="link" href="appointments.html">Book Tank Cleaning →</a>
+      </article>
+
+      <article class="card">
+        <h3>Fish & Corals</h3>
+        <p>Quarantined freshwater & marine livestock, corals and invertebrates.</p>
+        <a class="link" href="livestock.html">This Week’s Stock →</a>
+      </article>
+    </section>
+
+    <!-- Wave divider -->
+    <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
+    </svg>
+
+    <!-- CTA BANNER -->
+    <section class="banner section" aria-label="Contact CTA">
+      <div class="container">
+        <p style="margin:.25rem 0">Need a custom build or a service quote?</p>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center">
+          <a class="btn" href="contact.html">Contact Us</a>
+          <a class="btn-outline" href="about.html">About Bruno’s</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (shared across site) -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-grid">
+      <div>
+        <p style="display:flex;align-items:center;gap:.6rem;margin:0 0 .5rem 0;">
+          <picture>
+            <source srcset="assets/img/brunos-logo.svg" type="image/svg+xml">
+            <img class="logo-img" src="assets/img/brunos-logo.png" alt="Bruno's Aquariums logo" style="height:20px" loading="lazy" />
+          </picture>
+          <strong>Bruno's Aquariums</strong>
+        </p>
+        <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
+      </div>
+
+      <div>
+        <h4>Visit</h4>
+        <p><a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
+          256 Dakota Ave S, Huron, SD 57350</a></p>
+        <p><a href="tel:+16053506478">605-350-6478</a></p>
+      </div>
+
+      <div>
+        <h4>Hours</h4>
+        <p>Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
+      </div>
     </div>
 
-    <div>
-      <h4>Visit</h4>
-      <p><a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
-        256 Dakota Ave S, Huron, SD 57350</a></p>
-      <p><a href="tel:+16053506478">605-350-6478</a></p>
+    <div class="container legal">
+      <p>© <span id="year"></span> Bruno's Aquariums. All rights reserved.</p>
     </div>
+  </footer>
 
-    <div>
-      <h4>Hours</h4>
-      <p>Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
-    </div>
-  </div>
-
-  <div class="container legal">
-    <p>© <span id="year"></span> Bruno's Aquariums. All rights reserved.</p>
-  </div>
-</footer>
-
-<script src="assets/js/main.js?v=9"></script>
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-  // Optional: mark active nav for index
-  (function(){
-    const current = 'index.html';
-    document.querySelectorAll('#site-nav a').forEach(a=>{
-      if ((a.getAttribute('href')||'') === current) {
-        a.classList.add('active');
-        a.setAttribute('aria-current','page');
-      }
-    });
-  })();
-</script>
+  <!-- JS -->
+  <script src="assets/js/main.js?v=10"></script>
 </body>
 </html>
