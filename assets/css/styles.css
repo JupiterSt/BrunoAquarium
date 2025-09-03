@@ -1,13 +1,12 @@
 /* =====================================================
-   Bruno's Aquariums — Ocean + Freshwater Theme (v19)
-   Sandier background • Blue selection chips • Animated side waves
+   Bruno's Aquariums — Ocean + Freshwater Theme (v20)
+   Sandier background • Readable blue chips • No side waves
    Mobile-first • Accessible • Drop-in across all pages
 ===================================================== */
 
 /* ---------- Color system ---------- */
 :root{
   /* Ocean core */
-  --ocean-950:#021a22;
   --ocean-900:#032531;
   --ocean-800:#053846;
   --ocean-700:#075062;
@@ -23,7 +22,7 @@
   --sand-25:#fbf6e9;
   --sand-50:#f7f0df;
 
-  /* Brand coral pop for CTAs */
+  /* Brand coral pop */
   --coral:#ff6f61;
 
   /* Text + surfaces */
@@ -44,13 +43,13 @@
   --step-2: clamp(1.75rem, 1.3rem + 2.6vw, 2.4rem);
   --tap: 44px;
 
-  /* Chip selected colors (readable) */
-  --chip-bg:#d9efff;
-  --chip-text:#062a3a;
-  --chip-border:#0a6b84;
+  /* Chip selection (high contrast) */
+  --chip-bg:#d9efff;     /* light blue pill */
+  --chip-text:#062a3a;   /* dark ink on blue */
+  --chip-border:#0a6b84; /* teal border */
 }
 
-/* ---------- Base & sandier page background ---------- */
+/* ---------- Base & sandier background ---------- */
 *{ box-sizing:border-box }
 img,svg,video{ max-width:100%; height:auto; display:block }
 
@@ -60,54 +59,12 @@ body{
   font:16px/1.7 system-ui,"Segoe UI",Roboto,Arial,sans-serif;
   font-size:var(--step-0);
   background:
-    radial-gradient(1200px 900px at 70% -10%, rgba(14,165,233,.16), transparent 60%),
-    radial-gradient(1000px 700px at 10% 120%, rgba(46,163,123,.12), transparent 60%),
-    linear-gradient(180deg, var(--sand-10) 0%, var(--sand-25) 35%, var(--sand-50) 100%),
-    url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' opacity='.18'>\
-<path d='M0,32c8,0 8,-8 16,-8s8,8 16,8s8,-8 16,-8s8,8 16,8' fill='none' stroke='%23b8e7ff' stroke-width='1'/>\
-<path d='M0,48c8,0 8,-8 16,-8s8,8 16,8s8,-8 16,-8s8,8 16,8' fill='none' stroke='%23c8f2dc' stroke-width='1'/>\
-</svg>");
-  background-blend-mode: multiply, multiply, normal, normal;
-  position:relative;
+    radial-gradient(1000px 700px at 70% -10%, rgba(14,165,233,.15), transparent 60%),
+    radial-gradient(900px 600px at 10% 120%, rgba(46,163,123,.11), transparent 60%),
+    linear-gradient(180deg, var(--sand-10) 0%, var(--sand-25) 40%, var(--sand-50) 100%);
+  background-blend-mode: multiply, multiply, normal;
   overflow-x:hidden;
 }
-
-/* ---------- Animated side waves (no emojis) ---------- */
-body::before, body::after{
-  content:"";
-  position:fixed; top:0; bottom:0;
-  width:110px; pointer-events:none; z-index:0; opacity:.28;
-  background-size:200px 100%;
-  background-repeat:repeat-y;
-  animation: waveSlide 18s linear infinite;
-  filter:saturate(0.9) contrast(1.05);
-}
-body::before{
-  left:0; transform:scaleX(-1);
-  animation-direction: reverse;
-  background-image:url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 800' preserveAspectRatio='none'>\
-<defs><linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>\
-<stop offset='0%' stop-color='%230a6b84' stop-opacity='.25'/>\
-<stop offset='100%' stop-color='%230a6b84' stop-opacity='.08'/>\
-</linearGradient></defs>\
-<path d='M0 0 C40 60, 60 40, 100 100 S160 160, 200 120 V800 H0 Z' fill='url(%23g)'/>\
-</svg>");
-}
-body::after{
-  right:0;
-  background-image:url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 800' preserveAspectRatio='none'>\
-<defs><linearGradient id='g2' x1='0' x2='0' y1='0' y2='1'>\
-<stop offset='0%' stop-color='%230ea5e9' stop-opacity='.22'/>\
-<stop offset='100%' stop-color='%230ea5e9' stop-opacity='.08'/>\
-</linearGradient></defs>\
-<path d='M200 0 C160 60, 140 40, 100 100 S40 160, 0 120 V800 H200 Z' fill='url(%23g2)'/>\
-</svg>");
-}
-@keyframes waveSlide { from{ background-position-x:0 } to{ background-position-x:200px } }
-@media (max-width: 980px){ body::before, body::after{ display:none } }
 
 /* ---------- Layout helpers ---------- */
 .container{ width:min(1100px,92%); margin:0 auto; position:relative; z-index:1 }
@@ -132,6 +89,7 @@ h3{ font-size:1.1rem; margin:.2rem 0 .3rem }
 .brand{ display:flex; align-items:center; gap:.65rem; color:#fff; text-decoration:none }
 .logo-img{ height:36px }
 .brand-text{ font-weight:800; letter-spacing:.3px }
+
 .nav-toggle{
   display:none; background:transparent; border:1px solid rgba(255,255,255,.6); color:#fff;
   padding:.55rem .85rem; border-radius:.6rem; min-height:var(--tap);
@@ -141,6 +99,7 @@ h3{ font-size:1.1rem; margin:.2rem 0 .3rem }
   color:#fff; text-decoration:none; padding:.6rem .75rem; border-radius:.6rem; white-space:nowrap;
 }
 .site-nav a:hover, .site-nav a.active{ background:rgba(255,255,255,.14) }
+
 @media (max-width:920px){
   .nav-toggle{ display:inline-flex; align-items:center }
   .site-nav{ position:relative }
@@ -185,20 +144,12 @@ a.link::after{
 .hero{
   position:relative; overflow:hidden; border-radius:24px; color:#fff;
   background:
-    radial-gradient(1200px 600px at 60% -10%, rgba(14,165,233,.3), transparent 55%),
+    radial-gradient(1200px 600px at 60% -10%, rgba(14,165,233,.28), transparent 55%),
     linear-gradient(180deg, var(--ocean-700) 0%, var(--ocean-800) 65%, var(--ocean-900) 100%);
   padding:3.2rem 1rem; text-align:center; box-shadow:var(--shadow);
 }
 .hero p{ margin:.25rem auto 1.2rem; max-width:58ch; color:#e6fbff; opacity:.92 }
 .hero-cta{ display:flex; gap:.85rem; flex-wrap:wrap; justify-content:center }
-.hero::before, .hero::after{
-  content:""; position:absolute; left:-60px; bottom:-120px;
-  width:220px; height:220px; border-radius:50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.55), rgba(255,255,255,.08) 60%, transparent 70%);
-  animation: rise 16s linear infinite; opacity:.35; filter: blur(.2px);
-}
-.hero::after{ left:auto; right:-40px; width:150px; height:150px; animation-duration:12s; animation-delay:2s }
-@keyframes rise{ from{ transform:translateY(0) scale(1) } to{ transform:translateY(-140vh) scale(1.35) } }
 .wave-sep{ display:block; width:100%; height:90px; fill:var(--ocean-700); margin:-28px 0 0 }
 
 /* ---------- Cards & grids ---------- */
@@ -221,7 +172,7 @@ a.link::after{
 }
 .banner .container{ display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; justify-content:center }
 
-/* ---------- Forms & Chips ---------- */
+/* ---------- Forms & chips ---------- */
 input,select,textarea,button{ font:inherit; color:inherit }
 input,select,textarea{
   width:100%; min-height:var(--tap); padding:.75rem .9rem;
@@ -237,55 +188,55 @@ label.required::after{ content:" *"; color:var(--coral); font-weight:800 }
 /* Chip base */
 .chip{
   --b: var(--chip-border);
-  position:relative;
   display:inline-flex; align-items:center; gap:.55rem;
   padding:.65rem 1.05rem; border-radius:999px;
   border:1.5px solid var(--b);
   background:#fff;
   color:var(--ink);
   cursor:pointer; user-select:none; transition:.15s ease; font-weight:600;
+  position:relative;
 }
 
-/* Hide the native input but keep it accessible */
+/* Keep the input accessible but out of the way */
 .chip > input{
-  position:absolute; inset:0; width:0; height:0; opacity:0; pointer-events:none;
+  position:absolute; width:1px; height:1px; opacity:0; pointer-events:none;
 }
 
-/* Selected chip (works via :checked OR .selected) */
-.chip:has(> input:checked),
+/* Selected chip — works with :checked OR your JS .selected class */
+.chip input:checked + .other-input,      /* show box for Other when checked */
+.chip.selected .other-input,
+.chip.other-active .other-input{ display:inline-block }
+
+.chip input:checked ~ * ,                /* color text when checked */
+.chip.selected{ color:var(--chip-text) }
+
+.chip:has(input:checked),                /* modern browsers */
 .chip.selected{
   background:var(--chip-bg);
-  color:var(--chip-text);
   border-color:var(--chip-border);
   box-shadow: inset 0 0 0 2px color-mix(in oklab, var(--chip-border) 35%, white);
 }
 
-/* Optional checkmark when selected */
-.chip:has(> input:checked)::before,
-.chip.selected::before{
-  content:"✓"; font-weight:900; color:var(--chip-text); margin-right:.15rem;
-}
-
-/* Focus ring */
-.chip:focus-within{
-  outline:3px solid color-mix(in oklab, var(--chip-border) 55%, white);
-  outline-offset:2px;
-}
-
-/* “Other” chips — show textbox when checked OR focused (and keep JS fallback) */
+/* “Other” text input (hidden until selected or focused) */
 .chip .other-input{
   display:none;
   flex:0 1 auto;
   background:#fff; color:var(--ink);
   border:1px solid var(--chip-border);
   border-radius:.5rem; padding:.4rem .55rem;
-  width:min(22ch, 55vw); /* roomy but responsive */
+  width:min(22ch, 60vw);
   margin-left:.2rem;
 }
-.chip.other-active .other-input,
-.chip.chip--other:has(> input:checked) .other-input,
-.chip.chip--other .other-input:focus{
-  display:inline-block;
+/* If a user clicks straight into the box, keep it visible */
+.chip .other-input:focus{ display:inline-block }
+
+/* In browsers without :has, keep appearance via JS .selected / .other-active,
+   which your script already toggles. */
+
+/* Focus ring */
+.chip:focus-within{
+  outline:3px solid color-mix(in oklab, var(--chip-border) 55%, white);
+  outline-offset:2px;
 }
 
 /* Summary (contact page) */
