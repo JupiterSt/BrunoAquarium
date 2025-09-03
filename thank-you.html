@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thanks — Bruno's Aquariums</title>
+
+  <link rel="stylesheet" href="assets/css/styles.css?v=8">
+  <link rel="icon" href="assets/img/favicon.png">
+
+  <meta name="description" content="Thank you for contacting Bruno's Aquariums. We’ll get back to you soon.">
+  <meta property="og:title" content="Bruno's Aquariums — Thank You">
+  <meta property="og:description" content="We received your request and will be in touch shortly.">
+  <meta property="og:image" content="assets/img/brunos-logo.png">
+
+  <style>
+    .thankyou{padding:4rem 1rem;text-align:center}
+    .thankyou h1{font-size:2rem;margin-bottom:1rem}
+    .thankyou p{font-size:1.1rem;margin-bottom:2rem;color:#94a3b8}
+    .thankyou .hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+    .redirect-note{margin-top:1rem;font-size:.95rem;color:#64748b}
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="Bruno's Aquariums — Home">
+      <img class="logo-img" src="assets/img/brunos-logo.svg" alt="Bruno's Aquariums logo" style="height:32px">
+      <span class="brand-text">Bruno's Aquariums</span>
+    </a>
+  </div>
+</header>
+
+<main class="content">
+  <section class="thankyou">
+    <h1>Thank you!</h1>
+    <p>Your request was sent successfully. We’ll reply to <strong>brunosaquarium@gmail.com</strong> or call if you left a number.</p>
+    <div class="hero-cta">
+      <a class="btn" href="index.html">Back to Home</a>
+      <a class="btn-outline" href="index.html#appointments">Book Another Appointment</a>
+    </div>
+    <p class="redirect-note">You’ll be redirected to the homepage in <span id="countdown">8</span> seconds…</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container legal">
+    <p>© <span id="year"></span> Bruno's Aquariums. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Auto redirect countdown
+  let seconds = 8;
+  const countdownEl = document.getElementById('countdown');
+  const timer = setInterval(() => {
+    seconds--;
+    countdownEl.textContent = seconds;
+    if (seconds <= 0) {
+      clearInterval(timer);
+      window.location.href = "index.html";
+    }
+  }, 1000);
+</script>
+</body>
+</html>
