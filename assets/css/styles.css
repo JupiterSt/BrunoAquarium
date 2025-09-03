@@ -1,7 +1,6 @@
 /* =====================================================
-   Bruno's Aquariums — Ocean + Freshwater Theme (v16)
-   Deep ocean blues + sunlit shallows + freshwater greens
-   Mobile-first, accessible, drop-in across all pages
+   Bruno's Aquariums — Ocean + Freshwater Theme (v17)
+   Mobile-first • Accessible • Ocean + Freshwater vibe
 ===================================================== */
 
 /* ---------- Color system ---------- */
@@ -14,7 +13,7 @@
   --ocean-500:#0ea5e9;   /* tropical blue highlight */
 
   /* Freshwater accents */
-  --fresh-700:#0d5e4a;   /* vallisneria green */
+  --fresh-700:#0d5e4a;   /* vallisneria */
   --fresh-600:#1f7a62;   /* java fern */
   --fresh-500:#2ea37b;   /* pistia / moss */
   --fresh-400:#59c191;   /* bright plant */
@@ -68,14 +67,13 @@ body{
   overflow-x:hidden;
 }
 
-/* ---------- Side decorations: fish/coral “stickers” (non-stretch) ---------- */
+/* ---------- Side decorations: fish/coral stickers (non-stretch) ---------- */
 body::before,
 body::after{
   content:"";
-  position:fixed;
-  top:0; bottom:0;
+  position:fixed; top:0; bottom:0;
   width:84px;
-  opacity:.18;
+  opacity:.14;
   pointer-events:none;
   z-index:0;
   background-repeat: repeat-y;
@@ -101,10 +99,7 @@ body::after{
 </svg>");
 }
 @keyframes floatFish { from{ transform:translateY(0) } to{ transform:translateY(-22px) } }
-/* Hide side art on small screens for breathing room */
-@media (max-width: 900px){
-  body::before, body::after{ display:none }
-}
+@media (max-width: 900px){ body::before, body::after{ display:none } } /* hide on small screens */
 
 /* ---------- Layout helpers ---------- */
 .container{ width:min(1100px,92%); margin:0 auto; position:relative; z-index:1 }
@@ -264,37 +259,54 @@ label.required::after{ content:" *"; color:var(--coral); font-weight:800 }
 .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:1rem }
 @media (max-width:700px){ .two-col{ grid-template-columns:1fr } }
 
-/* Chips (fixed visibility when selected) */
+/* ---------- Chips (inputs fully hidden; visible selection on label) ---------- */
 .chips{ display:flex; flex-wrap:wrap; gap:.55rem; justify-content:center }
+
 .chip{
   --b: var(--fresh-600);
-  display:inline-flex; align-items:center; gap:.45rem;
-  padding:.55rem .9rem; border-radius:999px;
+  position:relative;
+  display:inline-flex; align-items:center; gap:.55rem;
+  padding:.6rem 1rem; border-radius:999px;
   border:1.5px solid var(--b);
-  background:#fff;              /* white base so text is always visible */
-  color:var(--ink);              /* dark text by default */
+  background:#fff;               /* readable base */
+  color:var(--ink);
   cursor:pointer; user-select:none; transition:.15s ease; font-weight:600;
 }
-.chip input{
-  appearance:none; width:1.05rem; height:1.05rem; border-radius:.25rem;
-  border:1.5px solid var(--b); background:#fff; position:relative;
+
+/* Visually hide the real input so no white box appears */
+.chip > input{
+  position:absolute; inset:0;
+  width:0; height:0; opacity:0; pointer-events:none;
 }
-.chip input:checked{ background:var(--b); border-color:var(--b) }
-.chip input:checked::after{ content:""; position:absolute; inset:.18rem; background:#fff }
+
+/* Selected state — works with :has() and with your JS .selected class */
+.chip:has(> input:checked),
 .chip.selected{
-  background:var(--fresh-600);  /* solid color on select */
-  color:#fff;                   /* white text on dark bg */
+  background:var(--fresh-600);
+  color:#fff;
   border-color:transparent;
 }
-.chip.selected input{ border-color:#fff }
+
+/* Optional checkmark when selected */
+.chip:has(> input:checked)::before,
+.chip.selected::before{
+  content:"✓";
+  font-weight:900;
+  margin-right:.15rem;
+}
+
+/* Keyboard focus ring */
+.chip:focus-within{
+  outline:3px solid color-mix(in oklab, var(--fresh-600) 60%, white);
+  outline-offset:2px;
+}
+
+/* “Other” inline input */
 .chip .other-input{
   display:none; background:#fff; border:1px solid var(--fresh-600);
   border-radius:.5rem; padding:.4rem .55rem; width:16ch;
 }
 .chip.other-active .other-input{ display:inline-block }
-
-/* Focus visibility for keyboard users */
-.chip:focus-within{ outline:3px solid color-mix(in oklab, var(--fresh-600) 60%, white); outline-offset:2px }
 
 /* Summary (contact page) */
 .summary{
