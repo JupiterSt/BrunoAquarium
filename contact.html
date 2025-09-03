@@ -15,28 +15,49 @@
   <meta property="og:description" content="Request livestock, equipment, or maintenance. Secure form with quick responses." />
   <meta property="og:image" content="assets/img/brunos-logo.png" />
 
-  <!-- Page-specific helpers for chip-style selectors -->
+  <!-- Page helpers for chip-style selectors & summary -->
   <style>
     .chips{display:flex;flex-wrap:wrap;gap:.5rem}
     .chip{
       display:inline-flex;align-items:center;gap:.45rem;
       padding:.5rem .75rem;border-radius:999px;
       border:1px solid #1f2a3a;background:#0a1728;cursor:pointer;
-      user-select:none;transition:border-color .15s,background .15s;font-size:.95rem
+      user-select:none;transition:border-color .15s,background .15s,font-weight .15s;
+      font-size:.95rem
     }
     .chip input{appearance:none;width:1.1rem;height:1.1rem;border:1px solid #375478;
       border-radius:.25rem;display:inline-block;position:relative;background:#0b1220}
     .chip input:checked{background:#0ea5e9;border-color:#0ea5e9}
     .chip input:checked::after{content:"";position:absolute;inset:.18rem;background:#06131f}
+    .chip.selected{border-color:#2a79a5;background:#0c2035;font-weight:600}
+    .chip .other-input{display:none}
+    .chip.other-active .other-input{display:inline-block}
+
     .group{margin-top:1rem}
     .group h3{margin:.2rem 0 .4rem}
-    .note{font-size:.9rem;color:#94a3b8}
+    .group .note{font-size:.9rem;color:#94a3b8}
+
     .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
     @media(max-width:700px){.two-col{grid-template-columns:1fr}}
+
+    .divider{height:1px;background:#1e293b;margin:1rem 0}
     .map-outer{border:1px solid #203047;border-radius:1rem;overflow:hidden}
     .map-outer iframe{display:block;width:100%;height:260px;border:0}
-    .divider{height:1px;background:#1e293b;margin:1rem 0}
+
+    .summary{
+      margin-top:1rem;padding:1rem;border:1px solid #1f2a3a;border-radius:.8rem;
+      background:#0f172a
+    }
+    .summary h3{margin:.2rem 0 .6rem}
+    .summary dl{display:grid;grid-template-columns:auto 1fr;gap:.4rem 1rem;margin:0}
+    .summary dt{color:#94a3b8}
+    .summary dd{margin:0}
     .logo-img{height:36px;width:auto;display:block}
+    .small{font-size:.9rem;color:#94a3b8}
+    .inline-input{
+      background:#0b1220;border:1px solid #375478;border-radius:.5rem;
+      padding:.35rem .5rem;color:#e2e8f0;width:14ch
+    }
   </style>
 </head>
 
@@ -77,7 +98,7 @@
     <!-- SECURE FORM (Formspree) -->
     <form class="card form" id="contactForm"
           action="https://formspree.io/f/mldworzo"
-          method="POST" autocomplete="on">
+          method="POST" autocomplete="on" novalidate>
       <h2>Your Info</h2>
 
       <label class="required" for="name">Full Name</label>
@@ -97,12 +118,12 @@
       <div class="divider"></div>
 
       <h2>What are you looking for?</h2>
-      <p class="note">Check all that apply. You can add notes below.</p>
+      <p class="small">Check all that apply. Your choices will be grouped, sorted, and summarized below.</p>
 
       <!-- SALTWATER FISH -->
-      <div class="group">
-        <h3>Saltwater Fish</h3>
-        <div class="chips">
+      <fieldset class="group">
+        <legend><h3>Saltwater Fish</h3></legend>
+        <div class="chips" data-group="saltwater">
           <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Clownfish" />Clownfish</label>
           <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Gobies" />Gobies</label>
           <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Blennies" />Blennies</label>
@@ -111,14 +132,17 @@
           <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Cardinals" />Cardinals</label>
           <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Firefish" />Firefish</label>
           <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Damsels" />Damsels</label>
-          <label class="chip"><input type="checkbox" name="saltwater_fish[]" value="Other" />Other</label>
+          <label class="chip chip--other">
+            <input type="checkbox" value="__OTHER__" />Other
+            <input class="other-input inline-input" type="text" placeholder="Specify…" aria-label="Other saltwater fish"/>
+          </label>
         </div>
-      </div>
+      </fieldset>
 
       <!-- FRESHWATER FISH -->
-      <div class="group">
-        <h3>Freshwater Fish</h3>
-        <div class="chips">
+      <fieldset class="group">
+        <legend><h3>Freshwater Fish</h3></legend>
+        <div class="chips" data-group="freshwater">
           <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="Tetras (Neon/Cardinal)" />Tetras</label>
           <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="Guppies/Endlers" />Guppies</label>
           <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="Livebearers (Platies/Swordtails)" />Livebearers</label>
@@ -128,14 +152,17 @@
           <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="Discus (by order)" />Discus</label>
           <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="African Cichlids" />African Cichlids</label>
           <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="Dwarf Cichlids (Kribensis/Rams)" />Dwarf Cichlids</label>
-          <label class="chip"><input type="checkbox" name="freshwater_fish[]" value="Other" />Other</label>
+          <label class="chip chip--other">
+            <input type="checkbox" value="__OTHER__" />Other
+            <input class="other-input inline-input" type="text" placeholder="Specify…" aria-label="Other freshwater fish"/>
+          </label>
         </div>
-      </div>
+      </fieldset>
 
       <!-- CORALS & INVERTS -->
-      <div class="group">
-        <h3>Corals & Inverts</h3>
-        <div class="chips">
+      <fieldset class="group">
+        <legend><h3>Corals & Inverts</h3></legend>
+        <div class="chips" data-group="corals">
           <label class="chip"><input type="checkbox" name="corals_inverts[]" value="Soft Corals" />Soft</label>
           <label class="chip"><input type="checkbox" name="corals_inverts[]" value="LPS Corals" />LPS</label>
           <label class="chip"><input type="checkbox" name="corals_inverts[]" value="SPS Corals" />SPS</label>
@@ -143,14 +170,17 @@
           <label class="chip"><input type="checkbox" name="corals_inverts[]" value="Snails" />Snails</label>
           <label class="chip"><input type="checkbox" name="corals_inverts[]" value="Hermit Crabs" />Hermits</label>
           <label class="chip"><input type="checkbox" name="corals_inverts[]" value="Anemones" />Anemones</label>
-          <label class="chip"><input type="checkbox" name="corals_inverts[]" value="Other" />Other</label>
+          <label class="chip chip--other">
+            <input type="checkbox" value="__OTHER__" />Other
+            <input class="other-input inline-input" type="text" placeholder="Specify…" aria-label="Other coral/invert"/>
+          </label>
         </div>
-      </div>
+      </fieldset>
 
       <!-- EQUIPMENT -->
-      <div class="group">
-        <h3>Equipment / Supplies</h3>
-        <div class="chips">
+      <fieldset class="group">
+        <legend><h3>Equipment / Supplies</h3></legend>
+        <div class="chips" data-group="equipment">
           <label class="chip"><input type="checkbox" name="equipment[]" value="Filtration (HOB/Canister/Skimmer)" />Filtration</label>
           <label class="chip"><input type="checkbox" name="equipment[]" value="Pumps & Flow (Return/Wavemaker)" />Pumps & Flow</label>
           <label class="chip"><input type="checkbox" name="equipment[]" value="Lighting (Reef/Planted)" />Lighting</label>
@@ -160,25 +190,37 @@
           <label class="chip"><input type="checkbox" name="equipment[]" value="Plumbing (Bulkheads, PVC, Valves)" />Plumbing</label>
           <label class="chip"><input type="checkbox" name="equipment[]" value="Food (Flake, Pellet, Frozen, Coral)" />Food</label>
           <label class="chip"><input type="checkbox" name="equipment[]" value="Maintenance Tools" />Maintenance Tools</label>
-          <label class="chip"><input type="checkbox" name="equipment[]" value="Other" />Other</label>
+          <label class="chip chip--other">
+            <input type="checkbox" value="__OTHER__" />Other
+            <input class="other-input inline-input" type="text" placeholder="Specify…" aria-label="Other equipment"/>
+          </label>
         </div>
-      </div>
+      </fieldset>
 
       <!-- MAINTENANCE -->
-      <div class="group">
-        <h3>Maintenance & Care</h3>
-        <div class="chips">
+      <fieldset class="group">
+        <legend><h3>Maintenance & Care</h3></legend>
+        <div class="chips" data-group="maintenance_services">
           <label class="chip"><input type="checkbox" name="maintenance_services[]" value="Starter Clean" />Starter Clean</label>
           <label class="chip"><input type="checkbox" name="maintenance_services[]" value="Standard Care" />Standard Care</label>
           <label class="chip"><input type="checkbox" name="maintenance_services[]" value="Premium Reef" />Premium Reef</label>
-          <label class="chip"><input type="checkbox" name="maintenance_services[]" value="Emergency Visit" />Emergency Visit</label>
+          <label class="chip chip--other">
+            <input type="checkbox" value="__OTHER__" />Emergency / Other
+            <input class="other-input inline-input" type="text" placeholder="Specify…" aria-label="Other maintenance"/>
+          </label>
         </div>
-        <div class="chips" style="margin-top:.5rem">
+        <div class="chips" data-group="maintenance_frequency" style="margin-top:.5rem">
           <label class="chip"><input type="checkbox" name="maintenance_frequency[]" value="One-time" />One-time</label>
           <label class="chip"><input type="checkbox" name="maintenance_frequency[]" value="Weekly" />Weekly</label>
           <label class="chip"><input type="checkbox" name="maintenance_frequency[]" value="Bi-weekly" />Bi-weekly</label>
           <label class="chip"><input type="checkbox" name="maintenance_frequency[]" value="Monthly" />Monthly</label>
         </div>
+      </fieldset>
+
+      <div class="summary" id="selectionSummary" aria-live="polite">
+        <h3>Your Selections</h3>
+        <dl></dl>
+        <p class="small" style="margin-top:.4rem">We’ll include this summary in the email we receive.</p>
       </div>
 
       <div class="divider"></div>
@@ -210,11 +252,19 @@
       <input type="hidden" name="_subject" value="New request from Bruno's Aquariums" />
       <input type="hidden" name="_template" value="table" />
       <input type="hidden" name="_redirect" value="thank-you.html" />
-      <!-- Honeypot (spam protection) -->
       <input type="text" name="_gotcha" style="display:none" />
 
+      <!-- Hidden organized fields (filled by JS before submit) -->
+      <input type="hidden" name="saltwater_selected" />
+      <input type="hidden" name="freshwater_selected" />
+      <input type="hidden" name="corals_selected" />
+      <input type="hidden" name="equipment_selected" />
+      <input type="hidden" name="maintenance_services_selected" />
+      <input type="hidden" name="maintenance_frequency_selected" />
+      <input type="hidden" name="selection_summary" />
+
       <button type="submit" class="btn">Send Request</button>
-      <p class="help note">This form submits securely over HTTPS. You’ll see a confirmation if it sends successfully.</p>
+      <p class="help small">This form submits securely over HTTPS. You’ll see a confirmation if it sends successfully.</p>
     </form>
 
     <!-- SIDEBAR INFO -->
@@ -233,7 +283,7 @@
           src="https://www.google.com/maps?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350&output=embed"></iframe>
       </div>
 
-      <p class="note" style="margin-top:.6rem">
+      <p class="small" style="margin-top:.6rem">
         Prefer to pick a time directly? <a href="appointments.html">Book an appointment</a>.
       </p>
     </aside>
@@ -249,14 +299,12 @@
       </p>
       <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
     </div>
-
     <div>
       <h4>Visit</h4>
       <p><a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
         256 Dakota Ave S, Huron, SD 57350</a></p>
       <p><a href="tel:+16053506478">605-350-6478</a></p>
     </div>
-
     <div>
       <h4>Hours</h4>
       <p>Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
@@ -272,6 +320,138 @@
 <script>
   // Auto year
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // --- Organized selections logic ---
+  (function(){
+    const groups = [
+      { key:'saltwater',  label:'Saltwater Fish',   hidden:'saltwater_selected' },
+      { key:'freshwater', label:'Freshwater Fish',  hidden:'freshwater_selected' },
+      { key:'corals',     label:'Corals & Inverts', hidden:'corals_selected' },
+      { key:'equipment',  label:'Equipment',        hidden:'equipment_selected' },
+      { key:'maintenance_services',  label:'Maintenance Services',  hidden:'maintenance_services_selected' },
+      { key:'maintenance_frequency', label:'Maintenance Frequency', hidden:'maintenance_frequency_selected' },
+    ];
+
+    const form = document.getElementById('contactForm');
+    const summary = document.getElementById('selectionSummary').querySelector('dl');
+
+    // Toggle visual "selected" on chip click & handle "Other"
+    document.querySelectorAll('.chips').forEach(chips => {
+      chips.addEventListener('change', e => {
+        const input = e.target;
+        if (input.tagName !== 'INPUT') return;
+
+        const chip = input.closest('.chip');
+        if (!chip) return;
+
+        // Checkbox/radio state visual
+        if (input.type === 'checkbox') {
+          chip.classList.toggle('selected', input.checked);
+        } else if (input.type === 'radio') {
+          // radios: clear siblings
+          chips.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+          chip.classList.add('selected');
+        }
+
+        // "Other" input handling
+        const isOther = chip.classList.contains('chip--other');
+        const otherField = chip.querySelector('.other-input');
+        if (isOther) {
+          if (input.checked) {
+            chip.classList.add('other-active');
+            otherField.focus();
+          } else {
+            chip.classList.remove('other-active');
+            otherField.value = '';
+          }
+        }
+
+        updateSummary();
+      });
+
+      // Typing in "Other" should update summary live
+      chips.addEventListener('input', e => {
+        if (e.target.classList.contains('other-input')) updateSummary();
+      });
+    });
+
+    function getSelections(){
+      const data = {};
+      groups.forEach(g => {
+        const wrap = document.querySelector(`.chips[data-group="${g.key}"]`);
+        if (!wrap) return;
+
+        const items = [];
+        wrap.querySelectorAll('.chip').forEach(chip => {
+          const box = chip.querySelector('input[type="checkbox"]');
+          if (!box) return;
+
+          if (box.checked) {
+            const isOther = chip.classList.contains('chip--other');
+            if (isOther) {
+              const val = (chip.querySelector('.other-input')?.value || '').trim();
+              if (val) items.push(val);
+            } else {
+              // Use label text (clean) for nicer summary
+              const text = chip.textContent.replace(/\s+$/, '').trim();
+              items.push(text.replace(/^Other$/,'').trim());
+            }
+          }
+        });
+
+        // Clean empties, sort alphabetically
+        const sorted = items.filter(Boolean).sort((a,b)=>a.localeCompare(b, undefined, {sensitivity:'base'}));
+        data[g.key] = sorted;
+      });
+      return data;
+    }
+
+    function updateSummary(){
+      const data = getSelections();
+      summary.innerHTML = '';
+
+      groups.forEach(g => {
+        const list = data[g.key];
+        if (list && list.length) {
+          const dt = document.createElement('dt'); dt.textContent = g.label + ':';
+          const dd = document.createElement('dd'); dd.textContent = list.join(', ');
+          summary.appendChild(dt); summary.appendChild(dd);
+        }
+      });
+
+      // If nothing selected, show a gentle hint
+      if (!summary.children.length) {
+        const dt = document.createElement('dt'); dt.textContent = 'Selections:';
+        const dd = document.createElement('dd'); dd.textContent = 'None yet. Pick items above.';
+        summary.appendChild(dt); summary.appendChild(dd);
+      }
+    }
+
+    // Before submit, populate hidden fields with grouped, sorted values
+    form.addEventListener('submit', (e) => {
+      const data = getSelections();
+
+      groups.forEach(g => {
+        const hidden = form.querySelector(`input[name="${g.hidden}"]`);
+        if (hidden) hidden.value = (data[g.key] || []).join(', ');
+      });
+
+      // Add a single combined summary string as well
+      const parts = groups.map(g => {
+        const arr = data[g.key] || [];
+        return arr.length ? `${g.label}: ${arr.join(', ')}` : null;
+      }).filter(Boolean);
+
+      const combined = parts.join(' | ');
+      const summaryHidden = form.querySelector('input[name="selection_summary"]');
+      if (summaryHidden) summaryHidden.value = combined;
+
+      // Let the form submit to Formspree
+    });
+
+    // Initial summary
+    updateSummary();
+  })();
 </script>
 </body>
 </html>
