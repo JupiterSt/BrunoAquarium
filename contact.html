@@ -142,6 +142,41 @@
 
           <div class="divider"></div>
 
+          <!-- NEW: Tank Type & Size -->
+          <h2 style="text-align:center">Tank Type & Size</h2>
+
+          <!-- Tank Type (radio) -->
+          <fieldset class="group" aria-labelledby="tank-type-label">
+            <legend id="tank-type-label"><h3>Freshwater or Saltwater?</h3></legend>
+            <div class="chips" data-group="tank_type" role="radiogroup" aria-label="Tank Type">
+              <label class="chip"><input type="radio" name="tank_type_radio" value="Freshwater" />Freshwater</label>
+              <label class="chip"><input type="radio" name="tank_type_radio" value="Saltwater" />Saltwater</label>
+              <label class="chip chip--other">
+                <input type="radio" name="tank_type_radio" value="Other" />Other
+                <input class="other-input" type="text" placeholder="Brackish, pond…" aria-label="Other tank type" />
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Tank Size (radio) -->
+          <fieldset class="group" aria-labelledby="tank-size-label">
+            <legend id="tank-size-label"><h3>Tank Size</h3></legend>
+            <div class="chips" data-group="tank_size" role="radiogroup" aria-label="Tank Size">
+              <label class="chip"><input type="radio" name="tank_size_radio" value="10–20 gal" />10–20 gal</label>
+              <label class="chip"><input type="radio" name="tank_size_radio" value="29–40 gal" />29–40 gal</label>
+              <label class="chip"><input type="radio" name="tank_size_radio" value="40 breeder" />40 breeder</label>
+              <label class="chip"><input type="radio" name="tank_size_radio" value="55–75 gal" />55–75 gal</label>
+              <label class="chip"><input type="radio" name="tank_size_radio" value="90–120 gal" />90–120 gal</label>
+              <label class="chip"><input type="radio" name="tank_size_radio" value="150–220 gal" />150–220 gal</label>
+              <label class="chip chip--other">
+                <input type="radio" name="tank_size_radio" value="Custom" />Custom
+                <input class="other-input" type="text" placeholder="e.g. 72x30x24 (~225g)" aria-label="Custom size" />
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="divider"></div>
+
           <h2 style="text-align:center">What are you looking for?</h2>
           <p class="small" style="text-align:center;margin-top:-.25rem">Check all that apply. Your choices will be summarized below.</p>
 
@@ -281,6 +316,8 @@
           <input type="text" name="_gotcha" style="display:none" />
 
           <!-- Hidden organized fields (filled by JS before submit) -->
+          <input type="hidden" name="tank_type_selected" />
+          <input type="hidden" name="tank_size_selected" />
           <input type="hidden" name="saltwater_selected" />
           <input type="hidden" name="freshwater_selected" />
           <input type="hidden" name="corals_selected" />
@@ -372,12 +409,14 @@
   <script>
     (function(){
       const groups = [
-        { key:'saltwater',  label:'Saltwater Fish',   hidden:'saltwater_selected' },
-        { key:'freshwater', label:'Freshwater Fish',  hidden:'freshwater_selected' },
-        { key:'corals',     label:'Corals & Inverts', hidden:'corals_selected' },
-        { key:'equipment',  label:'Equipment',        hidden:'equipment_selected' },
-        { key:'maintenance_services',  label:'Maintenance Services',  hidden:'maintenance_services_selected' },
-        { key:'maintenance_frequency', label:'Maintenance Frequency', hidden:'maintenance_frequency_selected' },
+        { key:'tank_type',             label:'Tank Type',                hidden:'tank_type_selected',       type:'radio' },
+        { key:'tank_size',             label:'Tank Size',                hidden:'tank_size_selected',       type:'radio' },
+        { key:'saltwater',             label:'Saltwater Fish',           hidden:'saltwater_selected' },
+        { key:'freshwater',            label:'Freshwater Fish',          hidden:'freshwater_selected' },
+        { key:'corals',                label:'Corals & Inverts',         hidden:'corals_selected' },
+        { key:'equipment',             label:'Equipment',                hidden:'equipment_selected' },
+        { key:'maintenance_services',  label:'Maintenance Services',     hidden:'maintenance_services_selected' },
+        { key:'maintenance_frequency', label:'Maintenance Frequency',    hidden:'maintenance_frequency_selected' },
       ];
 
       const form = document.getElementById('contactForm');
@@ -394,10 +433,14 @@
           if (input.type === 'checkbox') {
             chip.classList.toggle('selected', input.checked);
           } else if (input.type === 'radio') {
+            // clear selection within this chips group
             chips.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+            chips.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+            input.checked = true;
             chip.classList.add('selected');
           }
 
+          // "Other" text input
           const isOther = chip.classList.contains('chip--other');
           const otherField = chip.querySelector('.other-input');
           if (isOther) {
@@ -408,6 +451,13 @@
               chip.classList.remove('other-active');
               if (otherField) otherField.value = '';
             }
+          } else {
+            // If a non-other radio was selected, hide any other field in group
+            chips.querySelectorAll('.chip--other').forEach(co => {
+              co.classList.remove('other-active');
+              const f = co.querySelector('.other-input');
+              if (f) f.value = '';
+            });
           }
           updateSummary();
         });
@@ -422,11 +472,13 @@
         groups.forEach(g => {
           const wrap = document.querySelector('.chips[data-group="'+g.key+'"]');
           if (!wrap) return;
+
           const items = [];
           wrap.querySelectorAll('.chip').forEach(chip => {
-            const box = chip.querySelector('input[type="checkbox"]');
-            if (!box) return;
-            if (box.checked) {
+            const inp = chip.querySelector('input');
+            if (!inp) return;
+
+            if (inp.type === 'checkbox' && inp.checked) {
               const isOther = chip.classList.contains('chip--other');
               if (isOther) {
                 const val = (chip.querySelector('.other-input')?.value || '').trim();
@@ -436,9 +488,27 @@
                 items.push(text.replace(/^Other$/,'').trim());
               }
             }
+
+            if (inp.type === 'radio' && inp.checked) {
+              const isOther = chip.classList.contains('chip--other');
+              if (isOther) {
+                const val = (chip.querySelector('.other-input')?.value || '').trim();
+                if (val) items.push(val);
+                else items.push('Other');
+              } else {
+                const text = chip.textContent.replace(/\s+$/, '').trim();
+                items.push(text.replace(/^Other$/,'').trim());
+              }
+            }
           });
-          const sorted = items.filter(Boolean).sort((a,b)=>a.localeCompare(b, undefined, {sensitivity:'base'}));
-          data[g.key] = sorted;
+
+          // radios should be single-value; checkboxes may be multi
+          if ((g.type === 'radio') && items.length > 1) {
+            data[g.key] = [items[0]];
+          } else {
+            const sorted = (g.type === 'radio') ? items : items.filter(Boolean).sort((a,b)=>a.localeCompare(b, undefined, {sensitivity:'base'}));
+            data[g.key] = sorted;
+          }
         });
         return data;
       }
@@ -467,10 +537,12 @@
           const hidden = form.querySelector('input[name="'+g.hidden+'"]');
           if (hidden) hidden.value = (data[g.key] || []).join(', ');
         });
+
         const parts = groups.map(g => {
           const arr = data[g.key] || [];
           return arr.length ? (g.label + ': ' + arr.join(', ')) : null;
         }).filter(Boolean);
+
         const summaryHidden = form.querySelector('input[name="selection_summary"]');
         if (summaryHidden) summaryHidden.value = parts.join(' | ');
       });
