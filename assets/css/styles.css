@@ -1,5 +1,5 @@
 /* =====================================================
-   Bruno's Aquariums — Ocean + Freshwater Theme (v13)
+   Bruno's Aquariums — Ocean + Freshwater Theme (v15)
    Deep ocean blues + sunlit shallows + freshwater greens
    Mobile-first, accessible, drop-in across all pages
 ===================================================== */
@@ -38,15 +38,17 @@
   --shadow: 0 8px 28px rgba(4, 35, 44, .14);
   --shadow-lg: 0 14px 38px rgba(4,35,44,.22);
 
-  /* Type scale */
+  /* Type scale & tap target */
   --step-0: clamp(1rem, .95rem + .4vw, 1.125rem);
   --step-1: clamp(1.25rem, 1.05rem + 1.6vw, 1.7rem);
   --step-2: clamp(1.75rem, 1.3rem + 2.6vw, 2.4rem);
   --tap: 44px;
 }
 
-/* ---------- Ocean + Freshwater background textures ---------- */
-/* Soft wave + ripple texture for the whole page */
+/* ---------- Page background (ocean + freshwater ripples) ---------- */
+*{ box-sizing:border-box }
+img,svg,video{ max-width:100%; height:auto; display:block }
+
 body{
   margin:0;
   color:var(--ink);
@@ -55,23 +57,51 @@ body{
   background:
     radial-gradient(1200px 900px at 70% -10%, rgba(14,165,233,.22), transparent 60%),
     radial-gradient(1000px 700px at 10% 120%, rgba(46,163,123,.18), transparent 60%),
-    linear-gradient(180deg, var(--sand-25) 0%, #e9f4f8 48%, #dff3ef 100%);
-  /* Subtle SVG wave tiling */
-  background-image:
-    radial-gradient(1200px 900px at 70% -10%, rgba(14,165,233,.22), transparent 60%),
-    radial-gradient(1000px 700px at 10% 120%, rgba(46,163,123,.18), transparent 60%),
+    linear-gradient(180deg, var(--sand-25) 0%, #e9f4f8 48%, #dff3ef 100%),
     url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' opacity='.25'>\
 <path d='M0,32c8,0 8,-8 16,-8s8,8 16,8s8,-8 16,-8s8,8 16,8' fill='none' stroke='%23a6e3ff' stroke-width='1'/>\
 <path d='M0,48c8,0 8,-8 16,-8s8,8 16,8s8,-8 16,-8s8,8 16,8' fill='none' stroke='%23b6f3d1' stroke-width='1'/>\
 </svg>");
-  background-blend-mode: multiply, multiply, normal;
+  background-blend-mode: multiply, multiply, normal, normal;
+  position:relative;
+  overflow-x:hidden;
 }
 
-/* Container + sections */
-*{ box-sizing:border-box }
-img,svg,video{ max-width:100%; height:auto; display:block }
-.container{ width:min(1100px,92%); margin:0 auto }
+/* Subtle fish & coral decorations on the page sides */
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  top:0; bottom:0;
+  width:120px;
+  background-repeat:no-repeat;
+  background-size:contain;
+  opacity:.16;
+  pointer-events:none;
+  z-index:0;
+}
+body::before{
+  left:0;
+  background-image:url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 300'>\
+<text x='12' y='60' font-size='48'>🐠</text>\
+<text x='28' y='160' font-size='42'>🐟</text>\
+<text x='18' y='260' font-size='50'>🪸</text>\
+</svg>");
+}
+body::after{
+  right:0;
+  background-image:url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 300'>\
+<text x='30' y='70' font-size='46'>🐡</text>\
+<text x='20' y='170' font-size='42'>🌿</text>\
+<text x='10' y='260' font-size='48'>🪸</text>\
+</svg>");
+}
+
+/* ---------- Layout helpers ---------- */
+.container{ width:min(1100px,92%); margin:0 auto; position:relative; z-index:1 }
 .section{ padding:2.6rem 0 }
 .section.narrow{ padding:2rem 0 }
 h1{ font-size:var(--step-2); line-height:1.15; margin:.2rem 0 .7rem }
@@ -84,15 +114,9 @@ h3{ font-size:1.1rem; margin:.2rem 0 .3rem }
 .site-header{
   position:sticky; top:0; z-index:60;
   color:#fff;
-  background:
-    linear-gradient(180deg, rgba(3,37,49,.85), rgba(10,107,132,.85)),
-    url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 160' preserveAspectRatio='none'>\
-<path d='M0,120 C240,160 480,40 720,120 C960,160 1200,40 1440,120 L1440,160 L0,160 Z' fill='%230a6b84'/>\
-</svg>");
-  background-size:cover, 100% 100%;
+  background:linear-gradient(180deg, rgba(3,37,49,.85), rgba(10,107,132,.85));
   box-shadow:var(--shadow);
-  backdrop-filter:saturate(1.15) blur(3px);
+  backdrop-filter:saturate(1.1) blur(3px);
 }
 .header-inner{
   display:flex; align-items:center; justify-content:space-between; gap:1rem;
@@ -131,7 +155,7 @@ h3{ font-size:1.1rem; margin:.2rem 0 .3rem }
 }
 @media (max-width:420px){ .brand-text{ display:none } }
 
-/* ---------- Buttons ---------- */
+/* ---------- Buttons & links ---------- */
 a.btn, .btn{
   display:inline-block; min-height:var(--tap);
   background: linear-gradient(90deg, var(--ocean-600), var(--fresh-600));
@@ -139,24 +163,27 @@ a.btn, .btn{
   border-radius:18px; font-weight:800; border:none; box-shadow:0 1px 0 rgba(0,0,0,.08);
 }
 a.btn:hover{ filter:brightness(.95) }
+
 .btn-outline{
   display:inline-block; min-height:var(--tap);
   border:2px solid var(--ocean-600); color:var(--ocean-600);
   background:transparent; padding:.8rem 1.1rem; border-radius:18px; font-weight:800;
 }
 .btn-outline:hover{ background:var(--ocean-600); color:#fff }
+
 .btn-ghost{
   display:inline-block; min-height:var(--tap);
   border:1px dashed var(--fresh-600); color:var(--fresh-600);
   background:rgba(46,163,123,.08); padding:.75rem 1.05rem; border-radius:18px; font-weight:800;
 }
-a.link{ color:var(--ocean-600); font-weight:800; text-decoration:none; position:relative }
+
+a.link{ color: var(--ocean-600); font-weight:800; text-decoration:none; position:relative }
 a.link::after{
   content:""; position:absolute; left:0; bottom:-2px; height:6px; width:100%;
   background:linear-gradient(90deg, var(--coral), var(--fresh-500)); opacity:.28; border-radius:6px;
 }
 
-/* ---------- Hero (ocean surface + bubbles) ---------- */
+/* ---------- Hero (bubbly) ---------- */
 .hero{
   position:relative; overflow:hidden; border-radius:24px; color:#fff;
   background:
@@ -167,7 +194,7 @@ a.link::after{
 .hero p{ margin:.25rem auto 1.2rem; max-width:58ch; color:#e6fbff; opacity:.92 }
 .hero-cta{ display:flex; gap:.85rem; flex-wrap:wrap; justify-content:center }
 
-/* animated bubbles */
+/* Animated bubbles */
 .hero::before, .hero::after{
   content:""; position:absolute; left:-60px; bottom:-120px;
   width:220px; height:220px; border-radius:50%;
@@ -192,13 +219,14 @@ a.link::after{
   box-shadow:var(--shadow); transition:transform .2s ease, box-shadow .2s ease;
 }
 .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-lg) }
-/* fun aquatic icons on home cards */
+
+/* Fun aquatic icons on 4-feature grids (home) */
 .cards .card:nth-child(1) h3::before{ content:"🐟 "; }
 .cards .card:nth-child(2) h3::before{ content:"🫧 "; }
 .cards .card:nth-child(3) h3::before{ content:"🪸 "; }
 .cards .card:nth-child(4) h3::before{ content:"🌿 "; }
 
-/* Reef/Fresh blended accent block */
+/* Reef/Fresh accent block */
 .reef-accent{
   position:relative; overflow:hidden; border-radius:18px; padding:.75rem;
   background: linear-gradient(180deg, var(--surface-veil), rgba(255,255,255,.9));
@@ -220,7 +248,7 @@ a.link::after{
 }
 .banner .container{ display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; justify-content:center }
 
-/* ---------- Forms & chips ---------- */
+/* ---------- Forms ---------- */
 input,select,textarea,button{ font:inherit; color:inherit }
 input,select,textarea{
   width:100%; min-height:var(--tap); padding:.75rem .9rem;
@@ -230,6 +258,7 @@ label.required::after{ content:" *"; color:var(--coral); font-weight:800 }
 .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:1rem }
 @media (max-width:700px){ .two-col{ grid-template-columns:1fr } }
 
+/* Chips (fixed visibility when selected) */
 .chips{ display:flex; flex-wrap:wrap; gap:.55rem; justify-content:center }
 .chip{
   --b: var(--fresh-600);
@@ -243,8 +272,8 @@ label.required::after{ content:" *"; color:var(--coral); font-weight:800 }
   border:1.5px solid var(--b); background:#fff; position:relative;
 }
 .chip input:checked{ background:var(--b); border-color:var(--b) }
-.chip input:checked::after{ content:""; position:absolute; inset:.18rem; background:#fff; }
-.chip.selected{ background:var(--fresh-600); color:#fff }
+.chip input:checked::after{ content:""; position:absolute; inset:.18rem; background:#fff }
+.chip.selected{ background:var(--fresh-600); color:#fff; border-color:transparent }
 .chip.selected input{ border-color:#fff }
 .chip .other-input{
   display:none; background:#fff; border:1px solid var(--fresh-600);
