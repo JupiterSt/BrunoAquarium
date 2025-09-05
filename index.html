@@ -14,6 +14,23 @@
   <meta property="og:description" content="From beginner freshwater tanks to advanced reef systems. Tanks, gear, livestock & expert care." />
   <meta property="og:image" content="assets/img/brunos-logo.png" />
   <meta property="og:type" content="website" />
+
+  <!-- Minimal slider styles (scoped) -->
+  <style>
+    .slider-wrap{ position:relative; max-width:1100px; margin:0 auto 1rem; border-radius:18px; overflow:hidden; box-shadow: var(--shadow,0 8px 24px rgba(0,0,0,.15)); background:#000; }
+    .slider-track{ display:flex; transition:transform .5s ease; will-change:transform; }
+    .slide{ min-width:100%; aspect-ratio: 16 / 9; position:relative; }
+    .slide img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .slider-nav{ position:absolute; inset:auto 0 10px 0; display:flex; justify-content:center; gap:.4rem; }
+    .dot{ width:10px; height:10px; border-radius:999px; background:rgba(255,255,255,.55); border:none; cursor:pointer; padding:0; }
+    .dot[aria-current="true"]{ background:#fff; }
+    .arrow{ position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.35); color:#fff; border:none; width:40px; height:40px; border-radius:999px; display:grid; place-items:center; cursor:pointer; }
+    .arrow:hover{ background:rgba(0,0,0,.5); }
+    .arrow.prev{ left:10px; } .arrow.next{ right:10px; }
+    @media (max-width:720px){
+      .arrow{ width:34px; height:34px; }
+    }
+  </style>
 </head>
 
 <body>
@@ -44,9 +61,34 @@
   </header>
 
   <main class="content">
-    <!-- HERO -->
+    <!-- HERO with slider -->
     <section class="hero section">
       <div class="container">
+        <!-- Image Slider -->
+        <div class="slider-wrap" aria-label="Bruno's featured gallery">
+          <button class="arrow prev" aria-label="Previous slide" type="button">‹</button>
+          <div class="slider-track" id="sliderTrack">
+            <!-- Replace image src paths with your own files in assets/img/slider/ -->
+            <figure class="slide">
+              <img src="assets/img/slider/slide-1.jpg" alt="Reef-ready display aquarium with live rock and corals">
+            </figure>
+            <figure class="slide">
+              <img src="assets/img/slider/slide-2.jpg" alt="Freshwater planted rimless tank with aquascape">
+            </figure>
+            <figure class="slide">
+              <img src="assets/img/slider/slide-3.jpg" alt="Saltwater nano tank with clownfish and anemone">
+            </figure>
+            <figure class="slide">
+              <img src="assets/img/slider/slide-4.jpg" alt="Custom aquarium installation with stand and sump">
+            </figure>
+            <figure class="slide">
+              <img src="assets/img/slider/slide-5.jpg" alt="Maintenance service water change and testing">
+            </figure>
+          </div>
+          <button class="arrow next" aria-label="Next slide" type="button">›</button>
+          <div class="slider-nav" id="sliderDots" role="tablist" aria-label="Slide navigation"></div>
+        </div>
+
         <h1>Aquariums, Livestock & Maintenance — All in One Place</h1>
         <p>From beginner freshwater setups to advanced reef systems, we’ve got tanks, gear, and expert care.</p>
         <div class="hero-cta">
@@ -122,9 +164,9 @@
 
       <div>
         <h4>Visit</h4>
-        <p><a href="https://maps.google.com/?q=256%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
-          256 Dakota Ave S, Huron, SD 57350</a></p>
-        <p><a href="tel:+16053506478">605-350-6478</a></p>
+        <p><a href="https://maps.google.com/?q=258%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
+          258 Dakota Ave S, Huron, SD 57350</a></p>
+        <p><a href="tel:+17872333313">787-233-3313</a></p>
       </div>
 
       <div>
@@ -140,5 +182,71 @@
 
   <!-- JS -->
   <script src="assets/js/main.js?v=10"></script>
+
+  <!-- Slider logic (page-local, no dependency) -->
+  <script>
+    (function(){
+      const track = document.getElementById('sliderTrack');
+      if(!track) return;
+      const slides = Array.from(track.children);
+      const prev = document.querySelector('.arrow.prev');
+      const next = document.querySelector('.arrow.next');
+      const dotsWrap = document.getElementById('sliderDots');
+
+      let index = 0;
+      let timer;
+
+      // Build dots
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'dot';
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Go to slide ' + (i+1));
+        b.addEventListener('click', ()=> go(i, true));
+        dotsWrap.appendChild(b);
+      });
+
+      function update(){
+        track.style.transform = 'translateX(' + (-index * 100) + '%)';
+        Array.from(dotsWrap.children).forEach((d,i)=>{
+          d.setAttribute('aria-current', i===index ? 'true' : 'false');
+        });
+      }
+
+      function go(i, user=false){
+        index = (i + slides.length) % slides.length;
+        update();
+        if(user) resetAuto();
+      }
+
+      function nextSlide(){ go(index+1); }
+      function prevSlide(){ go(index-1, true); }
+
+      function resetAuto(){
+        clearInterval(timer);
+        timer = setInterval(nextSlide, 5000); // auto-advance every 5s
+      }
+
+      prev.addEventListener('click', prevSlide);
+      next.addEventListener('click', ()=> go(index+1, true));
+
+      // Swipe support
+      let startX=null;
+      track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+      track.addEventListener('touchmove', e => {
+        if(startX===null) return;
+        const dx = e.touches[0].clientX - startX;
+        if(Math.abs(dx) > 50){
+          if(dx < 0) go(index+1, true); else go(index-1, true);
+          startX = null;
+        }
+      }, {passive:true});
+      track.addEventListener('touchend', ()=>{ startX=null; });
+
+      // Init
+      update();
+      resetAuto();
+    })();
+  </script>
 </body>
 </html>
