@@ -1,7 +1,6 @@
 /* =====================================================
-   Bruno's Aquariums — Ocean + Freshwater Theme (v20)
-   Sandier background • Readable blue chips • No side waves
-   Mobile-first • Accessible • Drop-in across all pages
+   Bruno's Aquariums — Ocean + Freshwater Theme (v22)
+   Mobile polish • Earlier menu collapse • Clean tap targets
 ===================================================== */
 
 /* ---------- Color system ---------- */
@@ -41,12 +40,7 @@
   --step-0: clamp(1rem, .95rem + .4vw, 1.125rem);
   --step-1: clamp(1.25rem, 1.05rem + 1.6vw, 1.7rem);
   --step-2: clamp(1.75rem, 1.3rem + 2.6vw, 2.4rem);
-  --tap: 44px;
-
-  /* Chip selection (high contrast) */
-  --chip-bg:#d9efff;     /* light blue pill */
-  --chip-text:#062a3a;   /* dark ink on blue */
-  --chip-border:#0a6b84; /* teal border */
+  --tap: 48px; /* larger for thumbs */
 }
 
 /* ---------- Base & sandier background ---------- */
@@ -68,11 +62,11 @@ body{
 
 /* ---------- Layout helpers ---------- */
 .container{ width:min(1100px,92%); margin:0 auto; position:relative; z-index:1 }
-.section{ padding:2.6rem 0 }
+.section{ padding:2.4rem 0 }
 .section.narrow{ padding:2rem 0 }
 h1{ font-size:var(--step-2); line-height:1.15; margin:.2rem 0 .7rem }
 h2{ font-size:var(--step-1); line-height:1.2; margin:.2rem 0 .45rem }
-h3{ font-size:1.1rem; margin:.2rem 0 .3rem }
+h3{ font-size:1.08rem; margin:.2rem 0 .3rem }
 .muted{ opacity:.82 }
 .centered{ text-align:center }
 
@@ -83,47 +77,67 @@ h3{ font-size:1.1rem; margin:.2rem 0 .3rem }
   box-shadow:var(--shadow); backdrop-filter:saturate(1.1) blur(3px);
 }
 .header-inner{
-  display:flex; align-items:center; justify-content:space-between; gap:1rem;
-  padding:.85rem 0;
+  display:flex; align-items:center; justify-content:space-between; gap:.8rem;
+  padding:.7rem 0; /* tighter */
 }
-.brand{ display:flex; align-items:center; gap:.65rem; color:#fff; text-decoration:none }
-.logo-img{ height:36px }
+.brand{ display:flex; align-items:center; gap:.6rem; color:#fff; text-decoration:none; min-width:0 }
+.logo-img{ height:34px }
 
 /* polished brand text */
 .brand-text{
   font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
   font-weight:700;
-  font-size:1.3rem;
-  letter-spacing:.4px;
-  text-transform:none;
+  font-size:1.16rem;
+  letter-spacing:.3px;
   white-space:nowrap;
-  line-height:1.2;
+  line-height:1.1;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .nav-toggle{
   display:none; background:transparent; border:1px solid rgba(255,255,255,.6); color:#fff;
-  padding:.55rem .85rem; border-radius:.6rem; min-height:var(--tap);
+  padding:.5rem .8rem; border-radius:.6rem; min-height:var(--tap);
 }
-.site-nav ul{ list-style:none; margin:0; padding:0; display:flex; gap:.75rem; align-items:center }
+
+/* Desktop / wide nav: allow wrapping onto 2 lines if needed */
+.site-nav{ flex:1; display:flex; justify-content:flex-end; min-width:0 }
+.site-nav ul{
+  list-style:none; margin:0; padding:0;
+  display:flex; flex-wrap:wrap;
+  gap:.5rem; align-items:center; justify-content:flex-end;
+}
 .site-nav a, .site-nav .btn, .site-nav .btn-ghost{
-  color:#fff; text-decoration:none; padding:.6rem .75rem; border-radius:.6rem; white-space:nowrap;
+  color:#fff; text-decoration:none; padding:.5rem .62rem; border-radius:.6rem; white-space:nowrap;
+  font-size:.95rem; line-height:1;
 }
 .site-nav a:hover, .site-nav a.active{ background:rgba(255,255,255,.14) }
 
-@media (max-width:920px){
+/* Gentle compression before mobile menu */
+@media (max-width:1200px){
+  .site-nav a, .site-nav .btn, .site-nav .btn-ghost{ padding:.48rem .56rem; font-size:.93rem }
+  .brand-text{ font-size:1.06rem }
+}
+
+/* Mobile menu breakpoint — earlier to avoid squish */
+@media (max-width:1060px){
   .nav-toggle{ display:inline-flex; align-items:center }
-  .site-nav{ position:relative }
+  .site-nav{ position:relative; justify-content:flex-end }
   .site-nav ul{
     position:absolute; right:0; left:0; top:calc(100% + .5rem);
-    display:none; flex-direction:column; gap:.4rem;
+    display:none; flex-direction:column; gap:.35rem;
     background: linear-gradient(180deg, var(--ocean-900), var(--ocean-700));
-    border:1px solid var(--border-dark); border-radius:.9rem; padding:.65rem;
+    border:1px solid var(--border-dark); border-radius:.9rem; padding:.6rem;
     box-shadow:var(--shadow);
   }
   .site-nav ul.open{ display:flex }
-  .site-nav a, .site-nav .btn, .site-nav .btn-ghost{ width:100%; padding:1rem; font-weight:700 }
+  .site-nav a, .site-nav .btn, .site-nav .btn-ghost{
+    width:100%; padding:1rem; font-weight:700; font-size:1rem; text-align:center;
+  }
 }
-@media (max-width:420px){ .brand-text{ display:none } }
+
+/* Hide brand text on narrow phones to save space */
+@media (max-width:460px){ .brand-text{ display:none } }
 
 /* ---------- Buttons & links ---------- */
 a.btn, .btn{
@@ -156,11 +170,11 @@ a.link::after{
   background:
     radial-gradient(1200px 600px at 60% -10%, rgba(14,165,233,.28), transparent 55%),
     linear-gradient(180deg, var(--ocean-700) 0%, var(--ocean-800) 65%, var(--ocean-900) 100%);
-  padding:3.2rem 1rem; text-align:center; box-shadow:var(--shadow);
+  padding:3rem 1rem; text-align:center; box-shadow:var(--shadow);
 }
-.hero p{ margin:.25rem auto 1.2rem; max-width:58ch; color:#e6fbff; opacity:.92 }
-.hero-cta{ display:flex; gap:.85rem; flex-wrap:wrap; justify-content:center }
-.wave-sep{ display:block; width:100%; height:90px; fill:var(--ocean-700); margin:-28px 0 0 }
+.hero p{ margin:.25rem auto 1.1rem; max-width:58ch; color:#e6fbff; opacity:.92 }
+.hero-cta{ display:flex; gap:.7rem; flex-wrap:wrap; justify-content:center }
+.wave-sep{ display:block; width:100%; height:84px; fill:var(--ocean-700); margin:-24px 0 0 }
 
 /* ---------- Cards & grids ---------- */
 .cards{ display:grid; gap:1rem; grid-template-columns:repeat(12,1fr) }
@@ -169,7 +183,7 @@ a.link::after{
 @media (max-width:800px){ .cards > .card{ grid-column:span 6 } }
 @media (max-width:560px){ .cards > .card{ grid-column:1 / -1 } }
 .card{
-  background:var(--surface); border-radius:18px; padding:1.25rem;
+  background:var(--surface); border-radius:18px; padding:1.15rem;
   box-shadow:var(--shadow); transition:transform .2s ease, box-shadow .2s ease;
 }
 .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-lg) }
@@ -177,7 +191,7 @@ a.link::after{
 /* ---------- Banners ---------- */
 .banner{
   background:linear-gradient(180deg, #ffffffee, #fffffffa);
-  border:1px solid var(--border); border-radius:18px; text-align:center; padding:1.1rem;
+  border:1px solid var(--border); border-radius:18px; text-align:center; padding:1.05rem;
   box-shadow:var(--shadow);
 }
 .banner .container{ display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; justify-content:center }
@@ -185,7 +199,7 @@ a.link::after{
 /* ---------- Forms & chips ---------- */
 input,select,textarea,button{ font:inherit; color:inherit }
 input,select,textarea{
-  width:100%; min-height:var(--tap); padding:.75rem .9rem;
+  width:100%; min-height:var(--tap); padding:.7rem .9rem;
   border-radius:.7rem; border:1px solid var(--border); background:#fff;
 }
 label.required::after{ content:" *"; color:var(--coral); font-weight:800 }
@@ -197,7 +211,7 @@ label.required::after{ content:" *"; color:var(--coral); font-weight:800 }
 
 /* Chip base */
 .chip{
-  --b: var(--chip-border);
+  --b: var(--chip-border, #0a6b84);
   display:inline-flex; align-items:center; gap:.55rem;
   padding:.65rem 1.05rem; border-radius:999px;
   border:1.5px solid var(--b);
@@ -212,40 +226,32 @@ label.required::after{ content:" *"; color:var(--coral); font-weight:800 }
   position:absolute; width:1px; height:1px; opacity:0; pointer-events:none;
 }
 
-/* Selected chip — works with :checked OR your JS .selected class */
-.chip input:checked + .other-input,      /* show box for Other when checked */
+/* Selected chip */
+.chip input:checked + .other-input,
 .chip.selected .other-input,
 .chip.other-active .other-input{ display:inline-block }
-
-.chip input:checked ~ * ,                /* color text when checked */
-.chip.selected{ color:var(--chip-text) }
-
-.chip:has(input:checked),                /* modern browsers */
-.chip.selected{
-  background:var(--chip-bg);
-  border-color:var(--chip-border);
-  box-shadow: inset 0 0 0 2px color-mix(in oklab, var(--chip-border) 35%, white);
+.chip input:checked ~ * , .chip.selected{ color:#062a3a }
+.chip:has(input:checked), .chip.selected{
+  background:#d9efff;
+  border-color:#0a6b84;
+  box-shadow: inset 0 0 0 2px color-mix(in oklab, #0a6b84 35%, white);
 }
 
-/* “Other” text input (hidden until selected or focused) */
+/* “Other” text input */
 .chip .other-input{
   display:none;
   flex:0 1 auto;
   background:#fff; color:var(--ink);
-  border:1px solid var(--chip-border);
+  border:1px solid #0a6b84;
   border-radius:.5rem; padding:.4rem .55rem;
   width:min(22ch, 60vw);
   margin-left:.2rem;
 }
-/* If a user clicks straight into the box, keep it visible */
 .chip .other-input:focus{ display:inline-block }
-
-/* In browsers without :has, keep appearance via JS .selected / .other-active,
-   which your script already toggles. */
 
 /* Focus ring */
 .chip:focus-within{
-  outline:3px solid color-mix(in oklab, var(--chip-border) 55%, white);
+  outline:3px solid color-mix(in oklab, #0a6b84 55%, white);
   outline-offset:2px;
 }
 
@@ -280,9 +286,8 @@ label.required::after{ content:" *"; color:var(--coral); font-weight:800 }
   background:linear-gradient(90deg, #7dd3fc, #99f6e4); color:#063346; font-weight:900;
   border-radius:.55rem; padding:.22rem .5rem; font-size:.8rem
 }
-@media (max-width:420px){ .gallery{ --min:160px } .tile img{ height:160px } }
 
-/* Lightbox */
+/* ---------- Lightbox ---------- */
 dialog.lightbox{ border:none; padding:0; background:transparent }
 .lightbox::backdrop{ background:rgba(0,0,0,.78) }
 .lightbox .wrap{ position:relative; margin:0 }
@@ -320,26 +325,32 @@ dialog.lightbox{ border:none; padding:0; background:transparent }
 .site-footer a{ color:#fff; text-decoration:none }
 .site-footer a:hover{ text-decoration:underline }
 
-/* ---------- Utility ---------- */
-.table-wrap{ overflow-x:auto }
-.space-y-3 > * + *{ margin-top:.75rem }
-.space-y-4 > * + *{ margin-top:1rem }
-
 /* ---------- Motion accessibility ---------- */
 @media (prefers-reduced-motion: reduce){
   *{ animation:none !important; transition:none !important }
 }
 
 /* ---------- Extra phone polish ---------- */
-@media (max-width:480px){
+@media (max-width:560px){
   body{ font-size:15.5px; line-height:1.75 }
-  .section{ padding:2rem 1rem }
-  h1{ font-size:1.75rem }
-  h2{ font-size:1.38rem }
-  h3{ font-size:1.16rem }
-  .cards{ grid-template-columns:1fr; gap:1.15rem }
+  .section{ padding:1.75rem 1rem }
+  .hero{ padding:2.1rem 1rem }
+  .hero-cta{ gap:.55rem }
+  .wave-sep{ height:70px; margin:-20px 0 0 }
+  h1{ font-size:1.7rem }
+  h2{ font-size:1.34rem }
+  h3{ font-size:1.12rem }
+
+  .cards{ grid-template-columns:1fr; gap:1rem }
   .card{ padding:1rem }
-  .btn, .btn-outline, .btn-ghost{ width:100%; text-align:center; padding:1rem 1.2rem }
+
+  /* Gallery tiles shorter on phones */
+  .gallery{ --min: 170px }
+  .tile img{ height:155px }
+
+  /* Buttons span full width for easy tapping */
+  .btn, .btn-outline, .btn-ghost{ width:100%; text-align:center; padding:1rem 1.1rem }
   input,select,textarea{ font-size:1rem; padding:.75rem .9rem }
+
   .footer-grid{ grid-template-columns:1fr; text-align:center }
 }
