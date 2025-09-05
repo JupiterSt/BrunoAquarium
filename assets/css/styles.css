@@ -88,7 +88,17 @@ h3{ font-size:1.1rem; margin:.2rem 0 .3rem }
 }
 .brand{ display:flex; align-items:center; gap:.65rem; color:#fff; text-decoration:none }
 .logo-img{ height:36px }
-.brand-text{ font-weight:800; letter-spacing:.3px }
+
+/* polished brand text */
+.brand-text{
+  font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  font-weight:700;
+  font-size:1.3rem;
+  letter-spacing:.4px;
+  text-transform:none;
+  white-space:nowrap;
+  line-height:1.2;
+}
 
 .nav-toggle{
   display:none; background:transparent; border:1px solid rgba(255,255,255,.6); color:#fff;
