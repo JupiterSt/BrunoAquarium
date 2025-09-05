@@ -1,92 +1,26 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thanks — Bruno's Aquariums</title>
-
-  <!-- Reef theme CSS -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=10" />
-  <link rel="icon" href="assets/img/favicon.png" />
-
-  <meta name="description" content="Thank you for contacting Bruno's Aquariums. We’ll get back to you soon." />
-  <meta property="og:title" content="Bruno's Aquariums — Thank You" />
-  <meta property="og:description" content="We received your request and will be in touch shortly." />
-  <meta property="og:image" content="assets/img/brunos-logo.png" />
-
-  <style>
-    .thankyou { text-align:center }
-    .thankyou h1 { margin-bottom:.4rem }
-    .thankyou p.lead { font-size:1.05rem }
-    .redirect-note { margin-top:.8rem; opacity:.8 }
-  </style>
-</head>
-<body>
-  <!-- Header -->
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Bruno's Aquariums — Home">
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-grid">
+    <div>
+      <p style="display:flex;align-items:center;gap:.6rem;margin:0 0 .5rem 0;">
         <picture>
           <source srcset="assets/img/brunos-logo.svg" type="image/svg+xml">
-          <img class="logo-img" src="assets/img/brunos-logo.png" alt="Bruno's Aquariums logo" loading="eager" />
+          <img class="logo-img" src="assets/img/brunos-logo.png" alt="Bruno's Aquariums logo" style="height:20px" loading="lazy" />
         </picture>
-        <span class="brand-text">Bruno's Aquariums</span>
-      </a>
+        <strong>Bruno's Aquariums</strong>
+      </p>
+      <p>Freshwater & Saltwater • Tanks, Gear, Livestock • Install & Maintenance</p>
     </div>
-  </header>
-
-  <main class="content">
-    <!-- HERO -->
-    <section class="hero section thankyou" aria-labelledby="thanks-title">
-      <div class="container">
-        <h1 id="thanks-title">Thank you!</h1>
-        <p class="lead">Your request was sent successfully. We’ll reply to <strong>brunosaquarium@gmail.com</strong> or call if you left a number.</p>
-        <div class="hero-cta" style="justify-content:center">
-          <a class="btn" href="index.html">Back to Home</a>
-          <a class="btn-outline" href="appointments.html">Book Another Appointment</a>
-        </div>
-        <p class="redirect-note">You’ll be redirected to the homepage in <span id="countdown">8</span> seconds…</p>
-      </div>
-    </section>
-
-    <!-- Wave divider -->
-    <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
-    </svg>
-
-    <!-- Friendly CTA -->
-    <section class="banner section" aria-label="Explore more">
-      <div class="container">
-        <p style="margin:.25rem 0">While you’re here, want to browse tanks or this week’s stock?</p>
-        <div style="display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center">
-          <a class="btn" href="aquariums.html">Shop Aquariums</a>
-          <a class="btn-outline" href="livestock.html">Fish & Corals</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container legal">
-      <p>© <span id="year"></span> Bruno's Aquariums. All rights reserved.</p>
+    <div>
+      <h4>Visit</h4>
+      <p><a href="https://maps.google.com/?q=258%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">258 Dakota Ave S, Huron, SD 57350</a></p>
+      <p><a href="tel:+17872333313">787-233-3313</a></p>
     </div>
-  </footer>
-
-  <!-- JS -->
-  <script src="assets/js/main.js?v=10"></script>
-  <script>
-    // Auto redirect countdown
-    let seconds = 8;
-    const countdownEl = document.getElementById('countdown');
-    const timer = setInterval(() => {
-      seconds--;
-      countdownEl.textContent = seconds;
-      if (seconds <= 0) {
-        clearInterval(timer);
-        window.location.href = "index.html";
-      }
-    }, 1000);
-  </script>
-</body>
-</html>
+    <div>
+      <h4>Hours</h4>
+      <p>Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
+    </div>
+  </div>
+  <div class="container legal">
+    <p>© <span id="year"></span> Bruno's Aquariums. All rights reserved.</p>
+  </div>
+</footer>
