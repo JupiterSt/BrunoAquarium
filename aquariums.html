@@ -6,7 +6,7 @@
   <title>Aquariums — Bruno's Aquariums</title>
 
   <!-- Reef theme CSS -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=10" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=20" />
   <link rel="icon" href="assets/img/favicon.png" />
 
   <!-- Meta / Open Graph -->
@@ -31,12 +31,12 @@
       <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false">Menu</button>
       <nav id="site-nav" class="site-nav" role="navigation" aria-label="Main">
         <ul>
-          <li><a href="aquariums.html">Aquariums</a></li>
+          <li><a class="active" href="aquariums.html">Aquariums</a></li>
           <li><a href="accessories.html">Accessories</a></li>
           <li><a href="livestock.html">Fish & Corals</a></li>
           <li><a href="maintenance.html">Maintenance</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="faq.html" class="active">FAQ</a></li>
+          <li><a href="faq.html">FAQ</a></li>
           <li><a class="btn-ghost" href="appointments.html">Book Appointment</a></li>
           <li><a class="btn" href="contact.html">Contact</a></li>
         </ul>
@@ -65,15 +65,15 @@
     <!-- POPULAR SIZES -->
     <section class="container section reef-accent" aria-label="Popular Sizes">
       <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-        <article class="card">
+        <article class="card" style="text-align:center">
           <h2>Popular Sizes</h2>
-          <div class="cards" style="grid-template-columns: repeat(2, minmax(0,1fr)); gap:.75rem">
-            <ul>
+          <div class="cards" style="grid-template-columns: repeat(2, minmax(0,1fr)); gap:.75rem; max-width:900px; margin:0 auto">
+            <ul style="text-align:left">
               <li>10–20 gal nano tanks (bettas, shrimp, small fish)</li>
               <li>29–40 gal beginner & planted setups</li>
               <li>40 breeder • 55–75 gal community tanks</li>
             </ul>
-            <ul>
+            <ul style="text-align:left">
               <li>90–120 gal reef-ready displays</li>
               <li>150–220 gal large freshwater or reef aquariums</li>
               <li>300+ gal custom systems</li>
@@ -81,15 +81,15 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" style="text-align:center">
           <h2>Custom Options</h2>
-          <div class="cards" style="grid-template-columns: repeat(2, minmax(0,1fr)); gap:.75rem">
-            <ul>
+          <div class="cards" style="grid-template-columns: repeat(2, minmax(0,1fr)); gap:.75rem; max-width:900px; margin:0 auto">
+            <ul style="text-align:left">
               <li>Rimless, low-iron glass or acrylic</li>
               <li>Peninsula, cube & shallow reef layouts</li>
               <li>Reef-ready with overflow & sump</li>
             </ul>
-            <ul>
+            <ul style="text-align:left">
               <li>All-in-one tanks with rear filtration</li>
               <li>Refugiums, sumps, and plumbing systems</li>
               <li>Matching stands & cabinetry</li>
@@ -108,7 +108,7 @@
     <!-- FRESHWATER -->
     <section id="freshwater" class="container section" aria-label="Freshwater Aquariums">
       <h2 style="text-align:center">Freshwater Aquariums</h2>
-      <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(240px,1fr));">
+      <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); max-width:1100px; margin:0 auto">
         <article class="card" style="text-align:center">
           <h3>Starter Kits</h3>
           <p>Glass tanks with LED lighting, filter, and heater — perfect for beginners.</p>
@@ -135,7 +135,7 @@
     <!-- SALTWATER -->
     <section id="saltwater" class="container section" aria-label="Saltwater & Reef Systems">
       <h2 style="text-align:center">Saltwater & Reef Systems</h2>
-      <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(240px,1fr));">
+      <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); max-width:1100px; margin:0 auto">
         <article class="card" style="text-align:center">
           <h3>All-In-One (AIO)</h3>
           <p>Compact systems with rear filtration for clean nano reefs.</p>
@@ -207,14 +207,30 @@
 
       <div>
         <h4>Visit</h4>
-        <p><a href="https://maps.google.com/?q=258%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
-          258 Dakota Ave S, Huron, SD 57350</a></p>
-        <p><a href="tel:+17872333313">787-233-3313</a></p>
+        <p>
+          <a href="https://maps.google.com/?q=258%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
+            258 Dakota Ave S, Huron, SD 57350
+          </a>
+        </p>
+        <p>
+          <strong>Phones</strong><br />
+          <a href="tel:+17872333313">787-233-3313</a> — Jose (Owner)<br />
+          <a href="tel:+16053506478">605-350-6478</a> — Ian
+        </p>
+      </div>
+
+      <div>
+        <h4>Connect</h4>
+        <p>
+          <a href="https://www.facebook.com/profile.php?id=61580495271761" target="_blank" rel="noopener">Facebook Page</a><br />
+          <a href="https://share.google/d9pG6lvKEcFm08mr8" target="_blank" rel="noopener">Google Search: Bruno's Aquarium</a><br />
+          <a href="mailto:Brunosaquarium@gmail.com">Brunosaquarium@gmail.com</a>
+        </p>
       </div>
 
       <div>
         <h4>Hours</h4>
-        <p>Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
+        <p>Mon–Sun 10:00am–8:00pm • Su Closed</p>
       </div>
     </div>
 
@@ -224,6 +240,6 @@
   </footer>
 
   <!-- JS -->
-  <script src="assets/js/main.js?v=10"></script>
+  <script src="assets/js/main.js?v=11"></script>
 </body>
 </html>
