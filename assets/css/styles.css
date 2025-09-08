@@ -1,23 +1,24 @@
 /* =====================================================
-   Bruno's Aquariums — Ocean + Freshwater Theme (v21)
+   Bruno's Aquariums — Ocean + Freshwater Theme (v22)
+   • Deep Reef palette (balanced, pro)
    • Sand gradient page background
    • Clean, non-overlapping mobile menu
    • Room for FAQ tab in header
    • Phone-first spacing & tap targets
 ===================================================== */
 
-/* ---------- Color system ---------- */
+/* ---------- Color system (Deep Reef) ---------- */
 :root{
   /* Ocean core */
   --ocean-900:#032531;
-  --ocean-800:#053846;
-  --ocean-700:#075062;
+  --ocean-800:#043341;
+  --ocean-700:#074b60;
   --ocean-600:#0a6b84;
   --ocean-500:#0ea5e9;
 
   /* Freshwater accents */
-  --fresh-700:#0d5e4a;
-  --fresh-600:#1f7a62;
+  --fresh-700:#0c5b49;
+  --fresh-600:#188a6b;
 
   /* Sand / light */
   --sand-10:#fffaf1;
@@ -123,7 +124,7 @@ h3{ font-size:1.1rem; margin:.2rem 0 .3rem }
   .nav-toggle{ display:inline-flex; align-items:center; z-index:110 }
   .site-nav{ position:static; width:100%; justify-content:flex-end }
   .site-nav ul{
-    position:static;           /* <-- critical: not absolute */
+    position:static;
     width:100%;
     display:none;
     flex-direction:column;
@@ -161,7 +162,7 @@ a.btn:hover{ filter:brightness(.95) }
 .btn-ghost{
   display:inline-block; min-height:var(--tap);
   border:1px dashed var(--fresh-600); color:var(--fresh-600);
-  background:rgba(46,163,123,.08); padding:.75rem 1.05rem; border-radius:18px; font-weight:800;
+  background:rgba(24,138,107,.08); padding:.75rem 1.05rem; border-radius:18px; font-weight:800;
 }
 a.link{ color: var(--ocean-600); font-weight:800; text-decoration:none; position:relative }
 a.link::after{
@@ -298,7 +299,7 @@ dialog.lightbox{ border:none; padding:0; background:transparent }
 .site-footer{
   margin-top:2rem; color:#fff; padding-top:1.2rem;
   background:
-    radial-gradient(900px 500px at -10% 0%, rgba(46,163,123,.22), transparent 60%),
+    radial-gradient(900px 500px at -10% 0%, rgba(24,138,107,.22), transparent 60%),
     linear-gradient(180deg, var(--ocean-900), var(--ocean-800));
 }
 .footer-grid{
