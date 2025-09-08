@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Accessories — Bruno's Aquariums</title>
+  <title>Accessories & Food — Bruno's Aquariums</title>
 
   <!-- Reef theme CSS -->
   <link rel="stylesheet" href="assets/css/styles.css?v=20" />
@@ -14,6 +14,62 @@
   <meta property="og:title" content="Bruno's Aquariums — Accessories & Food" />
   <meta property="og:description" content="Filtration, pumps, lighting, water care, rock, plumbing, tools, and foods for saltwater & freshwater tanks." />
   <meta property="og:image" content="assets/img/brunos-logo.png" />
+
+  <!-- Page-scoped styles for catalog grids + filters + lightbox -->
+  <style>
+    .section h2{ text-align:center }
+
+    /* Filters */
+    .filters{
+      display:flex; gap:.5rem; flex-wrap:wrap; justify-content:center; margin:.25rem auto .9rem;
+    }
+    .filters .pill{
+      border:1px solid var(--border); border-radius:999px; padding:.35rem .8rem; background:#fff; cursor:pointer;
+    }
+    .filters .pill.active{
+      background:var(--chip-bg, #d9efff); color:var(--chip-text,#062a3a); border-color:var(--chip-border,#0a6b84);
+      font-weight:700;
+    }
+
+    /* Catalog grid */
+    .catalog{
+      --min: 220px;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(var(--min),1fr));
+      gap:1rem; align-items:stretch;
+    }
+    .item-card{
+      background:#fff; border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:var(--shadow);
+      display:flex; flex-direction:column;
+    }
+    .item-media{ aspect-ratio:1 / 1; background:#000; position:relative; overflow:hidden }
+    .item-media img{ width:100%; height:100%; object-fit:cover; display:block }
+    .item-badge{
+      position:absolute; left:.6rem; top:.6rem; background:linear-gradient(90deg,#7dd3fc,#99f6e4);
+      color:#063346; font-weight:900; border-radius:.55rem; padding:.22rem .5rem; font-size:.8rem
+    }
+    .item-body{ padding:.75rem .85rem; display:grid; gap:.35rem }
+    .item-name{ font-weight:800; line-height:1.2 }
+    .item-tags{ display:flex; gap:.35rem; flex-wrap:wrap }
+    .tag{
+      font-size:.78rem; border:1px solid var(--border); padding:.18rem .45rem; border-radius:.45rem; background:#fff;
+    }
+    .item-meta{ display:flex; justify-content:space-between; align-items:center; margin-top:.15rem }
+    .price{ font-weight:800 }
+    .note{ font-size:.88rem; opacity:.86 }
+    .actions{ display:flex; gap:.4rem; flex-wrap:wrap; margin-top:.25rem }
+    .actions a{ font-weight:700 }
+
+    /* Lightbox (shared) */
+    dialog.lightbox{ border:none; padding:0; background:transparent }
+    .lightbox::backdrop{ background:rgba(0,0,0,.78) }
+    .lightbox .wrap{ position:relative; margin:0 }
+    .lightbox img{ max-width:90vw; max-height:85vh; border-radius:12px; display:block }
+    .lightbox .meta{ margin-top:.5rem; text-align:center; color:#e2e8f0 }
+    .lightbox .close{
+      position:absolute; top:.75rem; right:.75rem; background:rgba(15,23,42,.95); border:1px solid #334155;
+      border-radius:.6rem; color:#e2e8f0; padding:.38rem .65rem; cursor:pointer
+    }
+  </style>
 </head>
 
 <body>
@@ -53,98 +109,107 @@
       </div>
     </section>
 
-    <!-- Wave divider -->
+    <!-- Wave -->
     <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
     </svg>
 
-    <!-- CATEGORIES -->
-    <section class="container section reef-accent" aria-label="Accessory Categories">
-      <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
-        <article class="card">
-          <h3>Filtration</h3>
-          <ul>
-            <li>HOB & canister filters</li>
-            <li>Protein skimmers</li>
-            <li>Filter media & socks</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>Pumps & Flow</h3>
-          <ul>
-            <li>Return pumps</li>
-            <li>Wavemakers / Powerheads</li>
-            <li>ATO systems</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>💡 Lighting</h3>
-          <ul>
-            <li>Reef LEDs</li>
-            <li>Planted LEDs</li>
-            <li>Timers & mounts</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>🔥❄️ Heating / Cooling</h3>
-          <ul>
-            <li>Heaters & controllers</li>
-            <li>Cooling fans</li>
-            <li>Thermometers</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>🧪 Water & Test</h3>
-          <ul>
-            <li>RO/DI & salt mix</li>
-            <li>Conditioners</li>
-            <li>Test kits & refractometers</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>🪨 Substrate & Rock</h3>
-          <ul>
-            <li>Sand & gravel</li>
-            <li>Aquasoil</li>
-            <li>Dry rock & wood</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>🐟🍽️ Food</h3>
-          <ul>
-            <li>Flakes & pellets</li>
-            <li>Frozen foods</li>
-            <li>Coral foods</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>🔩 Plumbing</h3>
-          <ul>
-            <li>Bulkheads & PVC</li>
-            <li>Tubing & valves</li>
-            <li>Overflow kits</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>🛠️ Maintenance Tools</h3>
-          <ul>
-            <li>Gravel vacs & siphons</li>
-            <li>Scrapers & nets</li>
-            <li>Buckets & hoses</li>
-          </ul>
-        </article>
-      </div>
+    <!-- ===== FILTRATION ===== -->
+    <section class="container section reef-accent" aria-label="Filtration">
+      <h2>Filtration</h2>
+      <div class="filters" data-filter="filtration"></div>
+      <div class="catalog" data-catalog="filtration" aria-live="polite"></div>
     </section>
 
-    <!-- Wave divider -->
+    <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
+    </svg>
+
+    <!-- ===== PUMPS & FLOW ===== -->
+    <section class="container section" aria-label="Pumps & Flow">
+      <h2>Pumps & Flow</h2>
+      <div class="filters" data-filter="pumps"></div>
+      <div class="catalog" data-catalog="pumps" aria-live="polite"></div>
+    </section>
+
+    <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
+    </svg>
+
+    <!-- ===== LIGHTING ===== -->
+    <section class="container section reef-accent" aria-label="Lighting">
+      <h2>Lighting</h2>
+      <div class="filters" data-filter="lighting"></div>
+      <div class="catalog" data-catalog="lighting" aria-live="polite"></div>
+    </section>
+
+    <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
+    </svg>
+
+    <!-- ===== HEATING / COOLING ===== -->
+    <section class="container section" aria-label="Heating and Cooling">
+      <h2>Heating / Cooling</h2>
+      <div class="filters" data-filter="heating"></div>
+      <div class="catalog" data-catalog="heating" aria-live="polite"></div>
+    </section>
+
+    <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
+    </svg>
+
+    <!-- ===== WATER & TEST ===== -->
+    <section class="container section reef-accent" aria-label="Water & Test">
+      <h2>Water & Test</h2>
+      <div class="filters" data-filter="water"></div>
+      <div class="catalog" data-catalog="water" aria-live="polite"></div>
+    </section>
+
+    <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
+    </svg>
+
+    <!-- ===== SUBSTRATE & ROCK ===== -->
+    <section class="container section" aria-label="Substrate & Rock">
+      <h2>Substrate & Rock</h2>
+      <div class="filters" data-filter="substrate"></div>
+      <div class="catalog" data-catalog="substrate" aria-live="polite"></div>
+    </section>
+
+    <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
+    </svg>
+
+    <!-- ===== FOOD ===== -->
+    <section class="container section reef-accent" aria-label="Food">
+      <h2>Food</h2>
+      <div class="filters" data-filter="food"></div>
+      <div class="catalog" data-catalog="food" aria-live="polite"></div>
+    </section>
+
+    <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
+    </svg>
+
+    <!-- ===== PLUMBING ===== -->
+    <section class="container section" aria-label="Plumbing">
+      <h2>Plumbing</h2>
+      <div class="filters" data-filter="plumbing"></div>
+      <div class="catalog" data-catalog="plumbing" aria-live="polite"></div>
+    </section>
+
+    <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
+    </svg>
+
+    <!-- ===== TOOLS ===== -->
+    <section class="container section reef-accent" aria-label="Maintenance Tools">
+      <h2>Maintenance Tools</h2>
+      <div class="filters" data-filter="tools"></div>
+      <div class="catalog" data-catalog="tools" aria-live="polite"></div>
+    </section>
+
+    <!-- Wave -->
     <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
     </svg>
@@ -211,5 +276,165 @@
 
   <!-- JS -->
   <script src="assets/js/main.js?v=11"></script>
+
+  <!-- Page logic: data-driven catalogs + lightbox -->
+  <script>
+    /* ========= Lightbox (shared) ========= */
+    const lb = document.createElement('dialog');
+    lb.className = 'lightbox';
+    lb.setAttribute('aria-label','Image preview');
+    lb.innerHTML = `
+      <div class="wrap">
+        <button class="close" aria-label="Close">Close</button>
+        <img alt="">
+        <div class="meta" role="note"></div>
+      </div>`;
+    document.body.appendChild(lb);
+    lb.querySelector('.close').addEventListener('click', ()=> lb.close());
+    lb.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') lb.close(); });
+    lb.addEventListener('click', (e)=> { if (e.target === lb) lb.close(); });
+
+    function openLightbox(src, alt, meta){
+      const img = lb.querySelector('img');
+      img.src = src; img.alt = alt || '';
+      lb.querySelector('.meta').textContent = meta || '';
+      lb.showModal();
+      lb.querySelector('.close').focus();
+    }
+
+    /* ========= Helpers ========= */
+    function el(tag, attrs = {}, children = []) {
+      const n = document.createElement(tag);
+      Object.entries(attrs).forEach(([k, v]) => (k === 'class') ? n.className = v : n.setAttribute(k, v));
+      (Array.isArray(children) ? children : [children]).forEach(c => {
+        if (typeof c === 'string') n.appendChild(document.createTextNode(c));
+        else if (c) n.appendChild(c);
+      });
+      return n;
+    }
+
+    function makeItemCard(item){
+      const card = el('article', {class:'item-card'});
+      const media = el('div', {class:'item-media'});
+      const img = el('img', {src:item.src, alt: item.alt || item.name || 'Product photo', loading:'lazy', decoding:'async'});
+      img.addEventListener('error', ()=> { img.replaceWith(el('div',{}, 'Photo unavailable')); });
+      media.appendChild(img);
+      if(item.badge) media.appendChild(el('span',{class:'item-badge'}, item.badge));
+      media.addEventListener('click', ()=> openLightbox(item.src, item.alt || item.name, [item.name, item.price, item.note].filter(Boolean).join(' • ')));
+      card.appendChild(media);
+
+      const body = el('div', {class:'item-body'});
+      body.appendChild(el('div', {class:'item-name'}, item.name || 'Item'));
+      if (Array.isArray(item.tags) && item.tags.length){
+        const tags = el('div', {class:'item-tags'});
+        item.tags.forEach(t => tags.appendChild(el('span',{class:'tag'}, t)));
+        body.appendChild(tags);
+      }
+      const meta = el('div', {class:'item-meta'});
+      meta.appendChild(el('div', {class:'price'}, item.price || 'Ask'));
+      if (item.note) meta.appendChild(el('div', {class:'note'}, item.note));
+      body.appendChild(meta);
+
+      if (item.url || item.sku) {
+        const actions = el('div', {class:'actions'});
+        if (item.url) actions.appendChild(el('a', {href:item.url, target:'_blank', rel:'noopener', class:'link'}, 'Details'));
+        if (item.sku) actions.appendChild(el('span', {class:'tag'}, 'SKU: ' + item.sku));
+        body.appendChild(actions);
+      }
+
+      card.appendChild(body);
+      return card;
+    }
+
+    function renderFilters(key, filters){
+      const root = document.querySelector('.filters[data-filter="'+key+'"]');
+      if (!root) return;
+      root.innerHTML = '';
+      const all = el('button', {class:'pill active', type:'button', 'data-val':'__ALL__'}, 'All');
+      root.appendChild(all);
+      (filters || []).forEach(f => {
+        root.appendChild(el('button', {class:'pill', type:'button', 'data-val':f}, f));
+      });
+    }
+
+    function bindFilterBehavior(key, items){
+      const wrap = document.querySelector('.filters[data-filter="'+key+'"]');
+      const grid = document.querySelector('.catalog[data-catalog="'+key+'"]');
+      if (!wrap || !grid) return;
+
+      function apply(val){
+        grid.querySelectorAll('.item-card, .empty-msg').forEach(elm => elm.remove());
+        const list = (val === '__ALL__') ? items : items.filter(it => (it.tags || []).includes(val));
+        if (!list.length){
+          const msg = el('p',{class:'ink-80 empty-msg',style:'text-align:center'}, 'No items match this filter.');
+          grid.appendChild(msg);
+          return;
+        }
+        list.forEach(it => grid.appendChild(makeItemCard(it)));
+      }
+
+      wrap.addEventListener('click', e=>{
+        const b = e.target.closest('button.pill'); if(!b) return;
+        wrap.querySelectorAll('button.pill').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        apply(b.dataset.val);
+      });
+
+      apply('__ALL__');
+    }
+
+    /* ========= Load JSON & render =========
+       File: assets/data/accessories.json
+
+       Expected structure (example):
+       {
+         "filtration": [
+           { "src":"assets/img/accessories/filtration/reefskimmer-100.jpg", "name":"Reef Skimmer 100", "price":"$199", "tags":["Skimmer","Saltwater"], "note":"Up to 100 gal", "sku":"RSK-100", "url":"https://..." }
+         ],
+         "pumps": [ ... ],
+         "lighting": [ ... ],
+         "heating": [ ... ],
+         "water": [ ... ],
+         "substrate": [ ... ],
+         "food": [ ... ],
+         "plumbing": [ ... ],
+         "tools": [ ... ],
+         "filters": {
+           "filtration": ["HOB","Canister","Skimmer","Media","Socks","Refugium"],
+           "pumps":      ["Return","Wavemaker","ATO","Powerhead"],
+           "lighting":   ["Reef LED","Planted LED","Timer","Mount"],
+           "heating":    ["Heater","Controller","Fan","Chiller","Thermometer"],
+           "water":      ["RO/DI","Salt Mix","Conditioner","Test Kit","Refractometer"],
+           "substrate":  ["Sand","Gravel","Aquasoil","Rock","Wood"],
+           "food":       ["Flake","Pellet","Frozen","Coral"],
+           "plumbing":   ["Bulkhead","PVC","Valve","Tubing","Overflow"],
+           "tools":      ["Vac","Scraper","Net","Bucket","Hose"]
+         }
+       }
+    */
+    fetch('assets/data/accessories.json')
+      .then(r => r.json())
+      .then(data => {
+        const sections = ['filtration','pumps','lighting','heating','water','substrate','food','plumbing','tools'];
+        sections.forEach(key => {
+          const grid = document.querySelector('.catalog[data-catalog="'+key+'"]');
+          if (!grid) return;
+          const items = Array.isArray(data[key]) ? data[key] : [];
+          const filters = data.filters && Array.isArray(data.filters[key]) ? data.filters[key] : [];
+          renderFilters(key, filters);
+          if (!items.length){
+            grid.innerHTML = '<p class="ink-80" style="text-align:center">Photos coming soon.</p>';
+          } else {
+            bindFilterBehavior(key, items);
+          }
+        });
+      })
+      .catch(err => {
+        console.error('Failed to load accessories.json', err);
+        document.querySelectorAll('.catalog').forEach(grid => {
+          grid.innerHTML = '<p class="ink-80" style="text-align:center">Photos coming soon.</p>';
+        });
+      });
+  </script>
 </body>
 </html>
