@@ -6,7 +6,7 @@
   <title>Fish, Corals & Invertebrates — Bruno's Aquariums</title>
 
   <!-- Reef theme CSS -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=20" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=10" />
   <link rel="icon" href="assets/img/favicon.png" />
 
   <!-- Meta -->
@@ -15,10 +15,11 @@
   <meta property="og:description" content="Shop our current stock or place a special order for fish, corals, and inverts." />
   <meta property="og:image" content="assets/img/brunos-logo.png" />
 
-  <!-- Slider styles (scoped) -->
+  <!-- Page-scoped styles for slider + grids -->
   <style>
     .section h2{ text-align:center }
 
+    /* ===== Weekly slider (kept) ===== */
     .slider-wrap{
       position:relative; max-width:1100px; margin:0 auto 1rem; border-radius:18px;
       overflow:hidden; box-shadow: var(--shadow,0 8px 24px rgba(0,0,0,.15)); background:#000;
@@ -26,21 +27,17 @@
     .slider-track{ display:flex; transition:transform .5s ease; will-change:transform }
     .slide{ min-width:100%; aspect-ratio:16/9; position:relative; background:#000 }
     .slide img{ width:100%; height:100%; object-fit:cover; display:block }
-
     .caption{
       position:absolute; left:0; right:0; bottom:0; color:#fff; padding:.6rem .8rem;
-      background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.65) 100%);
-      font-size:.95rem;
+      background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.65) 100%); font-size:.95rem;
     }
     .badge{
-      position:absolute; left:.6rem; top:.6rem; background:var(--reef-teal,#0cA6A6);
+      position:absolute; left:.6rem; top:.6rem; background:var(--reef-teal,#0ca6a6);
       color:#fff; font-weight:700; border-radius:.5rem; padding:.22rem .5rem; font-size:.78rem
     }
-
     .slider-nav{ position:absolute; inset:auto 0 10px 0; display:flex; justify-content:center; gap:.4rem; }
     .dot{ width:10px; height:10px; border-radius:999px; background:rgba(255,255,255,.55); border:none; cursor:pointer; padding:0 }
     .dot[aria-current="true"]{ background:#fff }
-
     .arrow{
       position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.35); color:#fff;
       border:none; width:40px; height:40px; border-radius:999px; display:grid; place-items:center; cursor:pointer
@@ -51,6 +48,54 @@
 
     .center{ display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; margin:.6rem auto 1.2rem }
     .ink-80{ opacity:.85 }
+
+    /* ===== Catalog grids (cards) ===== */
+    .filters{
+      display:flex; gap:.5rem; flex-wrap:wrap; justify-content:center; margin:.25rem auto .9rem;
+    }
+    .filters .pill{
+      border:1px solid var(--border); border-radius:999px; padding:.35rem .8rem; background:#fff; cursor:pointer;
+    }
+    .filters .pill.active{
+      background:var(--chip-bg, #d9efff); color:var(--chip-text,#062a3a); border-color:var(--chip-border,#0a6b84);
+      font-weight:700;
+    }
+
+    .catalog{
+      --min: 220px;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(var(--min),1fr));
+      gap:1rem; align-items:stretch;
+    }
+    .item-card{
+      background:#fff; border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:var(--shadow);
+      display:flex; flex-direction:column;
+    }
+    .item-media{ aspect-ratio:1 / 1; background:#000; position:relative; overflow:hidden }
+    .item-media img{ width:100%; height:100%; object-fit:cover; display:block }
+    .item-badge{
+      position:absolute; left:.6rem; top:.6rem; background:linear-gradient(90deg,#7dd3fc,#99f6e4);
+      color:#063346; font-weight:900; border-radius:.55rem; padding:.22rem .5rem; font-size:.8rem
+    }
+    .item-body{ padding:.75rem .85rem; display:grid; gap:.35rem }
+    .item-name{ font-weight:800; line-height:1.2 }
+    .item-tags{ display:flex; gap:.35rem; flex-wrap:wrap }
+    .tag{
+      font-size:.78rem; border:1px solid var(--border); padding:.18rem .45rem; border-radius:.45rem; background:#fff;
+    }
+    .item-meta{ display:flex; justify-content:space-between; align-items:center; margin-top:.15rem }
+    .price{ font-weight:800 }
+    .note{ font-size:.88rem; opacity:.86 }
+
+    /* Lightbox (shared) */
+    dialog.lightbox{ border:none; padding:0; background:transparent }
+    .lightbox::backdrop{ background:rgba(0,0,0,.78) }
+    .lightbox .wrap{ position:relative; margin:0 }
+    .lightbox img{ max-width:90vw; max-height:85vh; border-radius:12px; display:block }
+    .lightbox .meta{ margin-top:.5rem; text-align:center; color:#e2e8f0 }
+    .lightbox .close{
+      position:absolute; top:.75rem; right:.75rem; background:rgba(15,23,42,.95); border:1px solid #334155;
+      border-radius:.6rem; color:#e2e8f0; padding:.38rem .65rem; cursor:pointer
+    }
   </style>
 </head>
 
@@ -87,7 +132,7 @@
     <section class="hero section">
       <div class="container">
         <h1>Fish, Corals & Invertebrates</h1>
-        <p>Healthy, quarantined livestock with weekly arrivals. Ask about special orders for rare species.</p>
+        <p>Healthy, quarantined livestock with weekly arrivals. Use the grids below to browse by category.</p>
         <div class="center">
           <a class="btn" href="#weekly">This Week</a>
           <a class="btn-outline" href="#freshwater">Freshwater</a>
@@ -103,10 +148,10 @@
       <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
     </svg>
 
-    <!-- WEEKLY SLIDER -->
+    <!-- ===== WEEKLY SLIDER (kept) ===== -->
     <section id="weekly" class="container section reef-accent" aria-label="This Week’s Arrivals">
       <h2>🗓 This Week’s Arrivals</h2>
-      <p class="ink-80" style="text-align:center;margin-top:-.35rem">Swap the files below as new stock arrives (week-1.jpg, week-2.jpg, …).</p>
+      <p class="ink-80" style="text-align:center;margin-top:-.35rem">Swap the files below as new stock arrives (<code>week-1.jpg</code>…<code>week-4.jpg</code>).</p>
       <div class="slider-wrap" data-slider="weekly">
         <button class="arrow prev" aria-label="Previous slide" type="button">‹</button>
         <div class="slider-track">
@@ -141,176 +186,53 @@
       </div>
     </section>
 
-    <!-- Wave divider -->
+    <!-- Wave -->
     <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
     </svg>
 
-    <!-- FRESHWATER SLIDER -->
+    <!-- ===== FRESHWATER GRID ===== -->
     <section id="freshwater" class="container section" aria-label="Freshwater Fish">
       <h2>Freshwater Fish</h2>
-      <div class="slider-wrap" data-slider="freshwater">
-        <button class="arrow prev" aria-label="Previous slide" type="button">‹</button>
-        <div class="slider-track">
-          <figure class="slide">
-            <span class="badge">Freshwater 1</span>
-            <img src="assets/img/livestock/freshwater/freshwater-1.jpg" alt="Neon tetras">
-            <figcaption class="caption">Tetras & community fish</figcaption>
-          </figure>
-          <figure class="slide">
-            <span class="badge">Freshwater 2</span>
-            <img src="assets/img/livestock/freshwater/freshwater-2.jpg" alt="Guppies">
-            <figcaption class="caption">Livebearers (Guppies, Platies)</figcaption>
-          </figure>
-          <figure class="slide">
-            <span class="badge">Freshwater 3</span>
-            <img src="assets/img/livestock/freshwater/freshwater-3.jpg" alt="Corydoras catfish">
-            <figcaption class="caption">Corydoras & clean-up crew</figcaption>
-          </figure>
-          <figure class="slide">
-            <span class="badge">Freshwater 4</span>
-            <img src="assets/img/livestock/freshwater/freshwater-4.jpg" alt="Bristlenose pleco">
-            <figcaption class="caption">Plecos & algae control</figcaption>
-          </figure>
-        </div>
-        <button class="arrow next" aria-label="Next slide" type="button">›</button>
-        <div class="slider-nav" role="tablist" aria-label="Freshwater slides"></div>
-      </div>
-
-      <div class="center">
-        <a class="btn" href="contact.html">Ask for This Week’s List</a>
-        <a class="btn-outline" href="contact.html">Special Order</a>
-      </div>
+      <div class="filters" data-filter="freshwater"></div>
+      <div class="catalog" data-catalog="freshwater" aria-live="polite"></div>
     </section>
 
-    <!-- Wave divider -->
     <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
     </svg>
 
-    <!-- SALTWATER SLIDER -->
+    <!-- ===== SALTWATER GRID ===== -->
     <section id="saltwater" class="container section" aria-label="Saltwater Fish">
       <h2>Saltwater Fish</h2>
-      <div class="slider-wrap" data-slider="saltwater">
-        <button class="arrow prev" aria-label="Previous slide" type="button">‹</button>
-        <div class="slider-track">
-          <figure class="slide">
-            <span class="badge">Saltwater 1</span>
-            <img src="assets/img/livestock/saltwater/saltwater-1.jpg" alt="Ocellaris clownfish">
-            <figcaption class="caption">Clownfish</figcaption>
-          </figure>
-          <figure class="slide">
-            <span class="badge">Saltwater 2</span>
-            <img src="assets/img/livestock/saltwater/saltwater-2.jpg" alt="Watchman goby">
-            <figcaption class="caption">Gobies</figcaption>
-          </figure>
-          <figure class="slide">
-            <span class="badge">Saltwater 3</span>
-            <img src="assets/img/livestock/saltwater/saltwater-3.jpg" alt="Fairy wrasse">
-            <figcaption class="caption">Wrasses</figcaption>
-          </figure>
-          <figure class="slide">
-            <span class="badge">Saltwater 4</span>
-            <img src="assets/img/livestock/saltwater/saltwater-4.jpg" alt="Banggai cardinalfish">
-            <figcaption class="caption">Cardinals</figcaption>
-          </figure>
-        </div>
-        <button class="arrow next" aria-label="Next slide" type="button">›</button>
-        <div class="slider-nav" role="tablist" aria-label="Saltwater slides"></div>
-      </div>
-
-      <div class="center">
-        <a class="btn" href="contact.html">Ask for This Week’s List</a>
-        <a class="btn-outline" href="contact.html">Special Order</a>
-      </div>
+      <div class="filters" data-filter="saltwater"></div>
+      <div class="catalog" data-catalog="saltwater" aria-live="polite"></div>
     </section>
 
-    <!-- Wave divider -->
     <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
     </svg>
 
-    <!-- CORALS SLIDER -->
+    <!-- ===== CORALS GRID ===== -->
     <section id="corals" class="container section reef-accent" aria-label="Corals">
       <h2>Corals</h2>
-      <div class="slider-wrap" data-slider="corals">
-        <button class="arrow prev" aria-label="Previous slide" type="button">‹</button>
-        <div class="slider-track">
-          <figure class="slide">
-            <span class="badge">Coral 1</span>
-            <img src="assets/img/livestock/corals/coral-1.jpg" alt="Zoanthid colony">
-            <figcaption class="caption">Soft — Zoas & Leathers</figcaption>
-          </figure>
-          <figure class="slide">
-            <span class="badge">Coral 2</span>
-            <img src="assets/img/livestock/corals/coral-2.jpg" alt="Hammer coral">
-            <figcaption class="caption">LPS — Hammers & Torches</figcaption>
-          </figure>
-          <figure class="slide">
-            <span class="badge">Coral 3</span>
-            <img src="assets/img/livestock/corals/coral-3.jpg" alt="Acropora">
-            <figcaption class="caption">SPS — Acros & Montis</figcaption>
-          </figure>
-          <figure class="slide">
-            <span class="badge">Coral 4</span>
-            <img src="assets/img/livestock/corals/coral-4.jpg" alt="Ricordea mushroom">
-            <figcaption class="caption">Polyps & Mushrooms</figcaption>
-          </figure>
-        </div>
-        <button class="arrow next" aria-label="Next slide" type="button">›</button>
-        <div class="slider-nav" role="tablist" aria-label="Coral slides"></div>
-      </div>
-
-      <div class="center">
-        <a class="btn" href="contact.html">Show Me Current Frags</a>
-        <a class="btn-outline" href="contact.html">Request a Pack</a>
-      </div>
+      <div class="filters" data-filter="corals"></div>
+      <div class="catalog" data-catalog="corals" aria-live="polite"></div>
     </section>
 
-    <!-- Wave divider -->
     <svg class="wave-sep" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"></path>
     </svg>
 
-    <!-- INVERTS SLIDER -->
+    <!-- ===== INVERTEBRATES GRID ===== -->
     <section id="inverts" class="container section" aria-label="Invertebrates">
       <h2>Invertebrates</h2>
-      <div class="slider-wrap" data-slider="inverts">
-        <button class="arrow prev" aria-label="Previous slide" type="button">‹</button>
-        <div class="slider-track">
-          <figure class="slide">
-            <span class="badge">Inverts 1</span>
-            <img src="assets/img/livestock/inverts/invert-1.jpg" alt="Trochus snail">
-            <figcaption class="caption">Snails (Trochus, Nassarius)</figcaption>
-          </figure>
-          <figure class="slide">
-            <span class="badge">Inverts 2</span>
-            <img src="assets/img/livestock/inverts/invert-2.jpg" alt="Blue leg hermit crab">
-            <figcaption class="caption">Hermit Crabs</figcaption>
-          </figure>
-          <figure class="slide">
-            <span class="badge">Inverts 3</span>
-            <img src="assets/img/livestock/inverts/invert-3.jpg" alt="Cleaner shrimp">
-            <figcaption class="caption">Shrimp (Cleaner, Peppermint)</figcaption>
-          </figure>
-          <figure class="slide">
-            <span class="badge">Inverts 4</span>
-            <img src="assets/img/livestock/inverts/invert-4.jpg" alt="Bubble tip anemone">
-            <figcaption class="caption">Anemones</figcaption>
-          </figure>
-        </div>
-        <button class="arrow next" aria-label="Next slide" type="button">›</button>
-        <div class="slider-nav" role="tablist" aria-label="Invert slides"></div>
-      </div>
-
-      <div class="center">
-        <a class="btn" href="contact.html">Build My Clean-Up Crew</a>
-        <a class="btn-outline" href="contact.html">Special Order</a>
-      </div>
+      <div class="filters" data-filter="inverts"></div>
+      <div class="catalog" data-catalog="inverts" aria-live="polite"></div>
     </section>
   </main>
 
-  <!-- Footer (shared across site) -->
+  <!-- Footer (expanded) -->
   <footer class="site-footer" role="contentinfo">
     <div class="container footer-grid">
       <div>
@@ -359,73 +281,196 @@
   </footer>
 
   <!-- JS -->
-  <script src="assets/js/main.js?v=11"></script>
+  <script src="assets/js/main.js?v=10"></script>
 
-  <!-- Slider logic (re-usable, no dependencies) -->
+  <!-- Page logic: slider + data-driven catalogs + lightbox -->
   <script>
+    /* ========= Simple reusable slider (for Weekly only) ========= */
     (function(){
-      function initSlider(wrap){
+      document.querySelectorAll('.slider-wrap').forEach(wrap => {
         const track = wrap.querySelector('.slider-track');
+        if(!track) return;
         const slides = Array.from(track.children);
         const prev = wrap.querySelector('.arrow.prev');
         const next = wrap.querySelector('.arrow.next');
         const dotsWrap = wrap.querySelector('.slider-nav');
+
         let index = 0, timer;
 
-        // Build dots
         slides.forEach((_, i) => {
           const b = document.createElement('button');
-          b.className = 'dot';
-          b.type = 'button';
+          b.className = 'dot'; b.type = 'button';
           b.setAttribute('aria-label', 'Go to slide ' + (i+1));
-          b.addEventListener('click', ()=> go(i, true));
+          b.addEventListener('click', () => go(i, true));
           dotsWrap.appendChild(b);
         });
 
         function update(){
           track.style.transform = 'translateX(' + (-index * 100) + '%)';
-          Array.from(dotsWrap.children).forEach((d,i)=>{
-            d.setAttribute('aria-current', i===index ? 'true' : 'false');
-          });
+          Array.from(dotsWrap.children).forEach((d,i)=> d.setAttribute('aria-current', i===index ? 'true' : 'false'));
         }
-
         function go(i, user=false){
-          index = (i + slides.length) % slides.length;
-          update();
+          index = (i + slides.length) % slides.length; update();
           if(user) resetAuto();
         }
-
         function nextSlide(){ go(index+1); }
         function prevSlide(){ go(index-1, true); }
-
-        function resetAuto(){
-          clearInterval(timer);
-          timer = setInterval(nextSlide, 5000);
-        }
+        function resetAuto(){ clearInterval(timer); timer = setInterval(nextSlide, 5000); }
 
         prev.addEventListener('click', prevSlide);
-        next.addEventListener('click', ()=> go(index+1, true));
+        next.addEventListener('click', () => go(index+1, true));
 
-        // Swipe support
+        // Swipe
         let startX=null;
         track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
         track.addEventListener('touchmove', e => {
           if(startX===null) return;
           const dx = e.touches[0].clientX - startX;
-          if(Math.abs(dx) > 50){
-            if(dx < 0) go(index+1, true); else go(index-1, true);
-            startX = null;
-          }
+          if(Math.abs(dx) > 50){ if(dx < 0) go(index+1, true); else go(index-1, true); startX = null; }
         }, {passive:true});
         track.addEventListener('touchend', ()=>{ startX=null; });
 
-        // Init
-        update();
-        resetAuto();
+        update(); resetAuto();
+      });
+    })();
+
+    /* ========= Lightbox (shared) ========= */
+    const lb = document.createElement('dialog');
+    lb.className = 'lightbox';
+    lb.setAttribute('aria-label','Image preview');
+    lb.innerHTML = `
+      <div class="wrap">
+        <button class="close" aria-label="Close">Close</button>
+        <img alt="">
+        <div class="meta" role="note"></div>
+      </div>`;
+    document.body.appendChild(lb);
+    lb.querySelector('.close').addEventListener('click', ()=> lb.close());
+    lb.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') lb.close(); });
+    lb.addEventListener('click', (e)=> { if (e.target === lb) lb.close(); });
+
+    function openLightbox(src, alt, meta){
+      const img = lb.querySelector('img');
+      img.src = src; img.alt = alt || '';
+      lb.querySelector('.meta').textContent = meta || '';
+      lb.showModal();
+      lb.querySelector('.close').focus();
+    }
+
+    /* ========= Catalog rendering from JSON =========
+       File: assets/data/livestock.json
+
+       Expected structure (example):
+       {
+         "freshwater": [
+           { "src":"assets/img/livestock/freshwater/fresh-01.jpg", "name":"Neon Tetra", "price":"$3.99 ea", "tags":["Schooling","Peaceful"], "note":"Good for beginners", "alt":"Neon tetra school", "badge":"New" },
+           ...
+         ],
+         "saltwater": [ ... ],
+         "corals":     [ { "tags":["Soft"], ... }, { "tags":["LPS"], ... } ],
+         "inverts":    [ ... ],
+         "filters": {
+            "freshwater": ["Tetras","Livebearers","Corydoras","Cichlids","Shrimp","Community"],
+            "saltwater":  ["Clownfish","Gobies","Wrasses","Cardinals","Angels","Reef-safe"],
+            "corals":     ["Soft","LPS","SPS","Mushrooms","Zoas","Frags"],
+            "inverts":    ["Snails","Hermits","Shrimp","Crabs","Starfish","Anemones"]
+         }
+       }
+    */
+    function el(tag, attrs = {}, children = []) {
+      const n = document.createElement(tag);
+      Object.entries(attrs).forEach(([k, v]) => (k === 'class') ? n.className = v : n.setAttribute(k, v));
+      (Array.isArray(children) ? children : [children]).forEach(c => {
+        if (typeof c === 'string') n.appendChild(document.createTextNode(c));
+        else if (c) n.appendChild(c);
+      });
+      return n;
+    }
+
+    function makeItemCard(item){
+      const card = el('article', {class:'item-card'});
+      const media = el('div', {class:'item-media'});
+      const img = el('img', {src:item.src, alt: item.alt || item.name || 'Livestock image', loading:'lazy', decoding:'async'});
+      img.addEventListener('error', ()=> { img.replaceWith(el('div',{}, 'Photo unavailable')); });
+      media.appendChild(img);
+      if(item.badge) media.appendChild(el('span',{class:'item-badge'}, item.badge));
+      media.addEventListener('click', ()=> openLightbox(item.src, item.alt || item.name, [item.name, item.price, item.note].filter(Boolean).join(' • ')));
+      card.appendChild(media);
+
+      const body = el('div', {class:'item-body'});
+      body.appendChild(el('div', {class:'item-name'}, item.name || 'Livestock'));
+      if (Array.isArray(item.tags) && item.tags.length){
+        const tags = el('div', {class:'item-tags'});
+        item.tags.forEach(t => tags.appendChild(el('span',{class:'tag'}, t)));
+        body.appendChild(tags);
+      }
+      const meta = el('div', {class:'item-meta'});
+      meta.appendChild(el('div', {class:'price'}, item.price || 'Ask'));
+      if (item.note) meta.appendChild(el('div', {class:'note'}, item.note));
+      body.appendChild(meta);
+      card.appendChild(body);
+      return card;
+    }
+
+    function renderFilters(key, filters){
+      const root = document.querySelector('.filters[data-filter="'+key+'"]');
+      if (!root) return;
+      root.innerHTML = '';
+      const all = el('button', {class:'pill active', type:'button', 'data-val':'__ALL__'}, 'All');
+      root.appendChild(all);
+      (filters || []).forEach(f => {
+        root.appendChild(el('button', {class:'pill', type:'button', 'data-val':f}, f));
+      });
+    }
+
+    function bindFilterBehavior(key, items){
+      const wrap = document.querySelector('.filters[data-filter="'+key+'"]');
+      const grid = document.querySelector('.catalog[data-catalog="'+key+'"]');
+      if (!wrap || !grid) return;
+
+      function apply(val){
+        grid.querySelectorAll('.item-card').forEach(card => card.remove());
+        const list = (val === '__ALL__') ? items : items.filter(it => (it.tags || []).includes(val));
+        if (!list.length){ grid.appendChild(el('p',{class:'ink-80',style:'text-align:center'}, 'No items match this filter.')); return; }
+        list.forEach(it => grid.appendChild(makeItemCard(it)));
       }
 
-      document.querySelectorAll('.slider-wrap').forEach(initSlider);
-    })();
+      wrap.addEventListener('click', e=>{
+        const b = e.target.closest('button.pill'); if(!b) return;
+        wrap.querySelectorAll('button.pill').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        apply(b.dataset.val);
+      });
+
+      apply('__ALL__');
+    }
+
+    // Load JSON and render all catalogs
+    fetch('assets/data/livestock.json')
+      .then(r => r.json())
+      .then(data => {
+        // Sections to render
+        const sections = ['freshwater','saltwater','corals','inverts'];
+        sections.forEach(key => {
+          const grid = document.querySelector('.catalog[data-catalog="'+key+'"]');
+          if (!grid) return;
+          const items = Array.isArray(data[key]) ? data[key] : [];
+          const filters = data.filters && Array.isArray(data.filters[key]) ? data.filters[key] : [];
+          if (!items.length){
+            grid.innerHTML = '<p class="ink-80" style="text-align:center">Photos coming soon.</p>';
+          } else {
+            // initial fill happens inside filter behavior; still render filter chips:
+            renderFilters(key, filters);
+            bindFilterBehavior(key, items);
+          }
+        });
+      })
+      .catch(err => {
+        console.error('Failed to load livestock.json', err);
+        document.querySelectorAll('.catalog').forEach(grid => {
+          grid.innerHTML = '<p class="ink-80" style="text-align:center">Photos coming soon.</p>';
+        });
+      });
   </script>
 </body>
 </html>
