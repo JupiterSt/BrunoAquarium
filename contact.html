@@ -6,7 +6,7 @@
   <title>Contact & Orders — Bruno's Aquariums</title>
 
   <!-- Reef theme CSS -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=10" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=20" />
   <link rel="icon" href="assets/img/favicon.png" />
 
   <!-- Meta -->
@@ -27,24 +27,20 @@
     /* Chips theme’d to reef colors */
     .chips { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center }
     .chip{
-      --b: var(--reef-teal);
+      --b: var(--ocean-600);
       display:inline-flex; align-items:center; gap:.45rem;
       padding:.5rem .75rem; border-radius:999px;
       border:1.5px solid var(--b); background: rgba(12,166,166,.08);
       cursor:pointer; user-select:none; transition: .15s ease;
       font-size:.95rem; color: var(--ink);
+      position:relative;
     }
     .chip input{
-      appearance:none; width:1.05rem; height:1.05rem;
-      border:1.5px solid var(--b); border-radius:.25rem; display:inline-block;
-      position:relative; background:#fff;
+      position:absolute; width:1px; height:1px; opacity:0; pointer-events:none;
     }
-    .chip input:checked{ background: var(--b); border-color: var(--b); }
-    .chip input:checked::after{ content:""; position:absolute; inset:.18rem; background:#fff; }
-    .chip.selected{ background: var(--reef-teal); color:#fff; }
-    .chip.selected input{ border-color:#fff; }
+    .chip.selected{ background: var(--chip-bg); color:var(--chip-text); border-color: var(--chip-border); }
     .chip .other-input{
-      display:none; background:#fff; border:1px solid var(--reef-teal);
+      display:none; background:#fff; border:1px solid var(--ocean-600);
       border-radius:.5rem; padding:.35rem .5rem; color:var(--ink); width:16ch;
     }
     .chip.other-active .other-input{ display:inline-block; }
@@ -96,9 +92,9 @@
           <li><a href="livestock.html">Fish & Corals</a></li>
           <li><a href="maintenance.html">Maintenance</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="faq.html" class="active">FAQ</a></li>
+          <li><a href="faq.html">FAQ</a></li>
           <li><a class="btn-ghost" href="appointments.html">Book Appointment</a></li>
-          <li><a class="btn" href="contact.html">Contact</a></li>
+          <li><a class="btn active" href="contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -143,7 +139,7 @@
 
           <div class="divider"></div>
 
-          <!-- NEW: Tank Type & Size -->
+          <!-- Tank Type & Size -->
           <h2 style="text-align:center">Tank Type & Size</h2>
 
           <!-- Tank Type (radio) -->
@@ -336,11 +332,16 @@
           <h2 style="text-align:center">Visit Bruno's Aquariums</h2>
           <p style="text-align:center"><strong>Address</strong><br />
             <a href="https://maps.google.com/?q=258%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
-              258 Dakota Ave S, Huron, SD 57350</a></p>
-          <p style="text-align:center"><strong>Phone</strong> <a href="tel:+17872333313">787-233-3313</a></p>
+              258 Dakota Ave S, Huron, SD 57350</a>
+          </p>
+          <p style="text-align:center">
+            <strong>Phones</strong><br />
+            <a href="tel:+17872333313">787-233-3313</a> — Jose (Owner)<br />
+            <a href="tel:+16053506478">605-350-6478</a> — Ian
+          </p>
 
           <h3 style="text-align:center">Hours</h3>
-          <p style="text-align:center">Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
+          <p style="text-align:center">Mon–Sun 10:00am–8:00pm • Su Closed</p>
 
           <div class="map-outer" aria-label="Google Map">
             <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
@@ -387,14 +388,30 @@
 
       <div>
         <h4>Visit</h4>
-        <p><a href="https://maps.google.com/?q=258%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
-          258 Dakota Ave S, Huron, SD 57350</a></p>
-        <p><a href="tel:+17872333313">787-233-3313</a></p>
+        <p>
+          <a href="https://maps.google.com/?q=258%20Dakota%20Ave%20S,%20Huron,%20SD%2057350" target="_blank" rel="noopener">
+            258 Dakota Ave S, Huron, SD 57350
+          </a>
+        </p>
+        <p>
+          <strong>Phones</strong><br />
+          <a href="tel:+17872333313">787-233-3313</a> — Jose (Owner)<br />
+          <a href="tel:+16053506478">605-350-6478</a> — Ian
+        </p>
+      </div>
+
+      <div>
+        <h4>Connect</h4>
+        <p>
+          <a href="https://www.facebook.com/profile.php?id=61580495271761" target="_blank" rel="noopener">Facebook Page</a><br />
+          <a href="https://share.google/d9pG6lvKEcFm08mr8" target="_blank" rel="noopener">Google Search: Bruno's Aquarium</a><br />
+          <a href="mailto:Brunosaquarium@gmail.com">Brunosaquarium@gmail.com</a>
+        </p>
       </div>
 
       <div>
         <h4>Hours</h4>
-        <p>Mo–Fr 10:00am–8:00pm • Sa 10:00am–8:00pm • Su Closed</p>
+        <p>Mon–Sun 10:00am–8:00pm • Su Closed</p>
       </div>
     </div>
 
@@ -404,7 +421,7 @@
   </footer>
 
   <!-- JS -->
-  <script src="assets/js/main.js?v=10"></script>
+  <script src="assets/js/main.js?v=11"></script>
 
   <!-- Selections logic -->
   <script>
@@ -441,7 +458,7 @@
             chip.classList.add('selected');
           }
 
-          // "Other" text input
+          // "Other" text input handling
           const isOther = chip.classList.contains('chip--other');
           const otherField = chip.querySelector('.other-input');
           if (isOther) {
